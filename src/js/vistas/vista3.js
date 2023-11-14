@@ -1,5 +1,7 @@
 import {Vista} from './vista.js'
 
+//Esta es la vista que muestra el menú de competicón, a través de ella, se podrá acceder a las vista de crear competicion o unirse a una competicion
+
 export class Vista3 extends Vista{
     constructor(controlador, base){
         super(controlador, base)
@@ -12,11 +14,12 @@ export class Vista3 extends Vista{
         this.enlace2.onclick = this.pulsarEnlace2.bind(this)
         this.enlace3.onclick = this.pulsarEnlace3.bind(this)
     }
+    //Funciones para ver la vista que corresponde segun el boton accionado
     pulsarEnlace1(){
-        this.controlador.verVista(Vista.VISTA2)
+        this.controlador.verVista(Vista.VISTA4)
     }
     pulsarEnlace2(){
-        this.controlador.verVista(Vista.VISTA3)
+        this.controlador.verVista(Vista.VISTA5)
     }
     pulsarEnlace3(){
         this.controlador.verVista(Vista.VISTA1)

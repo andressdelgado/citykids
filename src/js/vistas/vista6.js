@@ -1,7 +1,8 @@
 import {Vista} from './vista.js'
 
-//Es la vista Principal, la pantalla principal que se muestra. Todas las vistas dependen de esta.
-export class Vista1 extends Vista{
+//En esta vista se muestra el menu de los rankings, a través de esta vista se puede acceder a la vista de ranking genereal, y a la de ranking por competiciones
+
+export class Vista6 extends Vista{
     constructor(controlador, base){
         super(controlador, base)
         //Coger referecnias del interfaz
@@ -15,12 +16,13 @@ export class Vista1 extends Vista{
     }
     //Funciones para ver la vista que corresponde segun el boton accionado
     pulsarEnlace1(){
-        this.controlador.verVista(Vista.VISTA2)
-    }
+        this.controlador.verVista(Vista.VISTA7)
+    } 
     pulsarEnlace2(){
-        this.controlador.verVista(Vista.VISTA3)
-    }
+        this.controlador.verVista(Vista.VISTA8)
+    } 
     pulsarEnlace3(){
-        this.controlador.verVista(Vista.VISTA6)
-    }
+        this.controlador.verVista(Vista.VISTA1)
+    } 
+    
 }

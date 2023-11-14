@@ -1,34 +1,89 @@
 <!DOCTYPE html>
 <html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../../src/css/estilo.css">
-    <title>CityKids</title>
-</head>
-<body>
-    <div id="divVista1">
-        <div id="contenedor">
-            <h1 class="main-title">CityKids</h1>
-            <img class="imgInicio" src="../../src/img/ruleta.png" alt="CityKids Imagen">
-            <div class="enlaces">
-                <button class="botonEnlace">INICIAR PARTIDA</button>
-                <button class="botonEnlace">MENU COMPETICIÓN</button>
-                <button class="botonEnlace">VER RANKINGS</button>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="../../src/css/estilo.css">
+        <title>CityKids</title>
+    </head>
+    <body>
+        <div id="divVista1">
+            <div id="contenedor">
+                <h1 class="main-title">CityKids</h1>
+                <img class="imgInicio" src="../../src/img/ruleta.png" alt="CityKids Imagen">
+                <div class="enlaces">
+                    <button class="botonEnlace">INICIAR PARTIDA</button>
+                    <button class="botonEnlace">MENU COMPETICIÓN</button>
+                    <button class="botonEnlace">VER RANKINGS</button>
+                </div>
             </div>
         </div>
-    </div>
-    <div id="divVista2">
-        <p>aqui empezara el juego</p>
-    </div>
-    <div  id="divVista3">
-        <div id="contenedorNegro">
-            <h1 class="main-title-white">MENÚ COMPETICIÓN</h1>
-            <button class="botonMenu">CREAR COMPETICION</button>
-            <button class="botonMenu">UNIRSE COMPETICION</button>
+        <div id="divVista2">
+            <p>aqui empezara el juego</p>
         </div>
-        <button id="volverAlJuego" class="styled-link">VOLVER AL JUEGO</button> 
-    </div>
-    <script type="module" src="../../src/js/scriptmvc.js"></script>
-</body>
+        <div  id="divVista3">
+            <div id="contenedorNegro">
+                <h1 class="main-title-white">MENÚ COMPETICIÓN</h1>
+                <button class="botonMenu">CREAR COMPETICION</button>
+                <button class="botonMenu">UNIRSE COMPETICION</button>
+            </div>
+            <button id="volverAlJuego" class="styled-link">VOLVER AL JUEGO</button> 
+        </div>
+        <div id="divVista4">
+            <div id="contenedorNegro">
+                <h1 class="main-title-white">CREAR COMPETICIÓN</h1>
+                <form action="#" method="post">
+                    <label for="clave">Introducir clave:</label>
+                    <input type="text" id="clave" name="clave" required>
+        
+                    <label for="titulo">Introducir título:</label>
+                    <input type="text" id="titulo" name="titulo" required>
+        
+                    <label for="descripcion">Descripción:</label>
+                    <textarea id="descripcion" name="descripcion" rows="4" required></textarea>
+        
+                    <label for="fechaFin">Selecciona hora y día de fin:</label>
+                    <input type="datetime-local" id="fechaFin" name="fechaFin" required>
+        
+                    <button type="submit" class="botonMenu">Enviar</button>
+                </form>
+            </div>
+            <button id="volverAlJuego" class="styled-link">VOLVER AL MENÚ</a>
+        </div>
+        <div id="divVista5">
+            <div id="contenedorNegro">
+                <h1 class="main-title-white">UNIRSE A UNA COMPETICIÓN</h1>
+                <form action="#" method="post">
+                    <label for="clave">Introducir clave:</label>
+                    <input type="text" id="clave" name="clave" required>
+                    <button type="submit" class="botonMenu">Unirse</button>
+                </form>
+            </div>
+            <button id="volverAlJuego" class="styled-link">VOLVER AL MENÚ</a>  
+        </div>
+        <div id="divVista6">
+            <div id="contenedorNegro">
+                <h1 class="main-title-white">¿QUÉ TIPO DE RANKING QUIERES VISUALIZAR?</h1>
+                <button class="botonMenu">RANKING GLOBAL</a>
+                <button class="botonMenu">RANKING COMPETICIÓN</a>
+            </div>
+            <button id="volverAlJuego" class="styled-link">VOLVER AL JUEGO</a>  
+        </div>
+        <div id="divVista7">
+            <h2>AQUI VA EL RANKING GENERAL</h2>
+            <button id="volverAlJuego" class="styled-link">VOLVER AL JUEGO</a>  
+        </div>
+        <div id="divVista8">
+            <div id="contenedorNegro">
+                <h1 class="main-title-white">INTRODUCE EL CÓDIGO DEL RANKING A VISUALIZAR</h1>
+                <form action="#" method="post">
+                    <label for="clave">Introducir clave:</label>
+                    <input type="text" id="clave" name="clave" required>
+                    <button type="submit" class="botonMenu">VISUALIZAR</button>
+                </form>
+            </div>
+            <button id="volverAlJuego" class="styled-link">VOLVER AL MENÚ</a>
+        </div>
+        <script type="module" src="../../src/js/scriptmvc.js"></script>
+    </body>
 </html>

@@ -1,3 +1,4 @@
+//AQUI SE CREAN LAS VISTAS COMO SIMBOLOS, Y SE LES DA UN NOMBRE
 export class Vista{
     static{
         Vista.VISTA1 = Symbol('Inicio')
@@ -6,8 +7,8 @@ export class Vista{
         Vista.VISTA4 = Symbol('Crear Competicion')
         Vista.VISTA5 = Symbol('Unirse Competicion')
         Vista.VISTA6 = Symbol('Menu Ranking')
-        Vista.VISTA6 = Symbol('Ranking Global')
-        Vista.VISTA6 = Symbol('Ranking Competiciones')
+        Vista.VISTA7 = Symbol('Ranking Global')
+        Vista.VISTA8 = Symbol('Ranking Competiciones')
     }
     constructor(controlador, base){
         this.controlador = controlador
