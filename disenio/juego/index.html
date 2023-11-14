@@ -7,15 +7,28 @@
     <title>CityKids</title>
 </head>
 <body>
-    <div id="contenedor">
-        <h1 class="main-title">CityKids</h1>
-        <img class="imgInicio" src="../../src/img/ruleta.png" alt="CityKids Imagen">
-        <div class="enlaces">
-            <a href="#" class="botonEnlace">INICIAR PARTIDA</a>
-            <a href="modoCompetición.html" class="botonEnlace">MENU COMPETICIÓN</a>
-            <a href="modoRanking.html" class="botonEnlace">VER RANKINGS</a>
+    <div id="divVista1">
+        <div id="contenedor">
+            <h1 class="main-title">CityKids</h1>
+            <img class="imgInicio" src="../../src/img/ruleta.png" alt="CityKids Imagen">
+            <div class="enlaces">
+                <button class="botonEnlace">INICIAR PARTIDA</button>
+                <button class="botonEnlace">MENU COMPETICIÓN</button>
+                <button class="botonEnlace">VER RANKINGS</button>
+            </div>
         </div>
     </div>
-    <script type="module" src="../src/js/scriptmvc.js"></script>
+    <div id="divVista2">
+        <p>aqui empezara el juego</p>
+    </div>
+    <div  id="divVista3">
+        <div id="contenedorNegro">
+            <h1 class="main-title-white">MENÚ COMPETICIÓN</h1>
+            <button class="botonMenu">CREAR COMPETICION</button>
+            <button class="botonMenu">UNIRSE COMPETICION</button>
+        </div>
+        <button id="volverAlJuego" class="styled-link">VOLVER AL JUEGO</button> 
+    </div>
+    <script type="module" src="../../src/js/scriptmvc.js"></script>
 </body>
 </html>
