@@ -8,6 +8,11 @@ import {Vista5} from './vistas/vista5.js'
 import {Vista6} from './vistas/vista6.js'
 import {Vista7} from './vistas/vista7.js'
 import {Vista8} from './vistas/vista8.js'
+import {Vista9} from './vistas/vista9.js'
+import {Vista10} from './vistas/vista10.js'
+import {Vista11} from './vistas/vista11.js'
+import {Vista12} from './vistas/vista12.js'
+import {Vista13} from './vistas/vista13.js'
 class Controlador{
     /*
     * Incializa los atributos.
@@ -26,6 +31,11 @@ class Controlador{
         const divVista6 = document.getElementById('divVista6')
         const divVista7 = document.getElementById('divVista7')
         const divVista8 = document.getElementById('divVista8')
+        const divVista9 = document.getElementById('divVista9')
+        const divVista10 = document.getElementById('divVista10')
+        const divVista11= document.getElementById('divVista11')
+        const divVista12 = document.getElementById('divVista12')
+        const divVista13 = document.getElementById('divVista13')
 
         //Creo las vistas
         this.vistas.set(Vista.VISTA1, new Vista1(this,divVista1))
@@ -36,6 +46,12 @@ class Controlador{
         this.vistas.set(Vista.VISTA6, new Vista6(this,divVista6))
         this.vistas.set(Vista.VISTA7, new Vista7(this,divVista7))
         this.vistas.set(Vista.VISTA8, new Vista8(this,divVista8))
+        this.vistas.set(Vista.VISTA9, new Vista9(this,divVista9))
+        this.vistas.set(Vista.VISTA10, new Vista10(this,divVista10))
+        this.vistas.set(Vista.VISTA11, new Vista11(this,divVista11))
+        this.vistas.set(Vista.VISTA12, new Vista12(this,divVista12))
+        this.vistas.set(Vista.VISTA13, new Vista13(this,divVista13))
+
 
     this.verVista(Vista.VISTA1)
     }

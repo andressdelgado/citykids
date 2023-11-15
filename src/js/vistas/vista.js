@@ -9,6 +9,11 @@ export class Vista{
         Vista.VISTA6 = Symbol('Menu Ranking')
         Vista.VISTA7 = Symbol('Ranking Global')
         Vista.VISTA8 = Symbol('Ranking Competiciones')
+        Vista.VISTA9 = Symbol('Participación Democrática')
+        Vista.VISTA10 = Symbol('Justicia Social')
+        Vista.VISTA11 = Symbol('Desarrollo Humano y Sostenible')
+        Vista.VISTA12 = Symbol('Interculturalidad e Inclusión')
+        Vista.VISTA13 = Symbol('Equidad de género y Coeducación')
     }
     constructor(controlador, base){
         this.controlador = controlador
