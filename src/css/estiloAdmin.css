@@ -66,7 +66,7 @@ h1 {
     background-color: #555; /* Cambia el color de fondo al pasar el mouse sobre el enlace */
 }
 
-#volverAlJuego {
+#volverAlMenu {
     position: fixed;
     bottom: 10px;
     left: 50%;
@@ -79,7 +79,7 @@ h1 {
     font-size: 16px;
 }
 
-#volverAlJuego:hover {
+#volverAlMenu:hover {
     background-color: rgb(197, 151, 105); /* Cambia el color de fondo al pasar el mouse sobre el botón */
     transition: 0.5s;
 }
