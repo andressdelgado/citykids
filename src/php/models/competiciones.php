@@ -8,7 +8,14 @@ class Competiciones {
         if ($this->conexion->connect_error) {
             die("Error de conexión: " . $this->conexion->connect_error);
         }
+    
+        // Establecer la codificación a UTF-8
+        if (!$this->conexion->set_charset("utf8")) {
+            printf("Error al establecer la conexión a UTF-8: %s\n", $this->conexion->error);
+            exit();
+        }
     }
+    
 
     function crearCompeticion($clave, $titulo, $descripcion, $fechaFin) {
         //Verificamos si la clave de la competición ya existe en la base de datos
@@ -48,7 +55,7 @@ class Competiciones {
         if ($this->conexion->query($sql) === TRUE) {
             $mensaje = "Competicion eliminada con éxito.";
         }
-        return $mensaje;
+        
     }
 }
 ?>
