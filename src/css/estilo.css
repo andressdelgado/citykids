@@ -17,10 +17,10 @@ body {
     background-size: cover;
     background-repeat: no-repeat;
     background-attachment: fixed;
-    display: flex;
     align-items: center;
     justify-content: center;
 }
+
 .main-title {
     color: white;
     font-family: 'PartyConfetti', Courier, monospace;
@@ -50,7 +50,7 @@ body {
 }
 
 .imgInicio {
-    max-width: 60%; /* Asegura que la imagen no exceda el ancho del contenedor */
+    max-width: 37.5%; /* Asegura que la imagen no exceda el ancho del contenedor */
     height: auto; /* Mantiene la proporción de la imagen */
     margin-bottom: 20px; /* Agrega espacio entre la imagen y los enlaces */
 }
@@ -99,7 +99,9 @@ body {
     text-align: center;
     border-radius: 10px;
     padding: 20px;
-    margin-bottom: 15px;
+    margin: auto;
+    margin-top: 15%;
+
 }
 
 .botonMenu {
@@ -151,6 +153,7 @@ button {
     color: #333; /* Texto oscuro */
     font-size: 18px;
     cursor: pointer;
+    width: 20%;
     transition: background-color 0.3s ease-in-out;
 }
 
@@ -158,3 +161,7 @@ button:hover {
     background-color: #ffdb4d; /* Amarillo claro al pasar el mouse */
 }
 
+#divVista3{
+    border: 2px solid black;
+    height: 100%;
+}
