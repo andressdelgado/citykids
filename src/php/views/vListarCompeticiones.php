@@ -28,7 +28,7 @@
             }
         ?>
     </table>
-    <a href="lugar.html">Volver</a>
+    <a href="../../../disenio/administracion/index.html">Volver</a>
 </body>
 </html>
 
