@@ -16,7 +16,7 @@
         </tr>
         <?php foreach ($datos as $dato): ?> <!-- Itera sobre los datos devueltos -->
             <tr>
-                <td><?php echo $dato['clave']; ?></td> <!-- Usa echo para mostrar datos -->
+                <td><?php echo $dato['clave']; ?></td>
                 <td><?php echo $dato['titulo']; ?></td>
                 <td><?php echo $dato['descripcion']; ?></td>
                 <td><?php echo $dato['fecha_hora_fin']; ?></td>
