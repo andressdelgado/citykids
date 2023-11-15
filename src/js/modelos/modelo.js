@@ -1,5 +1,5 @@
 export class Modelo{
     constructor(){
-        vistas = new Map()
+        this.mapa = new Map()
     }
 }

@@ -13,7 +13,7 @@ class Controlador{
     * Incializa los atributos.
     * Coge las preferencias del interfaz.
     */
-
+    vistas = new Map()
     constructor(){
         this.modelo = new Modelo()
 
