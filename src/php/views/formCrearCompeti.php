@@ -20,7 +20,7 @@
     <div id="contenedorNegro">
         <h1 class="main-title-white">CREAR COMPETICIÓN</h1>
         <!--<form method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>">-->
-        <form action="../controllers/Ccompeticion.php" method="POST">
+        <form action="../controllers/Ccompeticion.php?action=rellenarFormulario" method="POST">
             <label for="clave">Introducir clave:</label>
             <input type="text" id="clave" name="clave" required>
 

@@ -52,7 +52,8 @@ switch ($_GET['action']) {
             $objeto = new Competiciones();
             $mensaje = $objeto->mBorrarCompeticiones($clave);
             
-            echo $mensaje;
+            header("Location: ../controllers/Ccompeticion.php?action=listarCompeticiones");
+            exit();
         }
     }
 ?>

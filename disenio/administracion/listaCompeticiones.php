@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../../css/estiloAdmin.css">
+    <link rel="stylesheet" href="../../src/css/estiloAdmin.css">
     <title>Administración</title>
 </head>
 <body>
@@ -26,14 +26,13 @@
                             echo "<td>" . $fila['clave'] . "</td>";
                             echo "<td>" . $fila['descripcion'] . "</td>";
                             echo "<td>" . $fila['fecha_hora_fin'] . "</td>";
-                            echo "<td><a href='../controllers/Ccompeticion.php?action=borrarCompeticiones&clave=" . $fila['clave'] . "'><img src='../../img/delete.png'></a></td>";
- 
+                            echo "<td><a href='../controllers/Ccompeticion.php?action=borrarCompeticiones&clave=" . $fila['clave'] . "' target='_blank'><img src='../../img/delete.png'></a></td>";
                         echo "</tr>";
                     }
                 ?>
             </tbody>
         </table>
     </div>
-    <a href="../../../disenio/administracion/index.html" id="volverAlMenu">Volver al menu</a>
+    <a href="../../../disenio/administracion/index.html">Volver</a>
 </body>
 </html>

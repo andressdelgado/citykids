@@ -13,7 +13,7 @@ html, body {
 }
 
 body {
-    background-image: url('../img/bgInicio.jpg');
+    background-image: url('../img/bgInicio.png');
     background-size: cover;
     background-repeat: no-repeat;
     background-attachment: fixed;
