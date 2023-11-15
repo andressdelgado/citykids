@@ -1,4 +1,4 @@
-//import {Modelo} from './modelos/modelo.js'
+import {Modelo} from './modelos/modelo.js'
 import {Vista} from './vistas/vista.js'
 import {Vista1} from './vistas/vista1.js'
 import {Vista2} from './vistas/vista2.js'
@@ -13,10 +13,9 @@ class Controlador{
     * Incializa los atributos.
     * Coge las preferencias del interfaz.
     */
-    vistas = new Map()
 
     constructor(){
-        //this.modelo = new Modelo()
+        this.modelo = new Modelo()
 
         //Consigo las referencias del interfaz
         const divVista1 = document.getElementById('divVista1')
