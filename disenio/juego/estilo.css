@@ -21,11 +21,55 @@ body {
     justify-content: center;
 }
 
+#interculturalidad {
+    background-image: url('../img/bgInterculturalidad.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    align-items: center;
+    justify-content: center;
+}
 
+#justicia {
+    background-image: url('../img/bgJusticia.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    align-items: center;
+    justify-content: center;
+}
+
+#democracia {
+    background-image: url('../img/bgDemocracia.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    align-items: center;
+    justify-content: center;
+}
+
+#medioambiente {
+    background-image: url('../img/bgMedioAmbiente.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    align-items: center;
+    justify-content: center;
+}
+
+#equidad {
+    background-image: url('../img/bgEquidad.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    align-items: center;
+    justify-content: center;
+}
 
 /*CONTENEDOR DE TODO EL CONTENIDO*/
 #contenedor {
     text-align: center;
+    height: 100%;
 }
 
 /*TITULO CON LETRAS INFANTILES NEGRAS*/
@@ -48,9 +92,9 @@ body {
 
 /*IMAGEN DE LA RULETA*/
 .imgInicio {
-    max-width: 37.5%; /* Asegura que la imagen no exceda el ancho del contenedor */
-    height: auto; /* Mantiene la proporción de la imagen */
-    margin-bottom: 20px; /* Agrega espacio entre la imagen y los enlaces */
+    max-width: 37.5%;
+    height: auto; 
+    margin-bottom: 20px; 
 }
 
 /*BOTONES PANTALLA INICIAL*/
@@ -186,4 +230,49 @@ button:hover {
 
 #rankingTable tr:hover {
     background-color: rgba(255, 255, 255, 0.3);
+}
+
+/*PREGUNTAS Y RESPUESTAS*/
+
+.divPregunta {
+    text-align: center;
+    width: 40%;
+    height: 80%;
+    margin:auto;
+    margin-top: 2%;
+    padding: 30px;
+    background-color: rgb(58, 57, 57);
+    border-radius: 40px;
+}
+
+
+/*Texto Pregunta*/
+.divPregunta p {
+    font-family: 'PartyConfetti';
+    font-size: 30px;
+    color: #fff;
+    margin-bottom: 15px;
+}
+
+/*Respuestas*/
+.respuestaBtn {
+    display: block;
+    width: 60%;
+    margin: 10px auto;
+    padding: 15px;
+    font-size: 18px;
+    text-align: center;
+    text-decoration: none;
+    color: rgb(0, 0, 0);
+    background-color: #ffffff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.respuestaBtn:hover {
+    background-color: #312f2f;
+    color: #f9f9f9;
+    transition: 0.5s;
 }
