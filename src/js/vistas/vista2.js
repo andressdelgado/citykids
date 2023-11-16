@@ -1,25 +1,34 @@
 import {Vista} from './vista.js'
-import { GeneradorNumeros} from '../modelos/modelo2.js';
+import { GeneradorNumeros} from '../clases/generadornumeros.js';
 export class Vista2 extends Vista {
     constructor(controlador, base) {
         super(controlador, base);
         // Obtén el elemento divVista2 y asigna a this.divVista2
         this.divVista2 = document.getElementById('divVista2');
 
-        // Asegúrate de que el divVista2 sea seleccionable
+        //Este codigo se asegura de q el divVista2 sea seleccionable
         this.divVista2.setAttribute('tabindex', '0');
 
         // Establece el foco en el divVista2 al cargar la página
         this.divVista2.focus();
 
-        // Inicializa un generador de números
         this.generadorNumeros = new GeneradorNumeros();
-        document.addEventListener('keydown', this.cambiarVista.bind(this))
-        // Agrega el event listener para el evento 'keydown' al divVista2
+
+        //solo funciona clicando en la vista2
+        this.divVista2.addEventListener('keydown', this.cambiarVista.bind(this))
+        // FUNCIONA SIIN CLICAR PERO SE CAMBIA DESDE CUALQUIER PANTALLA
+        //document.addEventListener('keydown', this.cambiarVista.bind(this))
+        this.crearInterfaz()
+    }
+    crearInterfaz(){
+        //SE CREA EL BOTON DINAMICAMENTE QUE LLEVA A LA VISTA1
+        this.pEnter = document.createElement('p')
+        this.base.appendChild(this.pEnter)
+        this.pEnter.textContent = 'CLICA EN LA PANTALLA Y LUEGO PULSA ENTER PARA GIRAR LA RULETA'
+        this.pEnter.className = 'volverAlJuego'
     }
     cambiarVista(event){
         if (event.key === 'Enter') {
-            // Reemplaza el alert con el código para obtener números aleatorios
             const numero = this.generadorNumeros.obtenerNumeroAleatorio();
             if (numero === 0) {
                 console.log("Ya se proporcionaron todos los números.");
