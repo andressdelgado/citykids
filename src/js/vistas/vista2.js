@@ -1,5 +1,5 @@
 import {Vista} from './vista.js'
-
+import { GeneradorNumeros} from '../modelos/modelo2.js';
 export class Vista2 extends Vista {
     constructor(controlador, base) {
         super(controlador, base);
@@ -25,6 +25,7 @@ export class Vista2 extends Vista {
                 console.log("Ya se proporcionaron todos los números.");
             } else {
                 console.log("Número obtenido:", numero);
+                //this.controlador.verVista(Vista.VISTA+numero);
                 switch (numero) {
                     case 1:
                         console.log("Participacion democractica")
@@ -49,26 +50,8 @@ export class Vista2 extends Vista {
                     default:
                         console.log("Número no válido");
                 }
-                
-
             }
         }
     }
 }
 
-class GeneradorNumeros {
-    constructor() {
-        this.numerosDisponibles = [1, 2, 3, 4, 5];
-    }
-
-    obtenerNumeroAleatorio() {
-        if (this.numerosDisponibles.length === 0) {
-            return 0; // Ya se proporcionaron todos los números
-        }
-
-        const indiceAleatorio = Math.floor(Math.random() * this.numerosDisponibles.length);
-        const numeroAleatorio = this.numerosDisponibles.splice(indiceAleatorio, 1)[0];
-
-        return numeroAleatorio;
-    }
-}
