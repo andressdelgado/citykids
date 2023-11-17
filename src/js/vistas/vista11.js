@@ -1,13 +1,13 @@
 import { Vista } from './vista.js';
 
 /**
- * Clase que representa la séptima vista de la aplicación.
- * En esta vista, se muestra el ranking general.
+ * Clase que representa la undécima vista de la aplicación.
+ * En esta vista, se aborda el tema del desarrollo humano y sostenible.
  * @extends Vista
  */
-export class Vista7 extends Vista {
+export class Vista11 extends Vista {
     /**
-     * Constructor de la clase Vista7.
+     * Constructor de la clase Vista11.
      * @param {Controlador} controlador - Referencia al controlador de la aplicación.
      * @param {HTMLElement} base - Elemento HTML que representa la base de la vista.
      */
@@ -22,9 +22,9 @@ export class Vista7 extends Vista {
     }
 
     /**
-     * Muestra la Vista1 (menú principal) al hacer clic en el enlace.
+     * Muestra la Vista2 (juego) al hacer clic en el enlace.
      */
     pulsarEnlace1() {
-        this.controlador.verVista(Vista.VISTA1);
+        this.controlador.verVista(Vista.VISTA2);
     }
 }

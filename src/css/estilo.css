@@ -116,8 +116,7 @@ body {
     transition: 0.5s;
 }
 
-/*BOTON INFERIOR*/
-#volverAlJuego {
+.volverAlJuego {
     position: fixed;
     bottom: 10px;
     left: 50%;
@@ -201,8 +200,7 @@ button:hover {
     background-color: #ffdb4d; 
 }
 
-#divVista3{
-    border: 2px solid black;
+#divVista1, #divVista2, #divVista3, #divVista4, #divVista5, #divVista6, #divVista7, #divVista8{
     height: 100%;
 }
 

@@ -1,27 +1,59 @@
-import {Vista} from './vista.js'
+import { Vista } from './vista.js';
 
-//Esta es la vista que muestra el menú de competicón, a través de ella, se podrá acceder a las vista de crear competicion o unirse a una competicion
+/**
+ * Clase que representa la tercera vista de la aplicación.
+ * Esta vista muestra el menú de competición y permite acceder a las vistas de crear competición o unirse a una competición.
+ * @extends Vista
+ */
+export class Vista3 extends Vista {
+    /**
+     * Constructor de la clase Vista3.
+     * @param {Controlador} controlador - Referencia al controlador de la aplicación.
+     * @param {HTMLElement} base - Elemento HTML que representa la base de la vista.
+     */
+    constructor(controlador, base) {
+        super(controlador, base);
 
-export class Vista3 extends Vista{
-    constructor(controlador, base){
-        super(controlador, base)
-        //Coger referecnias del interfaz
-        this.enlace1 = this.base.querySelectorAll('button')[0]
-        this.enlace2 = this.base.querySelectorAll('button')[1]
-        this.enlace3 = this.base.querySelectorAll('button')[2]
-        //Asociar eventos
-        this.enlace1.onclick = this.pulsarEnlace1.bind(this)
-        this.enlace2.onclick = this.pulsarEnlace2.bind(this)
-        this.enlace3.onclick = this.pulsarEnlace3.bind(this)
+        // Obtener referencias del interfaz
+        this.enlace1 = this.base.querySelectorAll('button')[0];
+        this.enlace2 = this.base.querySelectorAll('button')[1];
+
+        // Asociar eventos a los botones
+        this.enlace1.onclick = this.pulsarEnlace1.bind(this);
+        this.enlace2.onclick = this.pulsarEnlace2.bind(this);
+
+        // Crear interfaz al cargar la vista
+        this.crearInterfaz();
     }
-    //Funciones para ver la vista que corresponde segun el boton accionado
-    pulsarEnlace1(){
-        this.controlador.verVista(Vista.VISTA4)
+
+    /**
+     * Crea la interfaz de la vista, agregando un botón dinámicamente.
+     * El botón lleva a la Vista1 (menú principal).
+     */
+    crearInterfaz() {
+        // Crear el botón dinámicamente y agregarlo al DOM
+        this.btnVerVista1 = document.createElement('button');
+        this.base.appendChild(this.btnVerVista1);
+        this.btnVerVista1.textContent = 'VOLVER AL MENÚ';
+        this.btnVerVista1.className = 'volverAlJuego';
+
+        // Asociar evento al botón para volver al menú principal (Vista1)
+        this.btnVerVista1.onclick = () => {
+            this.controlador.verVista(Vista.VISTA1);
+        };
     }
-    pulsarEnlace2(){
-        this.controlador.verVista(Vista.VISTA5)
+
+    /**
+     * Muestra la Vista4 (Crear Competición) al hacer clic en el primer enlace.
+     */
+    pulsarEnlace1() {
+        this.controlador.verVista(Vista.VISTA4);
     }
-    pulsarEnlace3(){
-        this.controlador.verVista(Vista.VISTA1)
+
+    /**
+     * Muestra la Vista5 (Unirse a Competición) al hacer clic en el segundo enlace.
+     */
+    pulsarEnlace2() {
+        this.controlador.verVista(Vista.VISTA5);
     }
 }
