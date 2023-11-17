@@ -1,5 +1,5 @@
 <?php
-class Competiciones {
+class mCompeticiones {
     private $conexion;
 
     function __construct() {
@@ -16,8 +16,18 @@ class Competiciones {
         }
     }
     
+    function mListarCompeticiones (){
+            $sql = "SELECT * FROM Competicion";
+            $resultado = $this->conexion->query($sql);
+            $datos = [];
 
-    function crearCompeticion($clave, $titulo, $descripcion, $fechaFin) {
+            while ($fila = $resultado->fetch_assoc()) {
+                $datos[] = $fila;
+            }
+            return $datos;
+    }
+
+    function mCrearCompeticion($clave, $titulo, $descripcion, $fechaFin) {
         //Verificamos si la clave de la competición ya existe en la base de datos
         $consultarClave = "SELECT clave FROM Competicion WHERE clave = '$clave'";
         $resultadoClave = $this->conexion->query($consultarClave);
@@ -39,23 +49,13 @@ class Competiciones {
         return $mensaje;
     }
 
-    function mListarCompeticiones (){
-            $sql = "SELECT * FROM Competicion";
-            $resultado = $this->conexion->query($sql);
-            $datos = [];
-
-            while ($fila = $resultado->fetch_assoc()) {
-                $datos[] = $fila;
-            }
-            return $datos;
-    }
-
-    function mBorrarCompeticiones($clave){
+    function mBorrarCompeticion($clave){
+    
         $sql = "DELETE FROM Competicion WHERE clave = '$clave'";
-        if ($this->conexion->query($sql) === TRUE) {
-            $mensaje = "Competicion eliminada con éxito.";
-        }
-        
+        $this->conexion->query($sql);
+
+        header("Location: index.php");
+        exit();
     }
 }
 ?>

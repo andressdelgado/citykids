@@ -3,37 +3,35 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../../css/estiloAdmin.css">
+    <link rel="stylesheet" href="css/estiloAdmin.css">
     <title>Administración</title>
 </head>
 <body>
     <div id="contenedorTabla">
         <table>
             <thead>
-                <tr>
+                 <tr>
                     <th>Clave</th>
                     <th>Titulo</th>
                     <th>Descripción</th>
                     <th>Fecha/Hora Fin</th>
-                    <th>Borrar</th>
+                    <th></th>
                 </tr>
             </thead>
             <tbody>
-                <?php
-                    foreach ($datos as $fila) {
-                        echo "<tr>";
-                            echo "<td>" . $fila['titulo'] . "</td>";
-                            echo "<td>" . $fila['clave'] . "</td>";
-                            echo "<td>" . $fila['descripcion'] . "</td>";
-                            echo "<td>" . $fila['fecha_hora_fin'] . "</td>";
-                            echo "<td><a href='../controllers/Ccompeticion.php?action=borrarCompeticiones&clave=" . $fila['clave'] . "'><img src='../../img/delete.png'></a></td>";
- 
-                        echo "</tr>";
-                    }
-                ?>
+                <?php foreach ($datos as $fila) { ?>
+                    <tr>
+                        <td><?= $fila['titulo'] ?></td>
+                        <td><?= $fila['clave'] ?></td>
+                        <td><?= $fila['descripcion'] ?></td>
+                        <td><?= $fila['fecha_hora_fin'] ?></td>
+                        <td><a href="index.php?c=cCompeticiones&m=borrarCompeticiones&clave=<?php echo $fila['clave']; ?>"><img src="../../img/delete.png"></a></td>
+
+                    </tr>
+                <?php } ?>
             </tbody>
         </table>
     </div>
-    <a href="../../../disenio/administracion/index.html" id="volverAlMenu">Volver al menu</a>
+    <a href="php/views/vJuego.html" id="volverAlMenu">Volver al juego</a>
 </body>
 </html>
