@@ -3,12 +3,12 @@
  * @class
  */
 export class Modelo {
-    /**
+  /**
      * Inicializa un nuevo modelo con un mapa vacío.
      * @constructor
      */
-    constructor() {
-        /** @type {Map} - Mapa utilizado para almacenar datos en el modelo. */
-        this.mapa = new Map();
-    }
+  constructor () {
+    /** @type {Map} - Mapa utilizado para almacenar datos en el modelo. */
+    this.mapa = new Map()
+  }
 }
