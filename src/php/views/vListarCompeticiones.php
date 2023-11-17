@@ -25,7 +25,7 @@
                         <td><?= $fila['clave'] ?></td>
                         <td><?= $fila['descripcion'] ?></td>
                         <td><?= $fila['fecha_hora_fin'] ?></td>
-                        <td><a href="index.php?c=cCompeticiones&m=borrarCompeticiones&clave=<?php echo $fila['clave']; ?>"><img src="../../img/delete.png"></a></td>
+                        <td><a href="index.php?c=cCompeticiones&m=borrarCompeticiones&clave=<?php echo $fila['clave']; ?>"><img src="img/delete.png"></a></td>
 
                     </tr>
                 <?php } ?>

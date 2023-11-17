@@ -1,32 +1,46 @@
+/* Utilizar la fuente PartyConfetti para el encabezado */
 @font-face {
     font-family: 'PartyConfetti';
     src: url('../fonts/PartyConfetti.ttf') format('truetype');
     font-weight: normal;
     font-style: normal;
 }
+
+/* Estilos generales */
 html, body {
     height: 100%;
     margin: 0;
     padding: 0;
-    font-family: Arial, sans-serif;
+    font-family: 'Arial', sans-serif; /* Cambio en la declaración de la fuente */
 }
+
 body {
-    background-image: url('../img/bgCrud.png');
+    background-image: none;
+    background-color: rgb(202, 236, 255);
     background-size: cover;
     background-repeat: no-repeat;
     background-attachment: fixed;
+    display: flex; /* Cambio de align-items y justify-content a flexbox */
     align-items: center;
     justify-content: center;
 }
-h1{
-   text-align: center;
+
+/* Estilos para el encabezado */
+h1 {
+    text-align: center;
+    font-family: 'PartyConfetti', sans-serif; /* Aplicar la fuente personalizada */
+    font-size: 36px; /* Tamaño del encabezado */
+    margin-bottom: 20px; /* Espaciado inferior */
 }
+
+/* Estilos para la tabla */
 table {
     margin: auto;
-    width: 70%;
+    width: 100%;
     border-collapse: collapse;
     margin-top: 20px;
     margin-bottom: 40px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); /* Sombra para la tabla */
 }
 
 thead {
@@ -35,24 +49,27 @@ thead {
 }
 
 th, td {
+    background-color: #f2f2f277;
     padding: 12px;
     text-align: left;
-    background-color: #f2f2f299;
 }
 
-/* Estilos para filas pares e impares */
+/* Estilos alternos para filas */
 tbody tr:nth-child(even) {
     background-color: #f2f2f2;
 }
 
 /* Estilos para el enlace volverAlMenu */
 #volverAlMenu {
-    margin: 0 auto;
+   /* display: block; /* Cambio a bloque para ocupar el ancho disponible */
+    margin: 20px auto; /* Espaciado */
     text-decoration: none;
     padding: 10px 20px;
     background-color: #333;
     color: white;
     border-radius: 5px;
+    text-align: center; /* Centrar texto */
+    transition: background-color 0.3s ease; /* Transición suave */
 }
 
 #volverAlMenu:hover {
