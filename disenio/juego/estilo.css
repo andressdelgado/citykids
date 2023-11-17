@@ -6,7 +6,6 @@
 }
 
 html, body {
-    height: 100%;
     margin: 0;
     padding: 0;
     font-family: Arial, sans-serif;
@@ -92,7 +91,7 @@ body {
 
 /*IMAGEN DE LA RULETA*/
 .imgInicio {
-    max-width: 37.5%;
+    max-width: 37%;
     height: auto; 
     margin-bottom: 20px; 
 }
@@ -140,7 +139,8 @@ body {
     border-radius: 10px;
     padding: 20px;
     margin: auto;
-    margin-top: 15%;
+    margin-top: 10PX;
+    height: 600px;
 }
 
 /*BOTONES SELECCION DE OPCIONES*/

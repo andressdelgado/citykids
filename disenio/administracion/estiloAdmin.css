@@ -139,4 +139,95 @@ th {
     transition: 0.5s;
 }
 
-/*/ 
+/*FORMULARIO ALTA PREGUNTAS */
+
+#contenedorForm {
+    background-color: rgba(255, 255, 255, 0.8);
+    width: 33%;
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+    margin: auto; 
+    position: relative; 
+    top: 50%; 
+    transform: translateY(-50%); /* Adjust to center vertically */
+    /**/
+    text-align: left;
+}
+
+.tituloForm{
+    color: #333; 
+    font-family: 'PartyConfetti', Courier, monospace;
+    font-size: 36px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+form {
+    margin-left: 5px;
+    width: 90%;
+}
+
+label {
+    color: black;
+    font-size: 16px;
+    margin-bottom: 8px;
+    display: block;
+}
+
+input,textarea,button {
+    width: 80%;
+    padding: 10px;
+    margin: 0 auto 15px; 
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-top: 8px;
+}
+input:focus,textarea:focus {
+    outline: none;
+    border-color: #ffcc00; 
+}
+
+button {
+    background-color: #ffcc00; 
+    color: #333;
+    font-size: 18px;
+    cursor: pointer;
+    width: 20%;
+    transition: background-color 0.3s ease-in-out;
+}
+
+button:hover {
+    background-color: #ffdb4d; 
+}
+
+label[for="ambito"] {
+    margin-top: 10px; /* Espacio entre la pregunta y el desplegable */
+    display: block;
+    font-size: 16px;
+}
+
+#ambito {
+    width: 30%;
+    padding: 8px;
+    margin-bottom: 16px;
+    font-size: 14px;
+}
+
+.botonForm {
+    display: block;
+    margin: 0 auto; /* This centers the button horizontally */
+    background-color: #cf7712;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.botonForm:hover{
+    background-color: pink;
+    transition:0.5s;
+}
