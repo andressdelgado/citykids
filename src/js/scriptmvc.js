@@ -53,7 +53,43 @@ class Controlador{
         this.vistas.set(Vista.VISTA13, new Vista13(this,divVista13))
 
 
-    this.verVista(Vista.VISTA1)
+        this.verVista(Vista.VISTA1)
+    }
+    validarFormulario() {
+        //Obtener referencias a los campos del formulario
+        const clave = document.getElementById('crearclave').value;
+        const titulo = document.getElementById('creartitulo').value;
+        const descripcion = document.getElementById('creardescripcion').value;
+        const fechaFin = document.getElementById('crearfechaFin').value;
+
+        //Expresiones regulares para validación
+        const claveRegex = /^[A-Za-z]{3}[A-Za-z0-9]{2,9}$/;
+        const tituloRegex = /^[A-Za-z ]{5,100}$/;
+        const descripcionRegex = /^[A-Za-z0-9 ]{0,255}$/; // puede ser nulo
+        const fechaRegex = /^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}$/; // formato fecha
+
+        // Realizar validaciones
+        if (!claveRegex.test(clave)) {
+            alert('Clave no válida. Debe empezar al menos por 3 caracteres de letras y como mínimo 5 caracteres generales. Además, como máximo tendrá 10. No se permiten espacios.');
+            return false;
+        }
+
+        if (!tituloRegex.test(titulo)) {
+             alert('Título no válido. Debe contener al menos 5 caracteres de letras y como máximo 100. No se permiten otros caractéres');
+             return false;
+        }
+
+        if (!descripcionRegex.test(descripcion)) {
+            alert('Descripción no válida. No puede contener caracteres especiales. Además, no se pueden superar los 255 caracteres.');
+            return false;
+        }
+
+        if (!fechaRegex.test(fechaFin)) {
+            alert('Fecha no utilizada. Utiliza una fecha.');
+            return false;
+        }
+        //SI TODAS LAS COMPROBACIONES ESTAN CORRECTAS
+        alert('Formulario válido. Puedes enviarlo o realizar otras acciones según tu lógica.');
     }
     verVista(vista){
         this.ocultarVistas()
