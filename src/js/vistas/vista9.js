@@ -1,17 +1,30 @@
-import {Vista} from './vista.js'
+import { Vista } from './vista.js';
 
-//Esta es la vista de participacon democrática
+/**
+ * Clase que representa la novena vista de la aplicación.
+ * En esta vista, se aborda el tema de la participación democrática.
+ * @extends Vista
+ */
+export class Vista9 extends Vista {
+    /**
+     * Constructor de la clase Vista9.
+     * @param {Controlador} controlador - Referencia al controlador de la aplicación.
+     * @param {HTMLElement} base - Elemento HTML que representa la base de la vista.
+     */
+    constructor(controlador, base) {
+        super(controlador, base);
 
-export class Vista9 extends Vista{
-    constructor(controlador, base){
-        super(controlador, base)
-        //Coger referecnias del interfaz
-        this.enlace1 = this.base.querySelectorAll('button')[0]
-        //Asociar eventos
-        this.enlace1.onclick = this.pulsarEnlace1.bind(this)
+        // Coger referencias del interfaz
+        this.enlace1 = this.base.querySelectorAll('button')[0];
+
+        // Asociar eventos
+        this.enlace1.onclick = this.pulsarEnlace1.bind(this);
     }
-    //Funciones para ver la vista que corresponde segun el boton accionado
-    pulsarEnlace1(){
-        this.controlador.verVista(Vista.VISTA2)
-    } 
+
+    /**
+     * Muestra la Vista2 (juego) al hacer clic en el enlace.
+     */
+    pulsarEnlace1() {
+        this.controlador.verVista(Vista.VISTA2);
+    }
 }
