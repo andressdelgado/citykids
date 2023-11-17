@@ -20,10 +20,25 @@ export class Vista1 extends Vista {
 
         // Asociar eventos
         this.enlace1.onclick = this.pulsarEnlace1.bind(this);
+        this.enlace1.onmouseover = (event) => {this.crearInterfaz(event)};
+        this.enlace1.onmouseout = () => {this.eliminarInterfaz()};
+        this.enlace1.onmouseover
         this.enlace2.onclick = this.pulsarEnlace2.bind(this);
         this.enlace3.onclick = this.pulsarEnlace3.bind(this);
     }
-
+    crearInterfaz(event){
+        event.preventDefault();
+        this.pDialogo = document.createElement('p');
+        this.base.appendChild(this.pDialogo);
+        this.pDialogo.textContent = 'Al pulsar este boton, se iniciará la partida';
+        this.pDialogo.className = 'volverAlJuego';
+    }
+    eliminarInterfaz() {
+        if (this.pDialogo) {
+            this.base.removeChild(this.pDialogo);
+            this.pDialogo = null;
+        }
+    }
     /**
      * Función asociada al evento de hacer clic en el enlace 1.
      * Cambia la vista actual a la vista 2.

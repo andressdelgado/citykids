@@ -99,7 +99,7 @@ class Controlador {
         }
 
         //SI TODAS LAS COMPROBACIONES ESTAN CORRECTAS
-        alert('Formulario válido. Puedes enviarlo o realizar otras acciones según tu lógica.');
+        alert('Formulario válido.');
     }
 
     /**
