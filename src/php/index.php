@@ -1,4 +1,12 @@
 <?php
+/**
+ * Punto de entrada principal de la aplicación.
+ *
+ * Este archivo maneja la lógica principal de enrutamiento y carga de controladores y vistas.
+ *
+ * @package CityKids
+ */
+// Incluir archivos necesarios
     require_once __DIR__ .'/config/configdb.php';
     require_once __DIR__ .'/models/mCompeticiones.php';
 
@@ -12,10 +20,18 @@
     $controlador = new $controladorNombre();
 
     $metodo = $_GET['m'];
-
+/**
+ * Ejecuta el método del controlador y devuelve los datos.
+ *
+ * @return mixed Los datos obtenidos del método del controlador.
+ */
     // Obtener los datos del método del controlador
     $datos = $controlador->$metodo();
-
+/**
+ * Mensaje de error del controlador, si existe.
+ *
+ * @var string
+ */
     // Obtener el mensaje de error del controlador si existe
     $mensajeError = isset($controlador->mensaje) ? $controlador->mensaje : '';
 

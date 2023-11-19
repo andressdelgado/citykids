@@ -1,6 +1,20 @@
 <?php
+
+/**
+ * Modelo para las Competiciones.
+ *
+ * Contiene métodos para manejar operaciones relacionadas con las competiciones en la base de datos.
+ *
+ * @package CityKids\Models
+ */
+
 class mCompeticiones {
+    /** @var mysqli La conexión a la base de datos. */
     private $conexion;
+
+    /**
+     * Constructor. Establece la conexión a la base de datos y verifica la conexión UTF-8.
+     */
 
     function __construct() {
         require_once __DIR__ . '/../config/configdb.php';
@@ -15,7 +29,13 @@ class mCompeticiones {
             exit();
         }
     }
-    
+
+    /**
+     * Obtiene una lista de todas las competiciones desde la base de datos.
+     *
+     * @return array Un array con los datos de las competiciones.
+     */   
+
     function mListarCompeticiones() {
         $sql = "SELECT * FROM Competicion";
         $resultado = $this->conexion->query($sql);
@@ -26,6 +46,17 @@ class mCompeticiones {
         }
         return $datos;
     }
+
+    /**
+     * Crea una nueva competición con los datos proporcionados.
+     *
+     * @param string $clave La clave de la competición.
+     * @param string $titulo El título de la competición.
+     * @param string $descripcion La descripción de la competición.
+     * @param string $fechaFin La fecha de finalización de la competición.
+     *
+     * @return string|int El mensaje de estado o el código de error.
+     */
 
     function mCrearCompeticion($clave, $titulo, $descripcion, $fechaFin) {
         try {
@@ -54,6 +85,14 @@ class mCompeticiones {
             return $numeroError;
         }
     }
+    
+    /**
+     * Borra una competición según la clave proporcionada.
+     *
+     * @param string $clave La clave de la competición a borrar.
+     *
+     * @return void
+     */
 
     function mBorrarCompeticion($clave){
         $sql = "DELETE FROM Competicion WHERE clave = '$clave'";
