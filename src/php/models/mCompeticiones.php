@@ -30,11 +30,13 @@ class mCompeticiones {
     function mCrearCompeticion($clave, $titulo, $descripcion, $fechaFin) {
         try {
             $clave = ($clave === '') ? "NULL" : "'" . $clave . "'";
+            //$variable = ($condicion) ? $valor_si_cierto : $valor_si_falso; 
+            //Por ejemplo en este caso, la variable cavle es igual a espacio en blanco, colocaría un null y si no lo es colocaria los datos que se han mandado con la variable
             $descripcion= ($descripcion === '') ? "NULL" : "'" . $descripcion . "'";
-            $titulo= ($titulo === '') ? "NULL" : "'" . $descripcion . "'";
+            $titulo= ($titulo === '') ? "NULL" : "'" . $titulo . "'";
 
             $sql = "INSERT INTO Competicion (clave, descripcion, titulo, fecha_hora_fin) 
-            VALUES ($clave, $descripcion, '$titulo', '$fechaFin')";
+            VALUES ($clave, $descripcion, $titulo, '$fechaFin')";
 
             if ($this->conexion->query($sql) === TRUE) {
                 $mensaje = "La competición se ha creado correctamente.";
@@ -46,9 +48,9 @@ class mCompeticiones {
             // Retornar el mensaje que indica el resultado de la inserción
             return $mensaje;
         } catch (Exception $error) {
-            // Capturar la excepción y obtener el número de error
-            $numeroError = $error->getCode();
-            // Aquí puedes hacer lo que necesites con el número de error
+            //Coge la excepción
+            $numeroError = $error->getCode(); // Obtiene el código de error de la variable $error
+            //Retornamos el numero del error, en este caso al controlador
             return $numeroError;
         }
     }
@@ -56,8 +58,8 @@ class mCompeticiones {
     function mBorrarCompeticion($clave){
         $sql = "DELETE FROM Competicion WHERE clave = '$clave'";
         $this->conexion->query($sql);
-
-        header("Location: index.php");
+        //Nos redireccionamos de nuevo al listar competiciones, por si queremos borra una nueva competicion
+        header("Location: index.php?c=cCompeticiones&m=listarCompeticiones");
         exit();
     }
 }

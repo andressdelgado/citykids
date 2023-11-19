@@ -12,8 +12,12 @@
             $this->nombrePagina ='';
             $this->objCompeticiones = new mCompeticiones();
         }
-
+        public function mostrarAdmin(){
+            $this->nombrePagina = 'Menu Administrador';
+            $this->view = 'vMostrarMenuAdmin';
+        }
         public function listarCompeticiones(){
+            $this->view = 'vListarCompeticiones';
             $this->nombrePagina = 'Listar Competiciones';
             $datos =  $this->objCompeticiones->mListarCompeticiones();
             return $datos;
@@ -24,11 +28,13 @@
 
             if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 if(isset($_POST["clave"]) && isset($_POST["titulo"]) && isset($_POST["descripcion"]) && isset($_POST["fechaFin"])){
+
                     $clave = $_POST["clave"];
                     $titulo = $_POST["titulo"];
                     $descripcion = $_POST["descripcion"];
                     $fechaFin = $_POST["fechaFin"];
                     $resultado = $this->objCompeticiones->mCrearCompeticion($clave, $titulo, $descripcion, $fechaFin);
+
                     switch ($resultado) {
                         case '1292':
                             $this->mensaje = "Valor de fecha y hora incorrecto";
@@ -40,7 +46,7 @@
                             $this->mensaje = "La clave ya existe, intentalo con otra";
                             break;
                         case '1048':
-                            $this->mensaje = "La clave no puede estar vacía";
+                            $this->mensaje = "La clave o el titulo no puede estar vacía";
                             break;
                         default:
                             if (is_numeric($resultado)) {
@@ -49,9 +55,7 @@
                                 $this->mensaje = $resultado;
                             }
                             break;
-                    }
-                    
-                    
+                    } 
                 }
             }
         }

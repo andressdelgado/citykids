@@ -7,5 +7,5 @@
 
     /**OPCIONES POR DEFECTO */
     define("CONTROLADOR_DEFECTO", "cCompeticiones");
-    define("METODO_DEFECTO", "listarCompeticiones");
+    define("METODO_DEFECTO", "mostrarAdmin");
 ?>
