@@ -16,41 +16,45 @@ class mCompeticiones {
         }
     }
     
-    function mListarCompeticiones (){
-            $sql = "SELECT * FROM Competicion";
-            $resultado = $this->conexion->query($sql);
-            $datos = [];
+    function mListarCompeticiones() {
+        $sql = "SELECT * FROM Competicion";
+        $resultado = $this->conexion->query($sql);
+        $datos = [];
 
-            while ($fila = $resultado->fetch_assoc()) {
-                $datos[] = $fila;
-            }
-            return $datos;
+        while ($fila = $resultado->fetch_assoc()) {
+            $datos[] = $fila;
+        }
+        return $datos;
     }
 
     function mCrearCompeticion($clave, $titulo, $descripcion, $fechaFin) {
-        //Verificamos si la clave de la competición ya existe en la base de datos
-        $consultarClave = "SELECT clave FROM Competicion WHERE clave = '$clave'";
-        $resultadoClave = $this->conexion->query($consultarClave);
-        
-        //Si existe retornaremos un mensaje ( la aplicacion no nos dejara añadir una calve diplicada a la base de datos)
-        if($resultadoClave->num_rows > 0) {
-            $mensaje = "La clave de la competición ya existe.";
-        } else {
-            // Si la clave no existe insertamos una nueva competición en la base de datos
-            $sql = "INSERT INTO Competicion (clave, descripcion, titulo, fecha_hora_fin) VALUES ('$clave', '$descripcion', '$titulo', '$fechaFin')";
+        try {
+            if ($descripcion === '') {
+                $sql = "INSERT INTO Competicion (clave, descripcion, titulo, fecha_hora_fin) VALUES ('$clave', NULL, '$titulo', '$fechaFin')";
+            }else{
+                $sql = "INSERT INTO Competicion (clave, descripcion, titulo, fecha_hora_fin) VALUES ('$clave', '$descripcion', '$titulo', '$fechaFin')";
+            }
             
-            if($this->conexion->query($sql) === TRUE) {
+            
+
+            if ($this->conexion->query($sql) === TRUE) {
                 $mensaje = "La competición se ha creado correctamente.";
             } else {
-                $mensaje = "No ha sido posible crear la competición: " . $this->conexion->error;
+                // Si hay un error en la consulta, lanzar una excepción con el mensaje de error
+                throw new Exception($this->conexion->error, $this->conexion->errno);
             }
+        
+            // Retornar el mensaje que indica el resultado de la inserción
+            return $mensaje;
+        } catch (Exception $error) {
+            // Capturar la excepción y obtener el número de error
+            $numeroError = $error->getCode();
+            // Aquí puedes hacer lo que necesites con el número de error
+            return $numeroError;
         }
-        // Se retorna el mensaje que indica el resultado de la insercion
-        return $mensaje;
     }
 
     function mBorrarCompeticion($clave){
-    
         $sql = "DELETE FROM Competicion WHERE clave = '$clave'";
         $this->conexion->query($sql);
 

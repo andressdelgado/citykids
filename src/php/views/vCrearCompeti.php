@@ -3,11 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../../css/estilo.css">
+    <link rel="stylesheet" href="../css/estilo.css">
     <title>Crear Competición</title>
 </head>
 <body>
     </div>
+    <?php
+        if (!empty($mensajeError)) {
+            echo '<div class="error-message">' . $mensajeError . '</div>';
+        }
+    ?>
     <div id="contenedorNegro">
         <h1 class="main-title-white">CREAR COMPETICIÓN</h1>
         <form action="index.php?c=cCompeticiones&m=crearCompeticiones" method="POST">

@@ -11,8 +11,8 @@
         <table>
             <thead>
                  <tr>
-                    <th>Clave</th>
                     <th>Titulo</th>
+                    <th>Clave</th>
                     <th>Descripción</th>
                     <th>Fecha/Hora Fin</th>
                     <th></th>
@@ -25,13 +25,13 @@
                         <td><?= $fila['clave'] ?></td>
                         <td><?= $fila['descripcion'] ?></td>
                         <td><?= $fila['fecha_hora_fin'] ?></td>
-                        <td><a href="index.php?c=cCompeticiones&m=borrarCompeticiones&clave=<?php echo $fila['clave']; ?>"><img src="img/delete.png"></a></td>
+                        <td><a href="index.php?c=cCompeticiones&m=borrarCompeticiones&clave=<?php echo $fila['clave']; ?>"><img src="../img/delete.png"></a></td>
 
                     </tr>
                 <?php } ?>
             </tbody>
         </table>
     </div>
-    <a href="php/views/vJuego.html" id="volverAlMenu">Volver al juego</a>
+    <a href="views/vJuego.html" id="volverAlMenu">Volver al juego</a>
 </body>
 </html>
