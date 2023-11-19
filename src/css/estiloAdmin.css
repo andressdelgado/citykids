@@ -1,137 +1,75 @@
+/* Utilizar la fuente PartyConfetti para el encabezado */
 @font-face {
     font-family: 'PartyConfetti';
     src: url('../fonts/PartyConfetti.ttf') format('truetype');
     font-weight: normal;
     font-style: normal;
 }
+
+/* Estilos generales */
 html, body {
     height: 100%;
     margin: 0;
     padding: 0;
-    font-family: Arial, sans-serif;
+    font-family: 'Arial', sans-serif; /* Cambio en la declaración de la fuente */
 }
+
 body {
-    background-image: url('../img/bgCrud.jpg');
+    background-image: none;
+    background-color: rgb(202, 236, 255);
     background-size: cover;
     background-repeat: no-repeat;
     background-attachment: fixed;
+    display: flex; /* Cambio de align-items y justify-content a flexbox */
     align-items: center;
     justify-content: center;
 }
 
-header {
-    padding: 20px;
-    border-radius: 10px;
+/* Estilos para el encabezado */
+h1 {
     text-align: center;
-    position: fixed;
-    width: 100%;
-    top: 0;
-    z-index: 1;
+    font-family: 'PartyConfetti', sans-serif; /* Aplicar la fuente personalizada */
+    font-size: 36px; /* Tamaño del encabezado */
+    margin-bottom: 20px; /* Espaciado inferior */
 }
 
-#contenedor {
-    background-color: rgba(255, 255, 255, 0.8);
-    width: 33%;
-    padding: 20px;
-    border-radius: 10px;
-    text-align: center;
-    margin: auto; 
-    position: relative; 
-    top: 50%; 
-    transform: translateY(-50%); /* Adjust to center vertically */
-    align-items: center;
-    /**/
-    text-align: center;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-.main-title {
-    font-family: 'PartyConfetti';
-    font-size: 50px;
-    color: #333;
-    margin: 0; 
-}
-
-.botonMenu {
-    display: block;
-    width: 50%;
-    margin: 10px;
-    padding: 10px 20px;
-    font-size: 16px;
-    text-align: center;
-    text-decoration: none;
-    color: #fff;
-    background-color: #333;
-    border-radius: 5px;
-    cursor: pointer;
-}
-
-.botonMenu:hover {
-    background-color: #555; /* Cambia el color de fondo al pasar el mouse sobre el enlace */
-}
-
-#volverAlMenu {
-    position: fixed;
-    bottom: 10px;
-    left: 50%;
-    transform: translateX(-50%);
-    background-color: #cf7712; 
-    color: #fff; 
-    padding: 10px 20px;
-    border: none;
-    border-radius: 5px;
-    font-size: 16px;
-}
-
-#volverAlMenu:hover {
-    background-color: rgb(197, 151, 105); /* Cambia el color de fondo al pasar el mouse sobre el botón */
-    transition: 0.5s;
-}
-
-/*TABLA*/
-
-#contenedorTabla {
-    background-color: rgba(255, 255, 255, 0.8);
-    width: 90%;
-    padding: 20px;
-    border-radius: 10px;
-    text-align: center;
-    margin: auto; 
-    position: relative; 
-    top: 50%; 
-    transform: translateY(-50%); /* Adjust to center vertically */
-    align-items: center;
-    /**/
-    text-align: center;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
+/* Estilos para la tabla */
 table {
+    margin: auto;
     width: 100%;
     border-collapse: collapse;
     margin-top: 20px;
+    margin-bottom: 40px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); /* Sombra para la tabla */
+}
+
+thead {
+    background-color: #333;
+    color: white;
 }
 
 th, td {
-    border: 1px solid #ddd;
-    padding: 8px;
+    background-color: #f2f2f277;
+    padding: 12px;
+    text-align: left;
 }
 
-th {
+/* Estilos alternos para filas */
+tbody tr:nth-child(even) {
     background-color: #f2f2f2;
 }
 
-.borrar-btn {
-    background-color: #cf7712;
-    color: #fff;
-    border: none;
-    padding: 5px 10px;
+/* Estilos para el enlace volverAlMenu */
+#volverAlMenu {
+   /* display: block; /* Cambio a bloque para ocupar el ancho disponible */
+    margin: 20px auto; /* Espaciado */
+    text-decoration: none;
+    padding: 10px 20px;
+    background-color: #333;
+    color: white;
     border-radius: 5px;
-    cursor: pointer;
+    text-align: center; /* Centrar texto */
+    transition: background-color 0.3s ease; /* Transición suave */
 }
 
 .borrar-btn:hover {
@@ -140,3 +78,7 @@ th {
 }
 
 /*/ 
+=======
+#volverAlMenu:hover {
+    background-color: #555;
+}*/
