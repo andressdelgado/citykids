@@ -200,7 +200,7 @@ button:hover {
     background-color: #ffdb4d; 
 }
 
-#divVista1, #divVista2, #divVista3, #divVista4, #divVista5, #divVista6, #divVista7, #divVista8{
+#divMenuInicial, #divMenuCompeticion, #divRuleta, #divCrearCompeticion, #divUnirCompeticion, #divMenuRanking, #divRanking, #divRankingCompeticion{
     height: 100%;
 }
 

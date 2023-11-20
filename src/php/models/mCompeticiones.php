@@ -101,5 +101,23 @@ class mCompeticiones {
         header("Location: index.php?c=cCompeticiones&m=listarCompeticiones");
         exit();
     }
+
+    function mModifCompeticion($clave, $titulo, $descripcion, $fechaFin){
+        $sql = "UPDATE Competicion  SET titulo = '$titulo', descripcion = '$descripcion', fecha_hora_fin = '$fechaFin' WHERE clave = '$clave'";
+        $this->conexion->query($sql);
+        
+    }
+
+    function mObtenerCompeticion($clave){
+        $sql = "SELECT * FROM Competicion WHERE clave = '$clave'";
+        $resultado = $this->conexion->query($sql);
+    
+        if ($resultado->num_rows > 0) {
+            $fila = $resultado->fetch_assoc();
+            return $fila;
+        } else {
+            return null; // Opcional: Puedes manejar el caso si no se encuentra ninguna competición con esa clave
+        }
+    }
 }
 ?>
