@@ -1,5 +1,5 @@
 import { Vista } from './vista.js'
-import { GeneradorNumeros } from '../class/generadornumeros.js'
+import { GeneradorNumeros } from '../clases/generadornumeros.js'
 
 export class Ruleta extends Vista {
 

@@ -43,18 +43,22 @@
             <div id="contenedorNegro">
                 <h1 class="main-title-white">CREAR COMPETICIÓN</h1>
                 <form action="#" method="POST" id="crearcompeticion">
-                    <label for="clave">Introducir clave:</label>
+                    <label for="crearClave">Introducir clave:</label>
                     <input type="text" id="crearClave" name="clave">
-        
-                    <label for="titulo">Introducir título:</label>
+                    <span id="errorClave" class="error-message"></span>
+
+                    <label for="crearTitulo">Introducir título:</label>
                     <input type="text" id="crearTitulo" name="titulo">
-        
-                    <label for="descripcion">Descripción:</label>
+                    <span id="errorTitulo" class="error-message"></span>
+
+                    <label for="crearDescripcion">Descripción:</label>
                     <textarea id="crearDescripcion" name="descripcion" rows="4"></textarea>
-        
-                    <label for="fechaFin">Selecciona hora y día de fin:</label>
+                    <span id="errorDescripcion" class="error-message"></span>
+
+                    <label for="crearFechaFin">Selecciona hora y día de fin:</label>
                     <input type="datetime-local" id="crearFechaFin" name="fechaFin">
-        
+                    <span id="errorFechaFin" class="error-message"></span>
+                    
                     <button type="submit" class="botonMenu">Enviar</button>
                 </form>
             </div>

@@ -15,12 +15,12 @@ export class Vista {
     Vista.vEquidadGenero = Symbol('Equidad de género y Coeducación')
   }
 
-  constructor (controlador, base) {
+  constructor(controlador, base) {
     this.controlador = controlador
     this.base = base
   }
 
-  mostrar (ver) {
+  mostrar(ver) {
     if (ver)
       this.base.style.display = 'block'
     else 

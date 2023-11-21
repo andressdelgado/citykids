@@ -6,7 +6,7 @@ export class MenuRanking extends Vista {
     super(controlador, base)
 
     this.rankingGlobal = this.base.querySelectorAll('button')[0]
-    this.ranking = this.base.querySelectorAll('button')[1]
+    this.rankingCompeticion = this.base.querySelectorAll('button')[1]
 
     this.rankingGlobal.onclick = this.pulsarRankingGlobal.bind(this)
     this.rankingCompeticion.onclick = this.pulsarRankingCompeticion.bind(this)
