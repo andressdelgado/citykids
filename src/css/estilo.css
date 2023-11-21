@@ -9,15 +9,17 @@ html, body {
     margin: 0;
     padding: 0;
     font-family: Arial, sans-serif;
+    width: 100%;
 }
 
 body {
     background-image: url('../img/bgInicio.png');
     background-size: cover;
     background-repeat: no-repeat;
-    background-attachment: fixed;
+    /* background-attachment: fixed; */
     align-items: center;
     justify-content: center;
+    width: 100%;
 }
 
 #interculturalidad {
@@ -66,9 +68,10 @@ body {
 }
 
 /*CONTENEDOR DE TODO EL CONTENIDO*/
-#contenedor {
+.contenedor {
     text-align: center;
     height: 100%;
+    width: 100%;
 }
 
 /*TITULO CON LETRAS INFANTILES NEGRAS*/
@@ -116,6 +119,17 @@ body {
     transition: 0.5s;
 }
 
+#mensajehover{
+    background-color: orange;
+    display: inline-block;
+    margin: 0 10px;
+    padding: 10px 20px;
+    font-style: italic;
+    position: absolute;
+    left: 210px;
+    top:560px;
+}
+
 .volverAlJuego {
     position: fixed;
     bottom: 10px;
@@ -131,7 +145,7 @@ body {
 
 /*MENUS RANK Y COMPETI*/
 
-#contenedorNegro {
+.contenedorNegro {
     background-color: rgba(0, 0, 0, 0.7); 
     width: 33%;
     text-align: center;
