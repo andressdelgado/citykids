@@ -9,15 +9,17 @@ html, body {
     margin: 0;
     padding: 0;
     font-family: Arial, sans-serif;
+    width: 100%;
 }
 
 body {
     background-image: url('../../img/bgInicio.png');
     background-size: cover;
     background-repeat: no-repeat;
-    background-attachment: fixed;
+    /* background-attachment: fixed; */
     align-items: center;
     justify-content: center;
+    width: 100%;
 }
 
 #interculturalidad {
@@ -66,7 +68,7 @@ body {
 }
 
 /*CONTENEDOR DE TODO EL CONTENIDO*/
-#contenedor {
+.contenedor {
     text-align: center;
     height: 100%;
 }
@@ -319,3 +321,53 @@ button:hover {
  .negrita{
     font-weight: bold
  }
+
+ .volverAlJuego {
+    position: fixed;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #cf7712; 
+    color: #fff; 
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+.imgInicio {
+    max-width: 37%;
+    height: auto; 
+    margin-bottom: 20px; 
+}
+
+/*BOTONES PANTALLA INICIAL*/
+.botonEnlace {
+    display: inline-block;
+    margin: 0 10px;
+    padding: 10px 20px;
+    text-decoration: none;
+    color: #fff; 
+    background-color: orange; 
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease-in-out;
+}
+
+.botonEnlace:hover {
+    background-color: orangered; 
+    transition: 0.5s;
+}
+
+#mensajehover{
+    background-color: orange;
+    display: inline-block;
+    margin: 0 10px;
+    padding: 10px 20px;
+    font-style: italic;
+    position: absolute;
+    left: 210px;
+    top:560px;
+}
