@@ -145,14 +145,14 @@ body {
 /*BOTONES SELECCION DE OPCIONES*/
 .botonMenu {
     display: block;
-    width: 80%;
+    width: 20%;
     margin: 10px auto; 
     padding: 15px;
     font-size: 18px;
     text-align: center;
     text-decoration: none;
-    color: white;
-    background-color: orange;
+    color: rgb(100, 100, 100);
+    background-color: rgb(187, 187, 187);
     border: none;
     border-radius: 5px;
     cursor: pointer;
@@ -255,14 +255,14 @@ button:hover {
 /*Respuestas*/
 .respuestaBtn {
     display: block;
-    width: 60%;
+    width: 40%;
     margin: 10px auto;
     padding: 15px;
     font-size: 18px;
     text-align: center;
     text-decoration: none;
     color: rgb(0, 0, 0);
-    background-color: #ffffff;
+    background-color: #ffc8c8;
     border: none;
     border-radius: 5px;
     cursor: pointer;

@@ -20,7 +20,7 @@ class Controlador {
 	 * Coge las referencias del interfaz.
 	 */
   vistas = new Map()
-
+  indicePregunta =0;
   constructor () {
     this.modelo = new Modelo()
 
@@ -123,6 +123,7 @@ class Controlador {
     const preguntasArea = document.getElementById('preguntasArea'+ambito);
     const preguntaTexto = document.getElementById('preguntaTexto'+ambito);
     const respuestasArea = document.getElementById('respuestas'+ambito);
+    const resultadoPregunta = document.getElementById('resultadoPregunta')
 
     console.log('AMBITOOOOO:'+ambito)
     // Limpiar contenido anterior si es necesario
@@ -132,34 +133,58 @@ class Controlador {
 
     // Verificar si hay preguntas disponibles
     if (datosPreguntas.length > 0) {
-
-      //Te lanza una pregunta aleatoria del ambito
       const indiceAleatorio = Math.floor(Math.random() * datosPreguntas.length);
       const preguntaAleatoria = datosPreguntas[indiceAleatorio];
-      console.log('PREGUNTA DEL AMBITO '+ambito+' : ' + preguntaAleatoria.pregunta);
-
-      // Mostrar la pregunta y las opciones de respuesta
+      console.log('PREGUNTA DEL AMBITO ' + ambito + ' : ' + preguntaAleatoria.pregunta);
+  
       preguntaTexto.textContent = preguntaAleatoria.pregunta;
   
-      // Mostrar las respuestas de la pregunta aleatoria
       preguntaAleatoria.respuestas.forEach((opcion) => {
-        console.log('RESPUESTA: ' + opcion.texto_respuesta);
-        const respuestaBtn = document.createElement('button');
-        respuestaBtn.textContent = opcion.texto_respuesta;
-        respuestaBtn.classList.add('respuestaBtn');
-        respuestaBtn.addEventListener('click', () => {
-          // Aquí podrías enviar la respuesta seleccionada al servidor si es necesario
-          // También podrías manejar la lógica de comprobar si es correcta
-          alert(`Respuesta seleccionada: ${opcion.texto_respuesta}`);
-        });
-        respuestasArea.appendChild(respuestaBtn);
+          console.log('RESPUESTA: ' + opcion.texto_respuesta);
+          const respuestaBtn = document.createElement('button');
+          respuestaBtn.textContent = opcion.texto_respuesta;
+          respuestaBtn.classList.add('respuestaBtn');
+          respuestaBtn.addEventListener('click', () => {
+            /*const botonesRespuesta = document.querySelectorAll('.respuestaBtn');
+                botonesRespuesta.forEach((boton) => {
+                    boton.disabled = true; // Deshabilitar el botón
+                });*/
+              if (opcion.num_respuesta === '1') {
+                  console.log('correcta');
+                  resultadoPregunta.innerText = 'RESPUESTA CORRECTA';
+              } else {
+                  console.log('incorrecta');
+                  resultadoPregunta.innerText = 'RESPUESTA INCORRECTA';
+              }
+  
+              const siguienteBtn = document.createElement('button');
+              siguienteBtn.textContent = 'Siguiente Pregunta';
+              siguienteBtn.classList.add('siguienteBtn');
+              siguienteBtn.addEventListener('click', () => {
+                  resultadoPregunta.innerText = '';
+                  // Aquí deberías implementar la lógica para pasar a la siguiente pregunta
+                  // Por ejemplo, cargar la siguiente pregunta o limpiar la interfaz para la nueva pregunta
+                  // ...
+              });
+  
+              respuestasArea.appendChild(siguienteBtn);
+          });
+  
+          respuestasArea.appendChild(respuestaBtn);
       });
-    } else {
-      // Si no hay preguntas disponibles, puedes mostrar un mensaje o realizar alguna acción adicional
+  } else {
       preguntaTexto.textContent = 'No hay preguntas disponibles en este momento.';
-    }
   }
   
+} 
+
+cargarSiguientePregunta(ambito, datosPreguntas) {
+  // Incrementar el índice para obtener la siguiente pregunta en el array de preguntas
+  this.indicePregunta++;
+
+  // Llamar a la función para mostrar las preguntas con los datos actualizados
+  this.mostrarPreguntas(ambito, datosPreguntas); // Reemplaza 'tu_ambito' con el valor correspondiente
+}
   
 
   verVista (vista) {
