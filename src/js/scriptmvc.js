@@ -124,10 +124,10 @@ class Controlador {
     const preguntaTexto = document.getElementById('preguntaTexto'+ambito);
     const respuestasArea = document.getElementById('respuestas'+ambito);
 
-  
+    console.log('AMBITOOOOO:'+ambito)
     // Limpiar contenido anterior si es necesario
-    preguntasArea.innerHTML = '';
-    respuestasArea.innerHTML = '';
+    /*preguntasArea.innerHTML = '';
+    respuestasArea.innerHTML = '';*/
 
 
     // Verificar si hay preguntas disponibles
