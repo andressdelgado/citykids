@@ -118,10 +118,50 @@ class Controlador {
       }
     }
   }
-  	/*
-	 * Muestra una vista.
-	 * @param vista {Symbol} Símbolo que identifica a la vista.
-	 */
+ 
+  mostrarPreguntas(ambito, datosPreguntas) {
+    const preguntasArea = document.getElementById('preguntasArea'+ambito);
+    const preguntaTexto = document.getElementById('preguntaTexto'+ambito);
+    const respuestasArea = document.getElementById('respuestas'+ambito);
+
+  
+    // Limpiar contenido anterior si es necesario
+    preguntasArea.innerHTML = '';
+    respuestasArea.innerHTML = '';
+
+
+    // Verificar si hay preguntas disponibles
+    if (datosPreguntas.length > 0) {
+
+      //Te lanza una pregunta aleatoria del ambito
+      const indiceAleatorio = Math.floor(Math.random() * datosPreguntas.length);
+      const preguntaAleatoria = datosPreguntas[indiceAleatorio];
+      console.log('PREGUNTA DEL AMBITO '+ambito+' : ' + preguntaAleatoria.pregunta);
+
+      // Mostrar la pregunta y las opciones de respuesta
+      preguntaTexto.textContent = preguntaAleatoria.pregunta;
+  
+      // Mostrar las respuestas de la pregunta aleatoria
+      preguntaAleatoria.respuestas.forEach((opcion) => {
+        console.log('RESPUESTA: ' + opcion.texto_respuesta);
+        const respuestaBtn = document.createElement('button');
+        respuestaBtn.textContent = opcion.texto_respuesta;
+        respuestaBtn.classList.add('respuestaBtn');
+        respuestaBtn.addEventListener('click', () => {
+          // Aquí podrías enviar la respuesta seleccionada al servidor si es necesario
+          // También podrías manejar la lógica de comprobar si es correcta
+          alert(`Respuesta seleccionada: ${opcion.texto_respuesta}`);
+        });
+        respuestasArea.appendChild(respuestaBtn);
+      });
+    } else {
+      // Si no hay preguntas disponibles, puedes mostrar un mensaje o realizar alguna acción adicional
+      preguntaTexto.textContent = 'No hay preguntas disponibles en este momento.';
+    }
+  }
+  
+  
+
   verVista (vista) {
     this.ocultarVistas()
     this.vistas.get(vista).mostrar(true)
@@ -132,5 +172,4 @@ class Controlador {
 			vista.mostrar(false)
 	}
 }
-
 window.onload = () => {new Controlador()}
