@@ -1,0 +1,237 @@
+/* Utilizar la fuente PartyConfetti para el encabezado */
+@font-face {
+    font-family: 'PartyConfetti';
+    src: url('../fonts/PartyConfetti.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+/* Estilos generales */
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    font-family: 'Arial', sans-serif; /* Cambio en la declaración de la fuente */
+}
+
+body {
+    background-image: none;
+    background-color: rgb(218, 218, 218);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    align-items: center;
+    justify-content: center;
+}
+
+.contenedor{
+    width:60%;
+    margin: auto;
+}
+
+/* Estilos para el encabezado */
+h1 {
+    text-align: center;
+    font-family: 'PartyConfetti', sans-serif; /* Aplicar la fuente personalizada */
+    font-size: 36px; /* Tamaño del encabezado */
+    margin-bottom: 20px; /* Espaciado inferior */
+}
+
+/* Estilos para la tabla */
+table {
+    margin: auto;
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    margin-bottom: 40px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); /* Sombra para la tabla */
+}
+
+thead {
+    background-color: #333;
+    color: white;
+}
+
+th, td {
+    background-color: #f2f2f277;
+    padding: 12px;
+    text-align: left;
+}
+
+/* Estilos alternos para filas */
+tbody tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+tbody tr:hover {
+    transition: 0.8s;
+    background-color: #c1c0c0; /* Cambia el color al pasar el cursor sobre la fila */
+}
+#volverAlMenu {
+    width: 20%;
+    display: block; /* Cambio a bloque para ocupar el ancho disponible */
+    margin: auto; /* Espaciado */
+    text-decoration: none;
+    padding: 10px 20px;
+    background-color: #333;
+    color: white;
+    border-radius: 5px;
+    text-align: center; /* Centrar texto horizontalmente */
+    line-height: 40px; /* Ajusta según el tamaño del botón para centrar verticalmente */
+    transition: background-color 0.3s ease; /* Transición suave */
+}
+
+
+.borrar-btn:hover {
+    background-color: rgb(197, 151, 105);
+    transition: 0.5s;
+}
+.volverAlJuego {
+    display: block; /* Cambio a bloque para ocupar el ancho disponible */
+    margin: 20px auto; /* Espaciado */
+    text-decoration: none;
+    width: 60%;
+    padding: 10px 20px;
+    background-color: #4e4e4e; 
+    color: #fff; 
+    border: none;
+    border-radius: 3px;
+    font-size: 16px;
+    text-align: center; /* Centrar texto */
+}
+.volverAlJuego:hover{
+    background-color: #363535; 
+    transition: 0.7s;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5); /* Añade sombra */
+}
+
+/* Estilos para el formulario */
+form {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+label {
+    display: block;
+    margin-bottom: 8px;
+}
+
+textarea,
+input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 16px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    padding-left: 20px; 
+}
+
+select {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 16px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+input[type="submit"] {
+    background-color: #333;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+input[type="submit"]:hover {
+    background-color: #555;
+}
+
+/* Resaltar la pregunta correcta con fondo verde */
+/* Resaltar la pregunta correcta con borde verde */
+
+input#texto_respuesta_correcta {
+    border: 2px solid #4CAF50; /* Cambiamos el color del borde para resaltar */
+    padding: 10px;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+input#texto_respuesta_incorrecta1 {
+    border: 2px solid #af4f4c; /* Cambiamos el color del borde para resaltar */
+    padding: 10px;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+input#texto_respuesta_incorrecta2 {
+    border: 2px solid #af4c4c; /* Cambiamos el color del borde para resaltar */
+    padding: 10px;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+input[type="submit"] {
+    background-color: #333;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+input[type="submit"]:hover {
+    background-color: #555;
+}
+
+input[type="button"] {
+    padding: 8px 12px;
+    cursor: pointer;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    margin-right: 10px;
+}
+
+input[type="button"]:hover {
+    background-color: #45a049;
+}
+
+/* Estilos para los botones + y - */
+.input-group {
+    text-align: center;
+}
+
+.input-group input[type="button"] {
+    width: 30px;
+    height: 30px;
+    margin: 0 5px;
+    cursor: pointer;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    transition: transform 0.1s, background-color 0.3s; /* Transición suave para la rotación y el cambio de color */
+}
+
+.input-group input[type="button"]:hover {
+    background-color: #45a049;
+}
+
+/* Estilo específico para el botón "-" */
+.input-group input[type="button"][value="-"] {
+    background-color: #d9534f;
+}
+
+.input-group input[type="button"][value="-"]:hover {
+    background-color: #c9302c;
+}
+/*/ 
+=======
+#volverAlMenu:hover {
+    background-color: #555;
+}*/
