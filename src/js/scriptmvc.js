@@ -21,6 +21,8 @@ class Controlador {
 	 */
   vistas = new Map()
   indicePregunta =0;
+  respuestaBtn
+
   constructor () {
     this.modelo = new Modelo()
 
@@ -42,7 +44,7 @@ class Controlador {
 
     //Creamos las vistas 
     this.vistas.set(Vista.vMenuInicial, new MenuInicial(this, divMenuInicial))
-    this.vistas.set(Vista.vRuleta, new Ruleta(this, divRuleta))
+    this.vistas.set(Vista.vRuleta, new Ruleta(this, divRuleta));
     this.vistas.set(Vista.vMenuCompeticion, new MenuCompeticion(this, divMenuCompeticion))
     this.vistas.set(Vista.vCrearCompeticion, new CrearCompeticion(this, divCrearCompeticion))
     this.vistas.set(Vista.vUnirCompeticion, new UnirCompeticion(this, divUnirCompeticion))
@@ -123,69 +125,53 @@ class Controlador {
     const preguntasArea = document.getElementById('preguntasArea'+ambito);
     const preguntaTexto = document.getElementById('preguntaTexto'+ambito);
     const respuestasArea = document.getElementById('respuestas'+ambito);
-    const resultadoPregunta = document.getElementById('resultadoPregunta')
-
-    console.log('AMBITOOOOO:'+ambito)
-    // Limpiar contenido anterior si es necesario
-    /*preguntasArea.innerHTML = '';
-    respuestasArea.innerHTML = '';*/
-
 
     // Verificar si hay preguntas disponibles
     if (datosPreguntas.length > 0) {
+
+      //Te lanza una pregunta aleatoria del ambito
       const indiceAleatorio = Math.floor(Math.random() * datosPreguntas.length);
-      const preguntaAleatoria = datosPreguntas[indiceAleatorio];
-      console.log('PREGUNTA DEL AMBITO ' + ambito + ' : ' + preguntaAleatoria.pregunta);
-  
+      const preguntaAleatoria = datosPreguntas[indiceAleatorio]; //ESTO LO HAGO PORQUE SI NO LE DIGO QUE PREGUNTA QUIERO MOSTRAR,
+      // ME MUESTRA TODAS LAS PREGUNTAS QUE TIENE ASIGNADO ESE AAMBITO
+      console.log('PREGUNTA DEL AMBITO '+ambito+' : ' + preguntaAleatoria.pregunta);
+
+      // Mostrar la pregunta y las opciones de respuesta
       preguntaTexto.textContent = preguntaAleatoria.pregunta;
-  
+
+      // Mostrar las respuestas de la pregunta aleatoria
       preguntaAleatoria.respuestas.forEach((opcion) => {
-          console.log('RESPUESTA: ' + opcion.texto_respuesta);
-          const respuestaBtn = document.createElement('button');
-          respuestaBtn.textContent = opcion.texto_respuesta;
-          respuestaBtn.classList.add('respuestaBtn');
-          respuestaBtn.addEventListener('click', () => {
-            /*const botonesRespuesta = document.querySelectorAll('.respuestaBtn');
-                botonesRespuesta.forEach((boton) => {
-                    boton.disabled = true; // Deshabilitar el botón
-                });*/
-              if (opcion.num_respuesta === '1') {
-                  console.log('correcta');
-                  resultadoPregunta.innerText = 'RESPUESTA CORRECTA';
-              } else {
-                  console.log('incorrecta');
-                  resultadoPregunta.innerText = 'RESPUESTA INCORRECTA';
-              }
-  
-              const siguienteBtn = document.createElement('button');
-              siguienteBtn.textContent = 'Siguiente Pregunta';
-              siguienteBtn.classList.add('siguienteBtn');
-              siguienteBtn.addEventListener('click', () => {
-                  resultadoPregunta.innerText = '';
-                  // Aquí deberías implementar la lógica para pasar a la siguiente pregunta
-                  // Por ejemplo, cargar la siguiente pregunta o limpiar la interfaz para la nueva pregunta
-                  // ...
-              });
-  
-              respuestasArea.appendChild(siguienteBtn);
-          });
-  
-          respuestasArea.appendChild(respuestaBtn);
-      });
-  } else {
+        console.log('RESPUESTA: ' + opcion.texto_respuesta);
+        const respuestaBtn = document.createElement('button');
+        const mensajeResultado = document.getElementsByClassName('mensaje-resultado')[0]; // Seleccionar el primer elemento
+        respuestaBtn.textContent = opcion.texto_respuesta;
+        respuestaBtn.classList.add('respuestaBtn');
+        respuestaBtn.addEventListener('click', () => {
+            //ENVIARRR LA RESPUESTA
+            // alert(`Respuesta seleccionada: ${opcion.texto_respuesta}`);
+            if (opcion.num_respuesta === '1') {
+                console.log("CORRECTA");
+                mensajeResultado.textContent = "¡Respuesta correcta!";
+                mensajeResultado.style.display = 'block';
+                /*setTimeout(() => {
+                    this.verVista(Vista.vRuleta);
+                }, 3000);*/
+            } else {
+                console.log("INCORRECTA");
+                mensajeResultado.textContent = "Respuesta incorrecta.";
+                mensajeResultado.style.display = 'block';
+                /*setTimeout(() => {
+                    this.verVista(Vista.vRuleta);
+                }, 3000);*/
+            }
+        });
+        respuestasArea.appendChild(respuestaBtn);
+    });
+    
+      
+    } else {
       preguntaTexto.textContent = 'No hay preguntas disponibles en este momento.';
+    }
   }
-  
-} 
-
-cargarSiguientePregunta(ambito, datosPreguntas) {
-  // Incrementar el índice para obtener la siguiente pregunta en el array de preguntas
-  this.indicePregunta++;
-
-  // Llamar a la función para mostrar las preguntas con los datos actualizados
-  this.mostrarPreguntas(ambito, datosPreguntas); // Reemplaza 'tu_ambito' con el valor correspondiente
-}
-  
 
   verVista (vista) {
     this.ocultarVistas()
