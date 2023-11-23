@@ -82,12 +82,33 @@ export class Ruleta extends Vista {
   
  
   crearInterfaz2() {
-    // Crear el mensaje dinámicamente y agregarlo al DOM
-    this.pEnter = document.createElement('p');
-    this.base.appendChild(this.pEnter);
-    this.pEnter.textContent = 'Ya se han proporcionado todas las preguntas. Pulsa F5 y mira los otros apartados. (Esta parte está en desarrollo ya que aquí irán las preguntas)';
-    this.pEnter.className = 'volverAlJuego';
+    this.button.style.display='none'
+    const controlador = this.controlador; // Asigna una referencia al controlador
+    const puntuacion = controlador.obtenerPuntuacion(); // Obtiene la puntuación
+    
+    // Crear el contenedor div
+    const divPuntuacion = document.createElement('div');
+    divPuntuacion.className = 'elemento-con-animacion'; // Puedes agregar una clase para estilizar el contenedor si lo necesitas
+    divPuntuacion.style.backgroundColor = '#b8ffd3'
+    // Crear el párrafo con el mensaje de puntuación
+    const pMensaje = document.createElement('p');
+    pMensaje.textContent = `¡Has obtenido ${puntuacion} puntos!`; // Mensaje con la puntuación obtenida
+    
+    // Crear el botón para volver al inicio
+    const btnVolverInicio = document.createElement('button');
+    btnVolverInicio.textContent = 'Volver al inicio';
+    btnVolverInicio.className = 'btnSiguienteTiradas'; // Clase para estilizar el botón si es necesario
+    
+    // Agregar evento al botón para volver al inicio
+    btnVolverInicio.addEventListener('click', () => {
+      location.reload();
+    });
+    
+    divPuntuacion.appendChild(pMensaje);
+    divPuntuacion.appendChild(btnVolverInicio);
+    this.base.appendChild(divPuntuacion);
   }
+  
   
   girarRuleta() {
     if (this.preguntasMostradas < 5) {
@@ -95,7 +116,7 @@ export class Ruleta extends Vista {
       do {
         idAmbitoAleatorio = Math.floor(Math.random() * 5) + 1;
       } while (this.ambitosSeleccionados.includes(idAmbitoAleatorio)); // Verificar si el ámbito ya ha sido seleccionado
-  
+      console.log('HOLAAA ESTOY POR AQUI')
       this.ambitosSeleccionados.push(idAmbitoAleatorio); // Agregar el ámbito seleccionado al arreglo
       this.preguntasMostradas++;
       const urlAbsoluta = 'http://localhost/carlos/citykids/src/js/preguntas.php'; // URL absoluta a preguntas.php
@@ -115,10 +136,13 @@ export class Ruleta extends Vista {
       xhttp.open('GET', `${urlAbsoluta}?id_ambito=${idAmbitoAleatorio}`, true);
       xhttp.send();
     } else {
+
       console.log('FIN');
-      this.crearInterfaz2(); // Llamar a la función para mostrar el mensaje
+      this.crearInterfaz2();
+      // Llamar a la función para mostrar el mensaje
     }
   }
+
 
   mostrarPreguntas(idAmbitoAleatorio, preguntas) {
     this.controlador.mostrarPreguntas(idAmbitoAleatorio, preguntas)
@@ -128,7 +152,9 @@ export class Ruleta extends Vista {
         switch (idAmbitoAleatorio) {
           case 1:
             console.log('Participacion democractica')
-            this.controlador.verVista(Vista.vPartDemo)
+            //this.controlador.verVista(Vista.vPartDemo)
+            const vistaMostrada = this.controlador.verVista(Vista.vPartDemo);
+            console.log('La vista vPartDemo se mostró correctamente:', vistaMostrada);
             console.log('ESTOY EN LA VISTA PD')
             break
           case 2:

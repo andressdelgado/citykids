@@ -201,6 +201,7 @@ button:hover {
 
 /* Preguntas y respuestas */
 .divPregunta {
+    animation: fadeIn 1s ease-in-out;
     text-align: center;
     width: 40%;
     height: 80%;
@@ -359,3 +360,102 @@ button:hover {
     width: 100%;
     /* Estilos adicionales según tu diseño */
 }
+
+/* Clase para la animación */
+@keyframes fadeIn {
+    from {
+        opacity: 0; /* Comienza con opacidad 0 */
+    }
+    to {
+        opacity: 1; /* Llega a opacidad 1 */
+    }
+}
+.elemento-con-animacion {
+    animation: fadeIn 1s ease-in-out;
+    position: absolute;
+    width: 30%;
+    height: 30%;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+    font-family: 'PartyConfetti', Courier, monospace;
+    font-weight: bold;
+    font-size: 3.25em;
+    border-radius: 6px;
+    color: white;
+    -webkit-text-stroke: 1px black;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.btnSiguienteTiradas {
+    font-family: 'Arial', Courier, monospace;
+    font-weight: bold;
+    color: white;
+    font-size: 20px;
+    box-shadow: 2px 2px 10px rgba(159, 111, 0, 0.5);
+    background-color: #ff9c2b;
+    display: block;
+    width: 200px;
+    height: 40px;
+    margin-bottom: 0px;
+}
+.btnSiguienteTiradas:hover {
+    background-color: #f79b30;
+    transition: 0.6s;
+}
+
+.texto-elemento{
+    width: 100%;
+    text-align: center;
+}
+
+
+/* Estilos CSS para el contenedor principal */
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; /* Ajusta la altura según tu diseño */
+  }
+  
+  /* Estilos CSS para el contenedor de puntuación */
+  .puntuacion-container {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    text-align: center;
+    padding: 20px;
+    border: 2px solid #ccc;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+    max-width: 300px;
+  }
+  
+  /* Estilos CSS para el botón de volver al inicio */
+  .btn-volver-inicio {
+    display: block; /* Cambia a bloque para ocupar el ancho disponible */
+    margin-top: 15px;
+    padding: 8px 16px;
+    font-size: 16px;
+    background-color: #4285f4;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  /* Estilos de hover para el botón de volver al inicio */
+  .btn-volver-inicio:hover {
+    background-color: #3367d6;
+  }
+  

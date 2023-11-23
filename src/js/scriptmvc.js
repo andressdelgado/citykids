@@ -13,6 +13,7 @@ import {JustSocial} from './vistas/vJustSocial.js'
 import {DesHumano} from './vistas/vDesHumano.js'
 import {Interculturalidad} from './vistas/vInterculturalidad.js'
 import {EquidadGenero} from './vistas/vEquidadGenero.js'
+import { FormularioFinal } from './vistas/vFormularioFinal.js'
 
 class Controlador {
   /*
@@ -22,9 +23,11 @@ class Controlador {
   vistas = new Map()
   indicePregunta =0;
   respuestaBtn
+  preguntasCorrectas = 0
 
   constructor () {
     this.modelo = new Modelo()
+    this.preguntasCorrectas =0;
 
     //conseguimos la referencia de la interface
     const divMenuInicial = document.getElementById('divMenuInicial')
@@ -40,6 +43,7 @@ class Controlador {
     const divDesHumano = document.getElementById('divDesHumano')
     const divInterculturalidad = document.getElementById('divInterculturalidad')
     const divEquidadGenero = document.getElementById('divEquidadGenero')
+    const divFormulario = document.getElementById('divFormulario')
 
 
     //Creamos las vistas 
@@ -56,9 +60,11 @@ class Controlador {
     this.vistas.set(Vista.vDesHumano, new DesHumano(this, divDesHumano))
     this.vistas.set(Vista.vInterculturalidad, new Interculturalidad(this, divInterculturalidad))
     this.vistas.set(Vista.vEquidadGenero, new EquidadGenero(this, divEquidadGenero))
+    this.vistas.set(Vista.vFormularioFinal, new FormularioFinal(this, divFormulario))
 
     this.verVista(Vista.vMenuInicial)
   }
+
   validarFormulario() {
     const claveInput = document.getElementById('crearClave')
     const tituloInput = document.getElementById('crearTitulo')
@@ -125,8 +131,12 @@ class Controlador {
     const preguntasArea = document.getElementById('preguntasArea'+ambito);
     const preguntaTexto = document.getElementById('preguntaTexto'+ambito);
     const respuestasArea = document.getElementById('respuestas'+ambito);
-
+    const divRespuesta = document.createElement('div');
+    const botonSiguienteTirada = document.createElement('button');
+    const textoRespuesta = document.createElement('p');
+    botonSiguienteTirada.classList.add('btnSiguienteTiradas')
     // Verificar si hay preguntas disponibles
+
     if (datosPreguntas.length > 0) {
 
       //Te lanza una pregunta aleatoria del ambito
@@ -142,7 +152,6 @@ class Controlador {
       preguntaAleatoria.respuestas.forEach((opcion) => {
         console.log('RESPUESTA: ' + opcion.texto_respuesta);
         const respuestaBtn = document.createElement('button');
-        const mensajeResultado = document.getElementsByClassName('mensaje-resultado')[0]; // Seleccionar el primer elemento
         respuestaBtn.textContent = opcion.texto_respuesta;
         respuestaBtn.classList.add('respuestaBtn');
         respuestaBtn.addEventListener('click', () => {
@@ -150,27 +159,55 @@ class Controlador {
             // alert(`Respuesta seleccionada: ${opcion.texto_respuesta}`);
             if (opcion.num_respuesta === '1') {
                 console.log("CORRECTA");
-                mensajeResultado.textContent = "¡Respuesta correcta!";
-                mensajeResultado.style.display = 'block';
-                /*setTimeout(() => {
-                    this.verVista(Vista.vRuleta);
-                }, 3000);*/
+                this.obtenerPuntuacion()
+                console.log(this.preguntasCorrectas)
+                divRespuesta.style.display = 'block';
+                textoRespuesta.textContent = '¡CORRECTO!';
+                textoRespuesta.classList.add('texto-elemento')
+                divRespuesta.style.backgroundColor = 'rgb(153, 255, 131)'
+                divRespuesta.style.boxShadow = '2px 2px 40px rgba(0, 255, 0, 0.7)'
+                divRespuesta.style.border = '2px solid rgba(0, 255, 0, 0.7)'
+                divRespuesta.classList.add('elemento-con-animacion')
+                document.body.appendChild(divRespuesta);
+                botonSiguienteTirada.textContent = 'Seguir Jugando';
+                botonSiguienteTirada.addEventListener('click', () => {
+                  divRespuesta.style.display = 'none';
+                  this.verVista(Vista.vRuleta)
+
+                });
+                divRespuesta.appendChild(textoRespuesta)
+                divRespuesta.appendChild(botonSiguienteTirada)
             } else {
                 console.log("INCORRECTA");
-                mensajeResultado.textContent = "Respuesta incorrecta.";
-                mensajeResultado.style.display = 'block';
-                /*setTimeout(() => {
-                    this.verVista(Vista.vRuleta);
-                }, 3000);*/
+                divRespuesta.style.display = 'block';
+                textoRespuesta.textContent = 'INCORRECTO';
+                textoRespuesta.classList.add('texto-elemento')
+                divRespuesta.style.backgroundColor = 'rgb(255, 68, 68)'
+                divRespuesta.style.boxShadow = '2px 2px 40px rgba(255, 0, 0, 0.7)'
+                divRespuesta.style.border = '2px solid rgba(255, 0, 0, 0.7)'
+                divRespuesta.classList.add('elemento-con-animacion')
+                document.body.appendChild(divRespuesta);
+                botonSiguienteTirada.textContent = 'Seguir Jugando';
+                botonSiguienteTirada.addEventListener('click', () => {
+                  divRespuesta.style.display = 'none';
+                  this.verVista(Vista.vRuleta)
+                });
+                divRespuesta.appendChild(textoRespuesta)
+                divRespuesta.appendChild(botonSiguienteTirada)
             }
         });
         respuestasArea.appendChild(respuestaBtn);
+        
     });
     
-      
     } else {
       preguntaTexto.textContent = 'No hay preguntas disponibles en este momento.';
     }
+  }
+
+  obtenerPuntuacion() {
+    this.preguntasCorrectas = this.preguntasCorrectas + 20;
+    return this.preguntasCorrectas;
   }
 
   verVista (vista) {
