@@ -42,6 +42,8 @@ body {
     background-image: url('../../img/bgEquidad.png');    
 }
 
+
+
 /*CONTENEDOR DE TODO EL CONTENIDO*/
 .contenedor {
     text-align: center;
@@ -295,3 +297,33 @@ button:hover {
     font-weight: bold
  }
 
+#botonconfig{
+    position: absolute;
+    left: 90%;
+    top: 4%;
+    background-image: url('../../img/engranaje2.png');
+    height: 7.5%;
+    width: 3.5%;
+    background-size: 100%;
+    padding: 0%;
+    background-repeat: no-repeat;
+    background-color: darkgray;
+    border: 0;
+    box-shadow: 7.5px 0 10px #48529944, -7.5px 0 10px #48529944, 0 -7.5px 10px #48529944, 0 7.5px 10px #48529944;
+}
+
+#botonconfig:hover{
+    box-shadow: 12.5px 0 10px #48529944, -12.5px 0 10px #48529944, 0 -12.5px 10px #48529944, 0 12.5px 10px #48529944;
+    transition: box-shadow 0.5s ease-in-out;
+}
+
+@media only screen and (max-width: 1300px) {
+    #botonconfig {
+        display: none;
+    }
+    .imgInicio{
+        max-width: 45%;
+        height: auto;
+    }
+
+}
