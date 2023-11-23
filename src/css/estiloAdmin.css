@@ -148,6 +148,7 @@ input[type="submit"] {
 
 input[type="submit"]:hover {
     background-color: #555;
+    transition:1s;
 }
 
 /* Resaltar la pregunta correcta con fondo verde */
@@ -204,6 +205,7 @@ input[type="button"]:hover {
 /* Estilos para los botones + y - */
 .input-group {
     text-align: center;
+    margin-bottom: 20px;
 }
 
 .input-group input[type="button"] {
@@ -215,11 +217,11 @@ input[type="button"]:hover {
     color: white;
     border: none;
     border-radius: 4px;
-    transition: transform 0.1s, background-color 0.3s; /* Transición suave para la rotación y el cambio de color */
 }
 
 .input-group input[type="button"]:hover {
-    background-color: #45a049;
+    background-color: #106514;
+    transition:1s;
 }
 
 /* Estilo específico para el botón "-" */
@@ -228,7 +230,8 @@ input[type="button"]:hover {
 }
 
 .input-group input[type="button"][value="-"]:hover {
-    background-color: #c9302c;
+    background-color: #660b08;
+    transition:1s;
 }
 /*/ 
 =======

@@ -106,14 +106,14 @@ class MPreguntasRespuestas{
         if ($resultado_pregunta && $resultado_respuestas) {
             $datos_pregunta = $resultado_pregunta->fetch_assoc();
 
-            // si hay respuestas, agrego al array de datos
+            // si hay respuestas, agrego al array
             if ($resultado_respuestas->num_rows > 0) {
                 $datos_respuestas = [];
                 while ($fila_respuesta = $resultado_respuestas->fetch_assoc()) {
                     $datos_respuestas[] = $fila_respuesta;
                 }
 
-                // agrego respuestas al array de datos de la pregunta
+                // agrego respuestas al array de la pregunta
                 $datos_pregunta['respuestas'] = $datos_respuestas;
             }
 
@@ -122,6 +122,50 @@ class MPreguntasRespuestas{
             throw new Exception("Error al obtener datos de la pregunta y respuestas: " . $this->conexion->error);
         }
     }
+
+    public function actualizarPreguntaYRespuestas($id_pregunta_a_actualizar, $pregunta, $ambito, $respuestas) {
+        try {
+            $this->conexion->begin_transaction();
+    
+            // Eliminar la pregunta y sus respuestas actuales
+            $sql_eliminar_pregunta_y_respuestas = "DELETE FROM Pregunta WHERE id_pregunta = $id_pregunta_a_actualizar";
+            $this->conexion->query($sql_eliminar_pregunta_y_respuestas);
+    
+            // Insertar la nueva pregunta
+            $pregunta = $this->conexion->real_escape_string($pregunta);
+            $ambito = $this->conexion->real_escape_string($ambito);
+    
+            $sql_insertar_pregunta = "INSERT INTO Pregunta (id_pregunta, pregunta, id_ambito) VALUES ($id_pregunta_a_actualizar, '$pregunta', '$ambito')";
+            $this->conexion->query($sql_insertar_pregunta);
+    
+            // Insertar nuevas respuestas
+            foreach ($respuestas as $num_respuesta => $texto_respuesta) {
+                $texto_respuesta = $this->conexion->real_escape_string($texto_respuesta);
+    
+                $sql_insertar_respuesta = "
+                    INSERT INTO Respuesta (id_pregunta, num_respuesta, texto_respuesta)
+                    VALUES ($id_pregunta_a_actualizar, $num_respuesta, '$texto_respuesta')";
+    
+                $this->conexion->query($sql_insertar_respuesta);
+    
+                // Actualizar la respuesta correcta en la pregunta
+                if ($num_respuesta == 1) {
+                    $sql_actualizar_respuesta_correcta = "
+                        UPDATE Pregunta SET num_respuesta_correcta = $num_respuesta
+                        WHERE id_pregunta = $id_pregunta_a_actualizar";
+                    $this->conexion->query($sql_actualizar_respuesta_correcta);
+                }
+            }
+    
+            $this->conexion->commit();
+            return $id_pregunta_a_actualizar;
+        } catch (Exception $e) {
+            $this->conexion->rollback();
+            throw $e;
+        }
+    }
+    
+    
     
 
 }

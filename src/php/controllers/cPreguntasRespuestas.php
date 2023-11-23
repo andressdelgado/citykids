@@ -107,6 +107,57 @@
             return $datos;
         }
         
+        public function procesarFormularioModificar() {
+            if ($_SERVER['REQUEST_METHOD'] === 'POST') { 
+                $id_pregunta_a_modificar = $_POST['id_pregunta'];
+                $texto_pregunta = $_POST['texto_pregunta'];
+                $id_ambito = $_POST['ambito'];
+                $texto_respuesta_correcta = $_POST['texto_respuesta_correcta'];
+                
+                // Obtengo respuestas incorrectas dinámicamente
+                $respuestas_incorrectas = [];
+                $i = 1;
+                while (isset($_POST['texto_respuesta_incorrecta' . $i])) {
+                    $respuestas_incorrectas[] = $_POST['texto_respuesta_incorrecta' . $i];
+                    $i++;
+                }
+        
+                // Construyo el array de respuestas iniciando con la correcta y luego las incorrectas
+                $respuestas = ['1' => $texto_respuesta_correcta];
+        
+                foreach ($respuestas_incorrectas as $indice => $respuesta) {
+                    $respuestas[$indice + 2] = $respuesta;
+                }
+        
+                try {
+                    // Actualizo la pregunta y respuestas
+                    $id_pregunta_modificada = $this->objModelo->actualizarPreguntaYRespuestas(
+                        $id_pregunta_a_modificar,
+                        $texto_pregunta,
+                        $id_ambito,
+                        $respuestas
+                    );
+        
+                    return "Pregunta modificada exitosamente con ID: $id_pregunta_modificada";
+                } catch (Exception $e) {
+                    $codigoError = $e->getCode();
+                    switch ($codigoError) {
+                        case 1062:
+                            echo "Error al procesar el formulario: Ya existe una pregunta similar.";
+                            break;
+                        case 1048:
+                            echo "Error al procesar el formulario: No puede haber campos vacíos.";
+                            break;
+                        case 1406:
+                            echo "Error al procesar el formulario: Los campos exceden la longitud máxima.";
+                            break;
+                        default:
+                            echo "Error al procesar el formulario: Código de error " . $codigoError;
+                    }
+                }
+            }
+        }
+        
 
 
     }

@@ -59,18 +59,20 @@
     }
 
     function eliminarRespuestaIncorrecta() {
-        if (contadorRespuestasIncorrectas > 2) {
+        if (contadorRespuestasIncorrectas > 3) {
             contadorRespuestasIncorrectas--;
             const container = document.getElementById('respuestas_incorrectas_container');
             container.removeChild(container.lastChild); // <br>
             container.removeChild(container.lastChild); // input
             container.removeChild(container.lastChild); // label
+        } else {
+            console.log("No puedo bajar de 3")
         }
     }
 
     /*
     function moverBoton() {
-        const distanciaMinima = 1000; // Establece el valor mínimo de la distancia
+        const distanciaMinima = 300; // Establece el valor mínimo de la distancia
         const distancia = Math.floor(Math.random() * 100) + distanciaMinima; // Genera un valor aleatorio entre la distancia mínima y 150
         const direccion = Math.random() < 0.5 ? 1 : -1; // Elige aleatoriamente la dirección (1: derecha, -1: izquierda)
 
@@ -78,6 +80,7 @@
         document.getElementById('botonMovible').style.transform = nuevoTransform;
     }
     */
+    
 
 </script>
 
