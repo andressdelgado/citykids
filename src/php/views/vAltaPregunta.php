@@ -31,58 +31,18 @@
         </div>
 
         <input type="submit" value="Guardar Pregunta">
+        
         <?php
-            if (!empty($mensajeError)) {
-                echo '<div class="error-message">¡' . $mensajeError . '!</div>';
-            }
+        if (!empty($mensajeError)) {
+            echo '<div class="error-message">¡' . $mensajeError . '!</div>';
+        }
         ?>
+
     </form>
 
-    <a href="index.php" id="volverAlMenu">Volver al menú</a>
+        <a href="../../src/php/index.php?c=cPreguntasRespuestas&m=mostrarMenuPreguntasRespuestas" id="volverAlMenu">Volver al menu Q&A</a>
 
-    <script>
-    let contadorRespuestasIncorrectas = 3; // Inicializado en 2 porque ya hay una respuesta incorrecta
-
-    function agregarRespuestaIncorrecta() {
-        const container = document.getElementById('respuestas_incorrectas_container');
-        const label = document.createElement('label');
-        label.setAttribute('for', 'texto_respuesta_incorrecta' + contadorRespuestasIncorrectas);
-        label.textContent = 'Texto de la Respuesta Incorrecta ' + contadorRespuestasIncorrectas + ':';
-        const input = document.createElement('input');
-        input.setAttribute('type', 'text');
-        input.setAttribute('id', 'texto_respuesta_incorrecta' + contadorRespuestasIncorrectas);
-        input.setAttribute('name', 'texto_respuesta_incorrecta' + contadorRespuestasIncorrectas);
-        container.appendChild(label);
-        container.appendChild(input);
-        container.appendChild(document.createElement('br'));
-        contadorRespuestasIncorrectas++;
-    }
-
-    function eliminarRespuestaIncorrecta() {
-        if (contadorRespuestasIncorrectas > 3) {
-            contadorRespuestasIncorrectas--;
-            const container = document.getElementById('respuestas_incorrectas_container');
-            container.removeChild(container.lastChild); // <br>
-            container.removeChild(container.lastChild); // input
-            container.removeChild(container.lastChild); // label
-        } else {
-            console.log("No puedo bajar de 3")
-        }
-    }
-
-    /*
-    function moverBoton() {
-        const distanciaMinima = 300; // Establece el valor mínimo de la distancia
-        const distancia = Math.floor(Math.random() * 100) + distanciaMinima; // Genera un valor aleatorio entre la distancia mínima y 150
-        const direccion = Math.random() < 0.5 ? 1 : -1; // Elige aleatoriamente la dirección (1: derecha, -1: izquierda)
-
-        const nuevoTransform = `translate(${distancia * direccion}px, ${-distancia}px)`;
-        document.getElementById('botonMovible').style.transform = nuevoTransform;
-    }
-    */
-    
-
-</script>
+    <script src="views/js/botones.js"></script>
 
 
 </div>

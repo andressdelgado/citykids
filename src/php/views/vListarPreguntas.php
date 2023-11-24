@@ -24,7 +24,8 @@
         </tbody>
     </table>
 
-    <a href="index.php" id="volverAlMenu">Volver al menú</a>
+    <a href="../../src/php/index.php?c=cPreguntasRespuestas&m=mostrarMenuPreguntasRespuestas" id="volverAlMenu">Volver al menu Q&A</a>
+
 </div>
 
 

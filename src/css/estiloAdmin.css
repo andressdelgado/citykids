@@ -233,6 +233,70 @@ input[type="button"]:hover {
     background-color: #660b08;
     transition:1s;
 }
+
+.error-message{
+    color:red;
+    font-style: italic;
+    text-align:center;
+    margin-bottom: 10px;
+  }
+
+  /*ESTILOS PARA EL DIV DE ERROR*/
+
+  /* Estilos específicos para el contenedorError */
+#contenedorError {
+    text-align: center;
+    background-color: #fff; /* Color de fondo */
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    margin-top: 20px;
+}
+
+/* Estilos para el encabezado dentro del contenedorError */
+/* Estilos específicos para el contenedorError */
+#contenedorError {
+    text-align: center;
+    background-color: #fff; /* Color de fondo */
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    margin-top: 20px;
+}
+
+/* Estilos para el encabezado dentro del contenedorError */
+#contenedorError h1 {
+    color: #4CAF50; /* Color del texto del encabezado */
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+/* Estilos para el mensaje de error */
+.error-message {
+    color: red;
+    font-style: italic;
+    text-align: center;
+    width: 40%;
+    margin-bottom: 10px;
+    margin: auto; /* Centrar horizontalmente */
+}
+
+/* Estilos para el enlace de volver al formulario */
+.botonEnlace {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #333;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.botonEnlace:hover {
+    background-color: #555;
+}
+
+
 /*/ 
 =======
 #volverAlMenu:hover {

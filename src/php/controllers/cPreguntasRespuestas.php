@@ -47,6 +47,9 @@
         }
 
         public function procesarFormulario(){
+
+            $this->view='vAltaPregunta';
+
             if ($_SERVER['REQUEST_METHOD'] === 'POST') { 
                 $texto_pregunta = $_POST['texto_pregunta'];
                 $id_ambito = $_POST['ambito'];
@@ -78,16 +81,21 @@
                     $codigoError = $e->getCode();
                     switch ($codigoError) {
                         case 1062:
-                            echo "Error al procesar el formulario: Ya existe una pregunta similar.";
+                            $this->mensaje= "Error al procesar el formulario: Ya existe una pregunta similar.";
                             break;
                         case 1048:
-                            echo "Error al procesar el formulario: No puede haber campos vacíos.";
+                            $this->mensaje= "Error al procesar el formulario: No puede haber campos vacíos.";
                             break;
                         case 1406:
-                            echo "Error al procesar el formulario: Los campos exceden la longitud máxima.";
+                            $this->mensaje= "Error al procesar el formulario: Los campos exceden la longitud máxima.";
                             break;
                         default:
-                            echo "Error al procesar el formulario: Código de error " . $codigoError;
+                        if (is_numeric($resultado)) {
+                            $this->mensaje = "Error al crear competición. Código de error: $resultado";
+                        } else {
+                            $this->mensaje = $resultado;
+                        }
+                        break;
                     }
                 }
             }
@@ -108,6 +116,9 @@
         }
         
         public function procesarFormularioModificar() {
+
+            $this->view='vErrorInput';
+
             if ($_SERVER['REQUEST_METHOD'] === 'POST') { 
                 $id_pregunta_a_modificar = $_POST['id_pregunta'];
                 $texto_pregunta = $_POST['texto_pregunta'];
@@ -137,22 +148,29 @@
                         $id_ambito,
                         $respuestas
                     );
+
+                    header("Location: index.php?c=CPreguntasRespuestas&m=listarPreguntas");
+                    exit();
         
-                    return "Pregunta modificada exitosamente con ID: $id_pregunta_modificada";
                 } catch (Exception $e) {
                     $codigoError = $e->getCode();
                     switch ($codigoError) {
                         case 1062:
-                            echo "Error al procesar el formulario: Ya existe una pregunta similar.";
+                            $this->mensaje= "Error al procesar el formulario: Ya existe una pregunta similar.";
                             break;
                         case 1048:
-                            echo "Error al procesar el formulario: No puede haber campos vacíos.";
+                            $this->mensaje= "Error al procesar el formulario: No puede haber campos vacíos.";
                             break;
                         case 1406:
-                            echo "Error al procesar el formulario: Los campos exceden la longitud máxima.";
+                            $this->mensaje= "Error al procesar el formulario: Los campos exceden la longitud máxima.";
                             break;
                         default:
-                            echo "Error al procesar el formulario: Código de error " . $codigoError;
+                        if (is_numeric($resultado)) {
+                            $this->mensaje = "Error al crear competición. Código de error: $resultado";
+                        } else {
+                            $this->mensaje = $resultado;
+                        }
+                        break;
                     }
                 }
             }

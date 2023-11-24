@@ -50,7 +50,7 @@ class MPreguntasRespuestas{
         exit();
     }
 
-    /*FORMULARIO*/ 
+    /*FORMULARIO ALTA*/ 
 
     public function crearPreguntaYRespuestas($pregunta, $ambito, $respuestas) {
         // si $variable está vacía, se asigna el valor "NULL". De lo contrario, se escapa la cadena para prevenir inyecciones sql y se envuelve entre comillas simples.
@@ -88,7 +88,7 @@ class MPreguntasRespuestas{
     }
     
 
-    /*modificacion */
+    /*FORMULARIO MODIFICACION */
 
     public function obtenerPreguntaYRespuestas($id_pregunta)
     {
@@ -132,19 +132,19 @@ class MPreguntasRespuestas{
             $this->conexion->query($sql_eliminar_pregunta_y_respuestas);
     
             // Insertar la nueva pregunta
-            $pregunta = $this->conexion->real_escape_string($pregunta);
-            $ambito = $this->conexion->real_escape_string($ambito);
+            $pregunta = ($pregunta === '') ? "NULL" : "'" . $this->conexion->real_escape_string($pregunta) . "'";
+            $ambito = ($ambito === '') ? "NULL" : "'" . $this->conexion->real_escape_string($ambito) . "'";
     
-            $sql_insertar_pregunta = "INSERT INTO Pregunta (id_pregunta, pregunta, id_ambito) VALUES ($id_pregunta_a_actualizar, '$pregunta', '$ambito')";
+            $sql_insertar_pregunta = "INSERT INTO Pregunta (id_pregunta, pregunta, id_ambito) VALUES ($id_pregunta_a_actualizar, $pregunta, $ambito)";
             $this->conexion->query($sql_insertar_pregunta);
     
             // Insertar nuevas respuestas
             foreach ($respuestas as $num_respuesta => $texto_respuesta) {
-                $texto_respuesta = $this->conexion->real_escape_string($texto_respuesta);
+                $texto_respuesta = ($texto_respuesta === '') ? "NULL" : "'" . $this->conexion->real_escape_string($texto_respuesta) . "'";
     
                 $sql_insertar_respuesta = "
                     INSERT INTO Respuesta (id_pregunta, num_respuesta, texto_respuesta)
-                    VALUES ($id_pregunta_a_actualizar, $num_respuesta, '$texto_respuesta')";
+                    VALUES ($id_pregunta_a_actualizar, $num_respuesta, $texto_respuesta)";
     
                 $this->conexion->query($sql_insertar_respuesta);
     
@@ -164,6 +164,7 @@ class MPreguntasRespuestas{
             throw $e;
         }
     }
+    
     
     
     

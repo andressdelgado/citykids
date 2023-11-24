@@ -1,5 +1,5 @@
 <div class="contenedor">
-    <form action="index.php?c=cPreguntasRespuestas&m=procesarFormularioModificar" method="post">
+    <form action="index.php?c=cPreguntasRespuestas&m=procesarFormularioModificar&id=id_pregunta" method="post">
 
         <input type="hidden" name="id_pregunta" value="<?= $datos['id_pregunta'] ?>">
 
@@ -8,17 +8,17 @@
         
         <label for="ambito">Ámbito:</label>
         <select id="ambito" name="ambito">
-            <option value="1">1: Participación Democrática.</option>
-            <option value="2">2: Justicia Social</option>
-            <option value="3">3: Desarrollo Humano y Sostenible</option>
-            <option value="4">4: Interculturalidad e Inclusion</option>
-            <option value="5">5: Equidad de genero y Coeducacion</option>
+            <option value="1" <?= ($datos['id_ambito'] == 1) ? 'selected' : '' ?>>1: Participación Democrática.</option>
+            <option value="2" <?= ($datos['id_ambito'] == 2) ? 'selected' : '' ?>>2: Justicia Social</option>
+            <option value="3" <?= ($datos['id_ambito'] == 3) ? 'selected' : '' ?>>3: Desarrollo Humano y Sostenible</option>
+            <option value="4" <?= ($datos['id_ambito'] == 4) ? 'selected' : '' ?>>4: Interculturalidad e Inclusión</option>
+            <option value="5" <?= ($datos['id_ambito'] == 5) ? 'selected' : '' ?>>5: Equidad de género y Coeducación</option>
         </select><br>
 
         <label for="texto_respuesta_correcta">Texto de la Respuesta Correcta:</label>
         <input type="text" id="texto_respuesta_correcta" name="texto_respuesta_correcta" value="<?= isset($datos['respuestas'][0]['texto_respuesta']) ? $datos['respuestas'][0]['texto_respuesta'] : '' ?>"><br>
 
-        <label for="texto_respuesta_incorrecta2">Texto de la Respuesta Incorrecta 2:</label>
+        <label for="texto_respuesta_incorrecta2">Texto de la Respuesta Incorrecta 1:</label>
         <input type="text" id="texto_respuesta_incorrecta1" name="texto_respuesta_incorrecta1" value="<?= isset($datos['respuestas'][1]['texto_respuesta']) ? $datos['respuestas'][1]['texto_respuesta'] : '' ?>"><br>
 
         <label for="texto_respuesta_incorrecta2">Texto de la Respuesta Incorrecta 2:</label>
@@ -45,40 +45,12 @@
                 echo '<div class="error-message">¡' . $mensajeError . '!</div>';
             }
         ?>
+
     </form>
 
-    <a href="../../src/php/index.php?c=cPreguntasRespuestas&m=listarPreguntas" id="volverAlMenu">Volver al menú</a>
+    <a href="../../src/php/index.php?c=cPreguntasRespuestas&m=listarPreguntas" id="volverAlMenu">Volver al listado</a>
 
-    <script>
-        let contadorRespuestasIncorrectas = 3; // Inicializado en 2 porque ya hay una respuesta incorrecta
-
-        function agregarRespuestaIncorrecta() {
-            const container = document.getElementById('respuestas_incorrectas_container');
-            const label = document.createElement('label');
-            label.setAttribute('for', 'texto_respuesta_incorrecta' + contadorRespuestasIncorrectas);
-            label.textContent = 'Texto de la Respuesta Incorrecta ' + contadorRespuestasIncorrectas + ':';
-            const input = document.createElement('input');
-            input.setAttribute('type', 'text');
-            input.setAttribute('id', 'texto_respuesta_incorrecta' + contadorRespuestasIncorrectas);
-            input.setAttribute('name', 'texto_respuesta_incorrecta' + contadorRespuestasIncorrectas);
-            container.appendChild(label);
-            container.appendChild(input);
-            container.appendChild(document.createElement('br'));
-            contadorRespuestasIncorrectas++;
-        }
-
-        function eliminarRespuestaIncorrecta() {
-            if (contadorRespuestasIncorrectas > 2) {
-                contadorRespuestasIncorrectas--;
-                const container = document.getElementById('respuestas_incorrectas_container');
-                container.removeChild(container.lastChild); // <br>
-                container.removeChild(container.lastChild); // input
-                container.removeChild(container.lastChild); // label
-            }
-        }
-
-
-    </script>
-
+    <script src="views/js/botones.js"></script>
+    
 </div>
 
