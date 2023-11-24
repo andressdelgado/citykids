@@ -103,5 +103,31 @@
             $clave = $_GET['clave'];
             $this->objCompeticiones->mBorrarCompeticion($clave);
         }
+
+        public function modifCompeticiones(){
+            $this->view = 'vModifCompeti';
+        
+            $clave = $_GET['clave'];
+            // Obtener los datos de la competición a modificar
+            $datos = $this->objCompeticiones->mObtenerCompeticion($clave);
+        
+            // Pasar los datos a la vista
+            return $datos;
+        }
+        
+        public function modifCompeticiones2(){
+            if (isset($_POST['clave']) && isset($_POST['titulo']) && isset($_POST['descripcion']) && isset($_POST['fechaFin'])) {
+                $clave = $_POST['clave'];
+                $titulo = $_POST['titulo'];
+                $descripcion = $_POST['descripcion'];
+                $fechaFin = $_POST['fechaFin'];
+        
+                $datos = $this->objCompeticiones->mModifCompeticion($clave, $titulo, $descripcion, $fechaFin);
+            
+                // Puedes realizar alguna acción después de la modificación, como redireccionar a la lista de competiciones
+                 header("Location: index.php?c=cCompeticiones&m=listarCompeticiones");
+                 exit();
+        }
+    }
     }
 ?>

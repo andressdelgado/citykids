@@ -94,7 +94,7 @@ tbody tr:hover {
 .volverAlJuego:hover{
     background-color: #363535; 
     transition: 0.7s;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5); /* Añade sombra */
+    box-shadow: 0 4px 8px rgba(255, 94, 94, 0.5); /* Añade sombra */
 }
 /*/ 
 =======
