@@ -19,7 +19,7 @@ body {
     align-items: center;
     justify-content: center;
     background-repeat: no-repeat;
-    overflow: hidden;
+    /* overflow: hidden; */
 }
 
 #interculturalidad {
@@ -84,7 +84,6 @@ body {
     background-color: orange; 
     border: none;
     border-radius: 5px;
-    cursor: pointer;
     font-size: 1em;
 }
 
@@ -318,6 +317,9 @@ button:hover {
 }
 
 @media only screen and (max-width: 1300px) {
+    body{
+        font-size: 1.25em;
+    }
     #botonconfig {
         display: none;
     }
@@ -325,5 +327,10 @@ button:hover {
         max-width: 45%;
         height: auto;
     }
-
+    .botonEnlace{
+        width: 30%;
+        margin-top: 1%;
+    }
 }
+
+
