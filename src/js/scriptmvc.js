@@ -148,12 +148,14 @@ aplicarEstilos(elemento, esValido, mensajeError) {
 
       // Mostrar la pregunta y las opciones de respuesta
       preguntaTexto.textContent = preguntaAleatoria.pregunta;
-
+      console.log('EN LA VISTA CONTROLADOR :' +preguntaAleatoria)
+      console.log('EN LA VISTA CONTROLADOR PREGUNTA:' +preguntaAleatoria.pregunta)
       const respuestasAleatorias = preguntaAleatoria.respuestas.sort(()=> Math.random() - 0.5)
       respuestasAleatorias.forEach((opcion) => {
         const respuestaBtn = document.createElement('button');
         respuestaBtn.textContent = opcion.texto_respuesta;
         respuestaBtn.classList.add('respuestaBtn');
+        console.log('RESPUESTA :' +preguntaAleatoria.texto_respuesta)
         respuestaBtn.addEventListener('click', () => {
 
             respuestaBtn.style.pointerEvents = 'none'
@@ -200,6 +202,7 @@ aplicarEstilos(elemento, esValido, mensajeError) {
     });
     
     } else {
+      console.log(datosPreguntas)
       preguntaTexto.textContent = 'No hay preguntas disponibles en este momento.';
     }
   }

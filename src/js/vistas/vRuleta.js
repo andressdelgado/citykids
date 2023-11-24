@@ -91,7 +91,7 @@ export class Ruleta extends Vista {
     pMensaje.textContent = `¡Has obtenido ${puntuacion} puntos!`
     
     // Crear el botón para volver al inicio
-    const btnVolverInicio = document.createElement('button');
+    const btnVolverInicio = document.createElement('button')
     btnVolverInicio.textContent = 'Volver al inicio'
     btnVolverInicio.className = 'btnSiguienteTiradas'
     
@@ -104,43 +104,42 @@ export class Ruleta extends Vista {
     divPuntuacion.appendChild(btnVolverInicio)
     this.base.appendChild(divPuntuacion)
   }
-  
-  girarRuleta() {
-    if (this.preguntasMostradas < 4) {
-      let idAmbitoAleatorio
-      do {
-        idAmbitoAleatorio = Math.floor(Math.random() * 5) + 1
-      } while (this.ambitosSeleccionados.includes(idAmbitoAleatorio))
-      this.ambitosSeleccionados.push(idAmbitoAleatorio)
-      this.preguntasMostradas++;
-      const urlAbsoluta = 'https://01.2daw.esvirgua.com/ABP/ABP/src/js/preguntas.php';
 
-      fetch(`${urlAbsoluta}?id_ambito=${idAmbitoAleatorio}`)
-        .then(response => {
-          if (!response.ok) {
-            throw new Error('Error al obtener las preguntas: ' + response.statusText);
-          }
-          return response.text(); // Obtener el texto de la respuesta
-        })
-        .then(text => {
-          console.log('Texto de la respuesta:', text); // Imprimir el texto de la respuesta en la consola
-          try {
-            const preguntas = JSON.parse(text); // Intentar parsear el texto como JSON
-            this.mostrarPreguntas(idAmbitoAleatorio, preguntas); // Enviar al controlador
-          } catch (error) {
-            console.error('Error al parsear JSON:', error);
-          }
-        })
-        .catch(error => {
-          console.error('Error al obtener las preguntas:', error);
-        });
-      
+ girarRuleta() {
+  if (this.preguntasMostradas < 4) {
+    let idAmbitoAleatorio
+    do {
+      idAmbitoAleatorio = Math.floor(Math.random() * 5) + 1;
+    } while (this.ambitosSeleccionados.includes(idAmbitoAleatorio))
+    this.ambitosSeleccionados.push(idAmbitoAleatorio)
+    this.preguntasMostradas++
 
-    } else {
-    
-      this.crearInterfaz2();
-    }
+    const urlAbsoluta = 'http://localhost/carlos/citykids/src/js/php/preguntas.php'
+    const url = `${urlAbsoluta}?id_ambito=${idAmbitoAleatorio}`
+
+    const self = this
+
+    fetch(url)
+      .then(function (response) {
+        if (!response.ok) {
+          throw new Error('Network response was not ok.')
+        }
+        return response.json()
+      })
+      .then(function (preguntas) {
+        console.log('Respuesta del servidor:', preguntas)
+        self.mostrarPreguntas(idAmbitoAleatorio, preguntas)
+      })
+      .catch(function (error) {
+        console.error('Hubo un problema con la petición Fetch:', error)
+      });
+  } else {
+    this.crearInterfaz2()
   }
+}
+
+  
+  
 
   mostrarPreguntas(idAmbitoAleatorio, preguntas) {
     this.controlador.mostrarPreguntas(idAmbitoAleatorio, preguntas)
@@ -149,31 +148,20 @@ export class Ruleta extends Vista {
   cambiarVista (idAmbitoAleatorio) {
         switch (idAmbitoAleatorio) {
           case 1:
-            console.log('Participacion democractica')
             //this.controlador.verVista(Vista.vPartDemo)
-            const vistaMostrada = this.controlador.verVista(Vista.vPartDemo)
-            console.log('La vista vPartDemo se mostró correctamente:', vistaMostrada);
-            console.log('ESTOY EN LA VISTA PD')
+            this.controlador.verVista(Vista.vPartDemo)
             break
           case 2:
-            console.log('Justicia Social')
             this.controlador.verVista(Vista.vJustSocial)
-            console.log('ESTOY EN LA VISTA PD')
             break
           case 3:
-            console.log('Desarrollo Humano y Sostenible')
             this.controlador.verVista(Vista.vDesHumano)
-            console.log('ESTOY EN LA VISTA DH')
             break
           case 4:
-            console.log('Interculturalidad e inclusión')
             this.controlador.verVista(Vista.vInterculturalidad)
-            console.log('ESTOY EN LA VISTA IE')
             break
           case 5:
-            console.log('Equidad de género y coeducación')
             this.controlador.verVista(Vista.vEquidadGenero)
-            console.log('ESTOY EN LA VISTA EG')
             break
           default:
             console.log('Número no válido')
