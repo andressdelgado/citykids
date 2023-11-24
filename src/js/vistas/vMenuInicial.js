@@ -6,14 +6,16 @@ export class MenuInicial extends Vista {
     super(controlador, base)
 
     // Coger referencias del interfaz
-    this.iniciarPartida = this.base.querySelectorAll('button')[0]
-    this.menuCompeticion = this.base.querySelectorAll('button')[1]
-    this.verRanking = this.base.querySelectorAll('button')[2]
+    this.config = this.base.querySelectorAll('button')[0]
+    this.iniciarPartida = this.base.querySelectorAll('button')[1]
+    this.menuCompeticion = this.base.querySelectorAll('button')[2]
+    this.verRanking = this.base.querySelectorAll('button')[3]
 
     // Asociar eventos
     this.iniciarPartida.onclick = this.pulsarIniciarPartida.bind(this)
     this.iniciarPartida.onmouseover = (event) => { this.mensajeCursor(event) }
     this.iniciarPartida.onmouseout = () => { this.eliminarMensaje() }
+    this.config.onclick = this.pulsarConfig.bind(this)
     this.menuCompeticion.onclick = this.pulsarMenuCompeticion.bind(this)
     this.verRanking.onclick = this.pulsarVerRanking.bind(this)
   }
@@ -31,6 +33,10 @@ export class MenuInicial extends Vista {
       this.base.removeChild(this.pDialogo)
       this.pDialogo = null
     }
+  }
+
+  pulsarConfig(){
+    this.controlador.verVista(Vista.vConfig)
   }
 
   pulsarIniciarPartida () {

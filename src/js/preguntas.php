@@ -1,9 +1,9 @@
 <?php
 // Configuración de la base de datos
-$servidor = 'localhost'; // Cambiado a la dirección del servidor de la base de datos
-$usuario =  'root'; // Usuario de la base de datos
-$contrasenia = ''; // Contraseña del usuario de la base de datos
-$bbdd = 'citykids'; // Nombre de la base de datos
+$servidor = '2daw.esvirgua.com'; // Cambiado a la dirección del servidor de la base de datos
+$usuario =  'user2daw_01'; // Usuario de la base de datos
+$contrasenia = 'JcuHIKzWAUld'; // Contraseña del usuario de la base de datos
+$bbdd = 'user2daw_BD1-01'; // Nombre de la base de datos
 
 // Crear conexión
 $conn = new mysqli($servidor, $usuario, $contrasenia, $bbdd);

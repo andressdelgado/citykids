@@ -13,6 +13,8 @@ export class Vista {
     Vista.vDesHumano = Symbol('Desarrollo Humano y Sostenible')
     Vista.vInterculturalidad = Symbol('Interculturalidad e Inclusión')
     Vista.vEquidadGenero = Symbol('Equidad de género y Coeducación')
+    Vista.vConfig = Symbol('Configuracion para PC')
+    Vista.vFormularioFinal = Symbol('Formulario FInal')
   }
 
   constructor(controlador, base) {
