@@ -16,17 +16,27 @@ import {EquidadGenero} from './vistas/vEquidadGenero.js'
 import { FormularioFinal } from './vistas/vFormularioFinal.js'
 import { Configuracion } from './vistas/vConfig.js'
 
+/**
+ * @typedef {import('./vistas/vista.js').Vista} Vista
+ * @typedef {import('./modelos/modelo.js').Modelo} Modelo
+ */
+
+
+/**
+ * Controlador que gestiona las vistas y la lógica de la aplicación.
+ */
 class Controlador {
-  /*
-	 * Inicializa los atributos del Controlador.
-	 * Coge las referencias del interfaz.
-	 */
+  /**
+   * Inicializa los atributos del Controlador y las vistas asociadas.
+   */
+
   vistas = new Map()
   indicePregunta =0;
   respuestaBtn
   preguntasCorrectas = 0
 
   constructor () {
+    /** @type {Modelo} */
     this.modelo = new Modelo()
     this.preguntasCorrectas =0;
 
