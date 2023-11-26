@@ -15,6 +15,10 @@ class MPreguntasRespuestas{
         if ($this->conexion->connect_error) {
             die("Error de conexión: " . $this->conexion->connect_error);
         }
+
+        // Configuración para activar el manejo de errores en MySQLi
+        $mysqliDriver = new mysqli_driver();
+        $mysqliDriver->report_mode = MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT;
     
         // Establecer la codificación a UTF-8
         if (!$this->conexion->set_charset("utf8")) {

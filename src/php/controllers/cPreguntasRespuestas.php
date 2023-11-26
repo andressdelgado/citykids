@@ -1,7 +1,7 @@
 <?php
     require_once __DIR__ . '/../models/mPreguntasRespuestas.php';
 
-    class CPreguntasRespuestas {
+    class cPreguntasRespuestas {
         /** @var string El nombre de la página actual. */
         public $nombrePagina;
 
@@ -75,10 +75,10 @@
                     $id_pregunta = $this->objModelo->crearPreguntaYRespuestas($texto_pregunta, $id_ambito, $respuestas);
                     
                     // redirecciono al formulario
-                    header("Location: index.php?c=CPreguntasRespuestas&m=listarPreguntas");
+                    header("Location: index.php?c=cPreguntasRespuestas&m=listarPreguntas");
                     exit();
-                } catch (Exception $e) {
-                    $codigoError = $e->getCode();
+                } catch (Exception $mensaje) {
+                    $codigoError = $mensaje->getCode();
                     switch ($codigoError) {
                         case 1062:
                             $this->mensaje= "Error al procesar el formulario: Ya existe una pregunta similar.";
@@ -90,6 +90,8 @@
                             $this->mensaje= "Error al procesar el formulario: Los campos exceden la longitud máxima.";
                             break;
                         default:
+                        header("Location: index.php?c=cPreguntasRespuestas&m=listarPreguntas");
+                        exit();
                         if (is_numeric($resultado)) {
                             $this->mensaje = "Error al crear competición. Código de error: $resultado";
                         } else {
@@ -149,11 +151,11 @@
                         $respuestas
                     );
 
-                    header("Location: index.php?c=CPreguntasRespuestas&m=listarPreguntas");
+                    header("Location: index.php?c=cPreguntasRespuestas&m=listarPreguntas");
                     exit();
         
-                } catch (Exception $e) {
-                    $codigoError = $e->getCode();
+                } catch (Exception $mensaje) {
+                    $codigoError = $mensaje->getCode();
                     switch ($codigoError) {
                         case 1062:
                             $this->mensaje= "Error al procesar el formulario: Ya existe una pregunta similar.";

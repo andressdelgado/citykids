@@ -24,6 +24,43 @@ body {
     justify-content: center;
 }
 
+/* Estilos para el nav */
+/* Estilos para el nav */
+nav {
+    background-color: #333; /* Color de fondo del nav */
+    padding: 15px;
+}
+
+nav ul {
+    list-style: none; /* Elimina los estilos de la lista por defecto */
+    padding: 0;
+    margin: 0;
+    display: flex; /* Muestra los elementos en línea */
+    justify-content: center; /* Centra horizontalmente los elementos de la lista */
+    align-items: center; /* Centra verticalmente el texto en los elementos de la lista */
+}
+
+nav li {
+    margin-right: 20px; /* Espaciado entre elementos de la lista */
+}
+
+nav a {
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
+    font-size: 16px;
+    padding: 10px 20px; /* Añade relleno para crear un área de clic más grande */
+    border: 2px solid white; /* Añade un borde blanco */
+    border-radius: 5px; /* Añade esquinas redondeadas */
+    transition: background-color 0.3s ease, color 0.3s ease; /* Transición suave para el color de fondo y el texto */
+}
+
+nav a:hover {
+    background-color: #555; /* Cambia el color de fondo al pasar el ratón sobre el enlace */
+    color: white; /* Cambia el color del texto al pasar el ratón sobre el enlace */
+}
+
+
 .contenedor{
     width:60%;
     margin: auto;
