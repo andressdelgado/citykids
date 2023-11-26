@@ -8,8 +8,7 @@
         <title>CityKids</title>
     </head>
     <body>
-        <!--VISTA PRINCIPAL-->
-        <div id="divMenuInicial">
+        <div id="divVista1">
             <div id="contenedor">
                 <h1 class="main-title">CityKids</h1>
                 <img class="imgInicio" src="img/ruleta.png" alt="CityKids Imagen">
@@ -20,16 +19,12 @@
                 </div>
             </div>
         </div>
-
-        <!--VISTA MODO COMPETICION-->
-        <div id="divRuleta">
+        <div id="divVista2">
             <div id="contenedor">
                 <img class="imgInicio" src="img/ruleta.png" alt="CityKids Imagen">
             </div>
         </div>
-
-        <!--VISTA MENU COMPETICION-->
-        <div  id="divMenuCompeticion">
+        <div  id="divVista3">
             <div id="contenedorNegro">
                 <h1 class="main-title-white">MENÚ COMPETICIÓN</h1>
                 <button class="botonMenu">CREAR COMPETICION</button>
@@ -37,32 +32,28 @@
             </div>
             <!--SE GENERARÁ EL BOTON PARA VOLVER AL MENÚ A TRAVÉS DE JAVASCRIPT-->
         </div>
-
-        <!--VISTA FORMULARIO PARA CREAR LA COMPETICION-->
-        <div id="divCrearCompeticion">
+        <div id="divVista4">
             <div id="contenedorNegro">
                 <h1 class="main-title-white">CREAR COMPETICIÓN</h1>
-                <form action="#" method="POST" id="crearcompeticion">
+                <form id="crearcompeticion">
                     <label for="clave">Introducir clave:</label>
-                    <input type="text" id="crearClave" name="clave">
+                    <input type="text" id="crearclave" name="clave">
         
                     <label for="titulo">Introducir título:</label>
-                    <input type="text" id="crearTitulo" name="titulo">
+                    <input type="text" id="creartitulo" name="titulo">
         
                     <label for="descripcion">Descripción:</label>
-                    <textarea id="crearDescripcion" name="descripcion" rows="4"></textarea>
+                    <textarea id="creardescripcion" name="descripcion" rows="4"></textarea>
         
                     <label for="fechaFin">Selecciona hora y día de fin:</label>
-                    <input type="datetime-local" id="crearFechaFin" name="fechaFin">
+                    <input type="datetime-local" id="crearfechaFin" name="fechaFin">
         
                     <button type="submit" class="botonMenu">Enviar</button>
                 </form>
             </div>
             <button class="volverAlJuego" class="styled-link">VOLVER AL MENÚ</button>
         </div>
-
-        <!--VISTA FORMULARIO PARA UNIRSE A UNA COMPETICION-->
-        <div id="divUnirCompeticion">
+        <div id="divVista5">
             <div id="contenedorNegro">
                 <h1 class="main-title-white">UNIRSE A UNA COMPETICIÓN</h1>
                 <form action="#" method="post">
@@ -73,9 +64,7 @@
             </div>
             <button class="volverAlJuego" class="styled-link">VOLVER AL MENÚ</button>
         </div>
-
-        <!--VISTA MENU PARA VER QUE RANKING QUEREMOS VISUALIZAR-->
-        <div id="divMenuRanking">
+        <div id="divVista6">
             <div id="contenedorNegro">
                 <h1 class="main-title-white">¿QUÉ TIPO DE RANKING QUIERES VISUALIZAR?</h1>
                 <button class="botonMenu">RANKING GLOBAL</button>
@@ -83,15 +72,11 @@
             </div>
             <button class="volverAlJuego" class="styled-link">VOLVER AL JUEGO</button>  
         </div>
-
-        <!--VISTA RANKING GENERAL-->
-        <div id="divRanking">
+        <div id="divVista7">
             <h2>AQUI VA EL RANKING GENERAL</h2>
             <button class="volverAlJuego" class="styled-link">VOLVER AL JUEGO</button>  
         </div>
-
-        <!--VISTA FORMULARIO PARA VER RANKING COMPETICION-->
-        <div id="divRankingCompeticion">
+        <div id="divVista8">
             <div id="contenedorNegro">
                 <h1 class="main-title-white">INTRODUCE EL CÓDIGO DEL RANKING A VISUALIZAR</h1>
                 <form action="#" method="post">
@@ -102,47 +87,36 @@
             </div>
             <button class="volverAlJuego" class="styled-link">VOLVER AL MENÚ</button>
         </div>
-
-        <!--VISTA LANZAMIENTO PREGUNTAS SOBRE PARTICIPACION DEMOTRÁTICA-->
-        <div id="divPartDemo">
+        <div id="divVista9">
             <div id="contenedor">
                 <h1 class="main-title-white">PARTICIPACIÓN DEMOCRÁTICA</h1>
             </div>
             <button class="volverAlJuego" class="styled-link">VOLVER AL MENÚ</button>
         </div>
-
-        <!--VISTA LANZAMIENTO PREGUNTAS SOBRE JUSTICIA SOCIAL-->
-        <div id="divJustSocial">
+        <div id="divVista10">
             <div id="contenedor">
                 <h1 class="main-title-white">JUSTICIA SOCIAL</h1>
             </div>
             <button class="volverAlJuego" class="styled-link">VOLVER AL MENÚ</button>
         </div>
-
-        <!--VISTA LANZAMIENTO PREGUNTAS SOBRE DESARROLLO HUMANO Y SOSTENIBLE-->
-        <div id="divDesHumano">
+        <div id="divVista11">
             <div id="contenedor">
                 <h1 class="main-title-white">DESARROLLO HUMANO Y SOSTENIBLE</h1>
             </div>
             <button class="volverAlJuego" class="styled-link">VOLVER AL MENÚ</button>
         </div>
-
-        <!--VISTA LANZAMIENTO PREGUNTAS SOBRE INTERCULTURALIDAD E INCLUSIÓN-->
-        <div id="divInterculturalidad">
+        <div id="divVista12">
             <div id="contenedor">
                 <h1 class="main-title-white">INTERCULTURALIDAD E INCLUSIÓN</h1>
             </div>
             <button class="volverAlJuego" class="styled-link">VOLVER AL MENÚ</button>
         </div>
-
-        <!--VISTA LANZAMIENTO PREGUNTAS SOBRE EQUIDAD DE GÉNERO Y COEDUCACIÓN-->
-        <div id="divEquidadGenero">
+        <div id="divVista13">
             <div id="contenedor">
                 <h1 class="main-title-white">EQUIDAD DE GÉNERO Y COEDUCACIÓN</h1>
             </div>
             <button class="volverAlJuego" class="styled-link">VOLVER AL MENÚ</button>
         </div>
-        
         <script type="module" src="js/scriptmvc.js"></script>
     </body>
 </html>
