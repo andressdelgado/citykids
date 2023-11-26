@@ -16,16 +16,18 @@ class MPreguntasRespuestas{
             die("Error de conexión: " . $this->conexion->connect_error);
         }
 
-        // Configuración para activar el manejo de errores en MySQLi
+        // configuración para activar el manejo de errores en MySQLi
         $mysqliDriver = new mysqli_driver();
         $mysqliDriver->report_mode = MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT;
     
-        // Establecer la codificación a UTF-8
+        // establezco la codificación a UTF-8
         if (!$this->conexion->set_charset("utf8")) {
             printf("Error al establecer la conexión a UTF-8: %s\n", $this->conexion->error);
             exit();
         }
     }
+
+    /* METODO DEL MODELO QUE SE ENCARGA DE REALIZAR LA CONSULTA QUE DEVUELVE TODAS LAS PREGUNTAS Y SUS RESPUESTAS RELACIONADAS*/
 
     function mListarPreguntas() {
         $sql = "SELECT Pregunta.*, Ambito.nombre as nombre_ambito, Respuesta.texto_respuesta as texto_respuesta_correcta
@@ -43,6 +45,7 @@ class MPreguntasRespuestas{
         return $datos;
     }
     
+    /*METODO DEL MODELO QUE SE ENCARGA DE BORRAR UNA PREGUNTA Y SUS RESPUESTAS SEGUN LA ID RECIBIDA */
 
     public function mBorrarPregunta($id_pregunta) {
         $sql = "DELETE FROM Pregunta WHERE id_pregunta = '$id_pregunta'";
@@ -52,6 +55,8 @@ class MPreguntasRespuestas{
     }
 
     /*FORMULARIO ALTA*/ 
+
+    /*METODO DEL MODELO QUE SE ENCARGA DE REALIZAR UN ALTA CON LOS DATOS RECIBIDOS DEL CONTROLADOR */
 
     public function crearPreguntaYRespuestas($pregunta, $ambito, $respuestas) {
         // si $variable está vacía, se asigna el valor "NULL". De lo contrario, se escapa la cadena para prevenir inyecciones sql y se envuelve entre comillas simples.
@@ -91,6 +96,9 @@ class MPreguntasRespuestas{
 
     /*FORMULARIO MODIFICACION */
 
+    /*METODO QUE SE ENCARGA DE REALIZAR LA CONSULTA PARA OBTENER LOS DATOS
+     RELACIONADOS CON UNA ID PARA MOSTRAR EN LA MODIFICACION*/
+
     public function obtenerPreguntaYRespuestas($id_pregunta)
     {
         $id_pregunta = $this->conexion->real_escape_string($id_pregunta);
@@ -123,6 +131,9 @@ class MPreguntasRespuestas{
             throw new Exception("Error al obtener datos de la pregunta y respuestas: " . $this->conexion->error);
         }
     }
+
+    /* METODO DEL MODELO QUE SE ENCARGA DE REALIZAR EL BORRADO Y ALTA PARA LA MODIFICACIÓN SEGÚN LA ID Y LOS DATOS
+    PROPORCIONADOS POR EL CONTROLADOR*/
 
     public function actualizarPreguntaYRespuestas($id_pregunta_a_actualizar, $pregunta, $ambito, $respuestas) {
         try {

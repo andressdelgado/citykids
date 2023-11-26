@@ -24,15 +24,22 @@
             $this->objModelo = new MPreguntasRespuestas();
         }
 
+        /*METODO DEL CONTROLADOR DE REDIRECCION AL MENU DE Q&A */
+
+
         public function mostrarMenuPreguntasRespuestas(){
             $this->nombrePagina = 'Menu Preguntas y Respuestas';
             $this->view = 'vMenuPreguntasRespuestas';
         }
 
+        /*METODO DEL CONTROLADOR DE REDIRECCION AL FORMULARIO DE ALTA */
+
         public function mostrarFormPregunta(){
             $this->nombrePagina = 'Alta Pregunta';
             $this->view = 'vAltaPregunta';
         }
+
+        /*METODO DEL CONTROLADOR QUE SE ENCARGA DE DEVOLVER LOS DATOS DEL MODELO PARA EL LISTADO */
         
         public function listarPreguntas(){
             $this->view = 'vListarPreguntas';
@@ -40,6 +47,8 @@
             $datos =  $this->objModelo->mListarPreguntas();
             return $datos;
         }
+
+        /*METODO DEL CONTROLADOR QUE SE ENCARGA DEL ENVÍO DE LA ID PARA EL BORRADO */
         
         public function borrarPregunta(){
             $this->view = 'vListarPreguntas';
@@ -51,6 +60,8 @@
             header("Location: index.php?c=cPreguntasRespuestas&m=listarPreguntas");
             exit();
         }
+
+        /*METODO DEL CONTROLADOR QUE SE ENCARGA DEL ENVÍO DE DATOS PARA EL ALTA */
 
         public function procesarFormulario(){
 
@@ -113,6 +124,8 @@
         
         /* MODIFICACION*/
 
+        /* METODO DEL CONTROLADOR QUE SE ENCARGA DE MOSTRAR EL FORMULARIO DE MODIFICACION*/
+
         public function mostrarModificarPregunta() {
             $id_pregunta = $_GET['id_pregunta'];
 
@@ -123,6 +136,8 @@
 
             return $datos;
         }
+
+        /* METODO DEL CONTROLADOR QUE SE ENCARGA DE RECOGER LOS DATOS DEL MODIFICADO Y LA GESTIÓN DE ERRORES */
         
         public function procesarFormularioModificar() {
 
