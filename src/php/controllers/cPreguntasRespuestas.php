@@ -42,13 +42,20 @@
         }
         
         public function borrarPregunta(){
+            $this->view = 'vListarPreguntas';
+            $this->nombrePagina = 'Listar Preguntas';
             $id_pregunta = $_GET['id_pregunta'];
             $this->objModelo->mBorrarPregunta($id_pregunta);
+
+            // redirecciono de nuevo 
+            header("Location: index.php?c=cPreguntasRespuestas&m=listarPreguntas");
+            exit();
         }
 
         public function procesarFormulario(){
 
             $this->view='vAltaPregunta';
+            $this->nombrePagina = 'Alta Preguntas';
 
             if ($_SERVER['REQUEST_METHOD'] === 'POST') { 
                 $texto_pregunta = $_POST['texto_pregunta'];
@@ -120,7 +127,6 @@
         public function procesarFormularioModificar() {
 
             $this->view='vErrorInput';
-
             if ($_SERVER['REQUEST_METHOD'] === 'POST') { 
                 $id_pregunta_a_modificar = $_POST['id_pregunta'];
                 $texto_pregunta = $_POST['texto_pregunta'];

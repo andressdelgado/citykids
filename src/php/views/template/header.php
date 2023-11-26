@@ -9,7 +9,7 @@
         <div>
             <nav>
                 <ul>
-                    <li><a href="">Listar Competiciones</a></li>
+                    <li><a href="../../src/php/index.php?c=cCompeticiones&m=listarCompeticiones">Listar Competiciones</a></li>
                     <li><a href="../../src/php/index.php?c=cPreguntasRespuestas&m=mostrarFormPregunta">Añadir Pregunta</a></li>
                     <li><a href="../../src/php/index.php?c=cPreguntasRespuestas&m=listarPreguntas">Listar Preguntas</a></li>
                 </ul>

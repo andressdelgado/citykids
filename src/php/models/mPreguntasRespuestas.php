@@ -46,12 +46,9 @@ class MPreguntasRespuestas{
 
     public function mBorrarPregunta($id_pregunta) {
         $sql = "DELETE FROM Pregunta WHERE id_pregunta = '$id_pregunta'";
-        echo $sql;
         $this->conexion->query($sql);
 
-        // Redireccionamos de nuevo a donde desees después de eliminar la pregunta
-        header("Location: index.php?c=cPreguntasRespuestas&m=listarPreguntas");
-        exit();
+
     }
 
     /*FORMULARIO ALTA*/ 
