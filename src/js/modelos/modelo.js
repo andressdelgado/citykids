@@ -1,14 +1,7 @@
-/**
- * Clase que representa el modelo de la aplicación.
- * @class
- */
 export class Modelo {
-  /**
-     * Inicializa un nuevo modelo con un mapa vacío.
-     * @constructor
-     */
   constructor () {
-    /** @type {Map} - Mapa utilizado para almacenar datos en el modelo. */
+    /* Se crea una nueva instancia de Map, 
+    una estructura de datos clave-valor en JavaScript*/
     this.mapa = new Map()
   }
 }

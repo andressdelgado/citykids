@@ -1,128 +1,225 @@
-import { Modelo } from './modelos/modelo.js'
-import { Vista } from './vistas/vista.js'
-import { Vista1 } from './vistas/vista1.js'
-import { Vista2 } from './vistas/vista2.js'
-import { Vista3 } from './vistas/vista3.js'
-import { Vista4 } from './vistas/vista4.js'
-import { Vista5 } from './vistas/vista5.js'
-import { Vista6 } from './vistas/vista6.js'
-import { Vista7 } from './vistas/vista7.js'
-import { Vista8 } from './vistas/vista8.js'
-import { Vista9 } from './vistas/vista9.js'
-import { Vista10 } from './vistas/vista10.js'
-import { Vista11 } from './vistas/vista11.js'
-import { Vista12 } from './vistas/vista12.js'
-import { Vista13 } from './vistas/vista13.js'
+import {Modelo} from './modelos/modelo.js'
+import {Vista} from './vistas/vista.js'
+import {MenuInicial} from './vistas/vMenuInicial.js'
+import {Ruleta} from './vistas/vRuleta.js'
+import {MenuCompeticion} from './vistas/vMenuCompeticion.js'
+import {CrearCompeticion} from './vistas/vCrearCompeticion.js'
+import {UnirCompeticion} from './vistas/vUnirCompeticion.js'
+import {MenuRanking} from './vistas/vMenuRanking.js'
+import {Ranking} from './vistas/vRanking.js'
+import {RankingCompeticion} from './vistas/vRankingCompeticion.js'
+import {PartDemo} from './vistas/vPartDemo.js'
+import {JustSocial} from './vistas/vJustSocial.js'
+import {DesHumano} from './vistas/vDesHumano.js'
+import {Interculturalidad} from './vistas/vInterculturalidad.js'
+import {EquidadGenero} from './vistas/vEquidadGenero.js'
+import { FormularioFinal } from './vistas/vFormularioFinal.js'
+import { Configuracion } from './vistas/vConfig.js'
 
-/**
- * Clase principal que controla la lógica de la aplicación.
- */
 class Controlador {
-  /**
-     * Inicializa los atributos y crea instancias de modelos y vistas.
-     */
+  /*
+	 * Inicializa los atributos del Controlador.
+	 * Coge las referencias del interfaz.
+	 */
   vistas = new Map()
+  indicePregunta =0;
+  respuestaBtn
+  preguntasCorrectas = 0
+
   constructor () {
-    /** @type {Modelo} - La instancia del modelo de la aplicación. */
     this.modelo = new Modelo()
+    this.preguntasCorrectas =0;
 
-    // Consigue las referencias del interfaz
-    const divVista1 = document.getElementById('divVista1')
-    const divVista2 = document.getElementById('divVista2')
-    const divVista3 = document.getElementById('divVista3')
-    const divVista4 = document.getElementById('divVista4')
-    const divVista5 = document.getElementById('divVista5')
-    const divVista6 = document.getElementById('divVista6')
-    const divVista7 = document.getElementById('divVista7')
-    const divVista8 = document.getElementById('divVista8')
-    const divVista9 = document.getElementById('divVista9')
-    const divVista10 = document.getElementById('divVista10')
-    const divVista11 = document.getElementById('divVista11')
-    const divVista12 = document.getElementById('divVista12')
-    const divVista13 = document.getElementById('divVista13')
+    //conseguimos la referencia de la interface
+    const divMenuInicial = document.getElementById('divMenuInicial')
+    const divRuleta = document.getElementById('divRuleta')
+    const divMenuCompeticion = document.getElementById('divMenuCompeticion')
+    const divCrearCompeticion = document.getElementById('divCrearCompeticion')
+    const divUnirCompeticion = document.getElementById('divUnirCompeticion')
+    const divMenuRanking = document.getElementById('divMenuRanking')
+    const divRanking = document.getElementById('divRanking')
+    const divRankingCompeticion = document.getElementById('divRankingCompeticion')
+    const divPartDemo = document.getElementById('divPartDemo')
+    const divJustSocial = document.getElementById('divJustSocial')
+    const divDesHumano = document.getElementById('divDesHumano')
+    const divInterculturalidad = document.getElementById('divInterculturalidad')
+    const divEquidadGenero = document.getElementById('divEquidadGenero')
+    const divFormulario = document.getElementById('divFormulario')
+    const divConfig = document.getElementById('divConfig')
 
-    // Crea instancias de vistas y las agrega al mapa de vistas
-    this.vistas.set(Vista.VISTA1, new Vista1(this, divVista1))
-    this.vistas.set(Vista.VISTA2, new Vista2(this, divVista2))
-    this.vistas.set(Vista.VISTA3, new Vista3(this, divVista3))
-    this.vistas.set(Vista.VISTA4, new Vista4(this, divVista4))
-    this.vistas.set(Vista.VISTA5, new Vista5(this, divVista5))
-    this.vistas.set(Vista.VISTA6, new Vista6(this, divVista6))
-    this.vistas.set(Vista.VISTA7, new Vista7(this, divVista7))
-    this.vistas.set(Vista.VISTA8, new Vista8(this, divVista8))
-    this.vistas.set(Vista.VISTA9, new Vista9(this, divVista9))
-    this.vistas.set(Vista.VISTA10, new Vista10(this, divVista10))
-    this.vistas.set(Vista.VISTA11, new Vista11(this, divVista11))
-    this.vistas.set(Vista.VISTA12, new Vista12(this, divVista12))
-    this.vistas.set(Vista.VISTA13, new Vista13(this, divVista13))
 
-    // Muestra la primera vista al cargar la página
-    this.verVista(Vista.VISTA1)
+    //Creamos las vistas 
+    this.vistas.set(Vista.vMenuInicial, new MenuInicial(this, divMenuInicial))
+    this.vistas.set(Vista.vRuleta, new Ruleta(this, divRuleta));
+    this.vistas.set(Vista.vMenuCompeticion, new MenuCompeticion(this, divMenuCompeticion))
+    this.vistas.set(Vista.vCrearCompeticion, new CrearCompeticion(this, divCrearCompeticion))
+    this.vistas.set(Vista.vUnirCompeticion, new UnirCompeticion(this, divUnirCompeticion))
+    this.vistas.set(Vista.vMenuRanking, new MenuRanking(this, divMenuRanking))
+    this.vistas.set(Vista.vRanking, new Ranking(this, divRanking))
+    this.vistas.set(Vista.vRankingCompeticion, new RankingCompeticion(this, divRankingCompeticion))
+    this.vistas.set(Vista.vPartDemo, new PartDemo(this, divPartDemo))
+    this.vistas.set(Vista.vJustSocial, new JustSocial(this, divJustSocial))
+    this.vistas.set(Vista.vDesHumano, new DesHumano(this, divDesHumano))
+    this.vistas.set(Vista.vInterculturalidad, new Interculturalidad(this, divInterculturalidad))
+    this.vistas.set(Vista.vEquidadGenero, new EquidadGenero(this, divEquidadGenero))
+    this.vistas.set(Vista.vFormularioFinal, new FormularioFinal(this, divFormulario))
+    this.vistas.set(Vista.vConfig, new Configuracion(this, divConfig))
+
+    this.verVista(Vista.vMenuInicial)
   }
 
-  /**
-     * Validar los campos del formulario.
-     * @returns {boolean} - Retorna true si el formulario es válido, de lo contrario, retorna false.
-     */
-  validarFormulario () {
-    // Obtener referencias a los campos del formulario
-    const clave = document.getElementById('crearclave').value
-    const titulo = document.getElementById('creartitulo').value
-    const descripcion = document.getElementById('creardescripcion').value
-    const fechaFin = document.getElementById('crearfechaFin').value
+validarFormulario() {
+  const claveInput = document.getElementById('crearClave')
+  const tituloInput = document.getElementById('crearTitulo')
+  const descripcionInput = document.getElementById('crearDescripcion')
+  const fechaInput = document.getElementById('crearFechaFin')
 
-    // Expresiones regulares para validación
-    const claveRegex = /^[A-Za-z]{3}[A-Za-z0-9]{2,9}$/
-    const tituloRegex = /^[A-Za-z ]{5,100}$/
-    const descripcionRegex = /^[A-Za-z0-9 ]{0,255}$/ // puede ser nulo
-    const fechaRegex = /^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}$/ // formato fecha
+  //Sacamos los valores introduccidos en el formulario
+  const clave = claveInput.value
+  const titulo = tituloInput.value
+  const descripcion = descripcionInput.value
+  const fechaFin = fechaInput.value
 
-    // Realizar validaciones
-    if (!claveRegex.test(clave)) {
-      alert('Clave no válida. Debe empezar al menos por 3 caracteres de letras y como mínimo 5 caracteres generales. No se permiten espacios.')
-      return false
+  //validamos con expresiones regulares
+  const claveRegex = /^[A-Za-z]{3}[A-Za-z0-9]{2,9}$/
+  const tituloRegex = /^[A-Za-z ]{5,100}$/
+  const descripcionRegex = /^[A-Za-z0-9 ]{0,255}$/ // puede ser nulo
+  const fechaRegex = /^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}$/ // formato fecha
+
+  
+  const claveValid = claveRegex.test(clave)
+  const tituloValid = tituloRegex.test(titulo)
+  const descripcionValid = descripcionRegex.test(descripcion)
+  const fechaValid = fechaRegex.test(fechaFin)
+
+  this.aplicarEstilos(claveInput, claveValid, 'Clave no válida. Debe empezar por 3 letras y contener entre 5 y 10 caracteres.')
+  this.aplicarEstilos(tituloInput, tituloValid, 'Título no válido. Debe contener al menos 5 caracteres de letras y como máximo 100.')
+  this.aplicarEstilos(descripcionInput, descripcionValid, 'Descripción no válida. No puede contener caracteres especiales y debe ser máximo 255 caracteres.')
+  this.aplicarEstilos(fechaInput, fechaValid, 'Fecha no válida.')
+
+  // Si todos los campos son válidos, continúa con el resto del código
+  if (claveValid && tituloValid && descripcionValid && fechaValid) {
+    this.controlador.validarFormulario();
+  }
+}
+  
+aplicarEstilos(elemento, esValido, mensajeError) {
+  const errorSpan = elemento.nextElementSibling;
+
+  if (!esValido) {
+    elemento.style.transition = 'border-color 0.3s ease, box-shadow 0.3s ease';
+    elemento.style.border = '1px solid red';
+    elemento.style.boxShadow = '2px 2px 40px rgba(255, 0, 0, 0.7)'
+
+    if (!errorSpan || !errorSpan.classList.contains('error-message')) {
+      const nuevoMensajeError = document.createElement('span');
+      nuevoMensajeError.textContent = mensajeError;
+      nuevoMensajeError.classList.add('error-message');
+      elemento.parentNode.insertBefore(nuevoMensajeError, elemento.nextSibling);
+    } else {
+      errorSpan.textContent = mensajeError;
     }
+  } else {
+    elemento.style.transition = 'border-color 0.3s ease, box-shadow 0.3s ease';
+    elemento.style.border = '1px solid green';
+    elemento.style.boxShadow = '2px 2px 40px rgba(0, 255, 0, 0.7)'
 
-    if (!tituloRegex.test(titulo)) {
-      alert('Título no válido. Debe contener al menos 5 caracteres de letras y como máximo 100. No se permiten otros caracteres.')
-      return false
+    if (errorSpan && errorSpan.classList.contains('error-message')) {
+      elemento.parentNode.removeChild(errorSpan);
     }
+  }
+}
+ 
+  mostrarPreguntas(ambito, datosPreguntas) {
+    const preguntasArea = document.getElementById('preguntasArea'+ambito);
+    const preguntaTexto = document.getElementById('preguntaTexto'+ambito);
+    const respuestasArea = document.getElementById('respuestas'+ambito);
+    const divRespuesta = document.createElement('div');
+    const botonSiguienteTirada = document.createElement('button');
+    const textoRespuesta = document.createElement('p');
+    botonSiguienteTirada.classList.add('btnSiguienteTiradas')
 
-    if (!descripcionRegex.test(descripcion)) {
-      alert('Descripción no válida. No puede contener caracteres especiales. Además, no se pueden superar los 255 caracteres.')
-      return false
+    if (datosPreguntas.length > 0) {
+      //Te lanza una pregunta aleatoria del ambito
+      const indiceAleatorio = Math.floor(Math.random() * datosPreguntas.length);
+      const preguntaAleatoria = datosPreguntas[indiceAleatorio]; //ESTO LO HAGO PORQUE SI NO LE DIGO QUE PREGUNTA QUIERO MOSTRAR,
+      // ME MUESTRA TODAS LAS PREGUNTAS QUE TIENE ASIGNADO ESE AAMBITO
+      console.log('PREGUNTA DEL AMBITO '+ambito+' : ' + preguntaAleatoria.pregunta);
+
+      // Mostrar la pregunta y las opciones de respuesta
+      preguntaTexto.textContent = preguntaAleatoria.pregunta;
+      console.log('EN LA VISTA CONTROLADOR :' +preguntaAleatoria)
+      console.log('EN LA VISTA CONTROLADOR PREGUNTA:' +preguntaAleatoria.pregunta)
+      const respuestasAleatorias = preguntaAleatoria.respuestas.sort(()=> Math.random() - 0.5)
+      respuestasAleatorias.forEach((opcion) => {
+        const respuestaBtn = document.createElement('button');
+        respuestaBtn.textContent = opcion.texto_respuesta;
+        respuestaBtn.classList.add('respuestaBtn');
+        console.log('RESPUESTA :' +preguntaAleatoria.texto_respuesta)
+        respuestaBtn.addEventListener('click', () => {
+
+            respuestaBtn.style.pointerEvents = 'none'
+
+            if (opcion.num_respuesta === '1') {
+                this.obtenerPuntuacion()
+                divRespuesta.style.display = 'block';
+                textoRespuesta.textContent = '¡CORRECTO!';
+                textoRespuesta.classList.add('texto-elemento')
+                divRespuesta.style.backgroundColor = 'rgb(153, 255, 131)'
+                divRespuesta.style.boxShadow = '2px 2px 40px rgba(0, 255, 0, 0.7)'
+                divRespuesta.style.border = '2px solid rgba(0, 255, 0, 0.7)'
+                divRespuesta.classList.add('elemento-con-animacion')
+                document.body.appendChild(divRespuesta);
+                botonSiguienteTirada.textContent = 'Seguir Jugando';
+                botonSiguienteTirada.addEventListener('click', () => {
+                divRespuesta.style.display = 'none';
+                this.verVista(Vista.vRuleta)
+
+                });
+                divRespuesta.appendChild(textoRespuesta)
+                divRespuesta.appendChild(botonSiguienteTirada)
+            } else {
+                console.log("INCORRECTA");
+                divRespuesta.style.display = 'block';
+                textoRespuesta.textContent = 'INCORRECTO';
+                textoRespuesta.classList.add('texto-elemento')
+                divRespuesta.style.backgroundColor = 'rgb(255, 68, 68)'
+                divRespuesta.style.boxShadow = '2px 2px 40px rgba(255, 0, 0, 0.7)'
+                divRespuesta.style.border = '2px solid rgba(255, 0, 0, 0.7)'
+                divRespuesta.classList.add('elemento-con-animacion')
+                document.body.appendChild(divRespuesta);
+                botonSiguienteTirada.textContent = 'Seguir Jugando';
+                botonSiguienteTirada.addEventListener('click', () => {
+                  divRespuesta.style.display = 'none';
+                  this.verVista(Vista.vRuleta)
+                });
+                divRespuesta.appendChild(textoRespuesta)
+                divRespuesta.appendChild(botonSiguienteTirada)
+            }
+        });
+        respuestasArea.appendChild(respuestaBtn);
+        
+    });
+    
+    } else {
+      console.log(datosPreguntas)
+      preguntaTexto.textContent = 'No hay preguntas disponibles en este momento.';
     }
-
-    if (!fechaRegex.test(fechaFin)) {
-      alert('Fecha no válida. Utiliza una fecha.')
-      return false
-    }
-
-    // SI TODAS LAS COMPROBACIONES ESTAN CORRECTAS
-    alert('Formulario válido.')
   }
 
-  /**
-     * Muestra la vista deseada.
-     * @param {string} vista - El nombre de la vista a mostrar.
-     */
+  obtenerPuntuacion() {
+    this.preguntasCorrectas = this.preguntasCorrectas + 20;
+    return this.preguntasCorrectas;
+  }
+
   verVista (vista) {
     this.ocultarVistas()
     this.vistas.get(vista).mostrar(true)
   }
 
-  /**
-     * Oculta todas las vistas.
-     */
-  ocultarVistas () {
-    for (const vista of this.vistas.values()) {
-      vista.mostrar(false)
-    }
-  }
+  ocultarVistas(){
+		for(const vista of this.vistas.values())
+			vista.mostrar(false)
+	}
 }
-
-// Inicializa el controlador cuando la página se carga completamente
-window.onload = () => {
-  // eslint-disable-next-line no-new
-  new Controlador()
-}
+window.onload = () => {new Controlador()}
