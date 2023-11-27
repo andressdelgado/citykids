@@ -26,8 +26,8 @@
         </div>
 
         <div class="input-group">
-            <input  type="button" value="+" onclick="agregarRespuestaIncorrecta()">
-            <input type="button" id="botonMovible" value="-"  onmouseover="moverBoton()" onclick="eliminarRespuestaIncorrecta()">
+            <input type="button" value="+" onclick="agregarRespuestaIncorrecta()">
+            <input type="button" value="-" onclick="eliminarRespuestaIncorrecta()">
         </div>
 
         <input type="submit" value="Guardar Pregunta">
