@@ -58,7 +58,7 @@ class ConfirmacionBorrado {
 }
 
 /**
- * Instancia la clase ConfirmacionBorrado cuando se carga el documento y añado mi queri comentario para saber que el script se ha cargado
+ * Instancia la clase ConfirmacionBorrado cuando se carga el documento y añado mi querido comentario para saber que el script se ha cargado
  */
 document.addEventListener('DOMContentLoaded', () => {
     console.log("Me gusta mucho diseño. Y cliente. Quiero decir... Script cargado correctamente, bip bop.")
