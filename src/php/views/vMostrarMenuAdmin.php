@@ -10,6 +10,7 @@
         <div id="contenedor">
             <a href="" class="volverAlJuego">GESTIÓN PREGUNTAS Y RESPUESTAS</a>
             <a href="../../src/php/index.php?c=cCompeticiones&m=listarCompeticiones" class="volverAlJuego">GESTIÓN DE COMPETICIONES</a>
+            <a href="../../src/php/index.php?c=cAmbitos&m=listarAmbitos" class="volverAlJuego">GESTIÓN DE AMBITOS</a>
         </div>
         <a href="../index.html" class="volverAlJuego">VOLVER AL JUEGO</a>
 
