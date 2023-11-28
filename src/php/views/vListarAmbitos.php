@@ -11,8 +11,6 @@
                 <tr>
                     <td><?= $fila['id_ambito'] ?></td>
                     <td><?= $fila['nombre'] ?></td>
-                    <td>Hola</td>
-                    <!-- <td><a href="index.php?c=cCompeticiones&m=modifCompeticiones&clave=<?//= $fila['clave']; ?>"><img src="../img/edit.png"></a></td> -->
                 </tr>
             <?php } ?>
         </tbody>

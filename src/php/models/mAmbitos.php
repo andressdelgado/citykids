@@ -3,7 +3,7 @@
         private $conexion;
         
         function __construct(){
-            require_once __DIR__ . '../config/configdb.php';
+            require_once __DIR__ . '/../config/configdb.php';
             $this->conexion = new mysqli(SERVIDOR, USUARIO, CONTRASENIA, BBDD);
             if ($this->conexion->connect_error) {
                 die("Error de conexión: " . $this->conexion->connect_error);
