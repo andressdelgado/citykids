@@ -45,4 +45,14 @@
             $id_tematica = $_GET['id_tematica'];
             $this->objTematicas->mBorrarTematicas($id_tematica);
         }
+        public function obtenerIdTematica(){
+            
+        
+            $id_tematica = $_GET['id_tematica'];
+            // Obtener los datos de la competición a modificar
+            $datos = $this->objCompeticiones->mObtenerTematica($id_tematica);
+        
+            // Pasar los datos a la vista
+            return $datos;
+        }
     }

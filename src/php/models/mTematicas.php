@@ -50,5 +50,16 @@
             header("Location: index.php?c=cTematicas&m=listarTematicas");
             exit();
         }
+        function mObtenerTematica($id_tematica){
+            $sql = "SELECT * FROM Tematica WHERE id_tematica = '$id_tematica'";
+            $resultado = $this->conexion->query($sql);
+        
+            if ($resultado->num_rows > 0) {
+                $fila = $resultado->fetch_assoc();
+                return $fila;
+            } else {
+                return null; // Opcional: Puedes manejar el caso si no se encuentra ninguna competición con esa clave
+            }
+        }
     }
 ?>
