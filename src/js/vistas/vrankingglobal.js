@@ -1,6 +1,6 @@
 import { Vista } from './vista.js'
 
-export class Ranking extends Vista {
+export class RankingGlobal extends Vista {
 
   constructor (controlador, base) {
     super(controlador, base)

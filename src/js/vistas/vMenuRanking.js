@@ -25,7 +25,7 @@ export class MenuRanking extends Vista {
   }
 
   pulsarRankingGlobal () {
-    this.controlador.verVista(Vista.vRanking)
+    this.controlador.verVista(Vista.vrankingglobal)
   }
 
   pulsarRankingCompeticion() {

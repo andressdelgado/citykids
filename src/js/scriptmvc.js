@@ -1,20 +1,20 @@
 import {Modelo} from './modelos/modelo.js'
 import {Vista} from './vistas/vista.js'
-import {MenuInicial} from './vistas/vMenuInicial.js'
-import {Ruleta} from './vistas/vRuleta.js'
-import {MenuCompeticion} from './vistas/vMenuCompeticion.js'
-import {CrearCompeticion} from './vistas/vCrearCompeticion.js'
-import {UnirCompeticion} from './vistas/vUnirCompeticion.js'
-import {MenuRanking} from './vistas/vMenuRanking.js'
-import {Ranking} from './vistas/vRanking.js'
-import {RankingCompeticion} from './vistas/vRankingCompeticion.js'
-import {PartDemo} from './vistas/vPartDemo.js'
-import {JustSocial} from './vistas/vJustSocial.js'
-import {DesHumano} from './vistas/vDesHumano.js'
+import {MenuInicial} from './vistas/vmenuinicial.js'
+import {Ruleta} from './vistas/vruleta.js'
+import {MenuCompeticion} from './vistas/vmenucompeticion.js'
+import {CrearCompeticion} from './vistas/vcrearcompeticion.js'
+import {UnirCompeticion} from './vistas/vunircompeticion.js'
+import {MenuRanking} from './vistas/vmenuranking.js'  //SERGIO
+import {RankingGlobal} from './vistas/vrankingglobal.js' //SERGIO
+import {RankingCompeticion} from './vistas/vrankingcompeticion.js'  //SERGIO
+import {PartDemo} from './vistas/vpartdemo.js'
+import {JustSocial} from './vistas/vjustsocial.js'
+import {DesHumano} from './vistas/vdeshumano.js'
 import {Interculturalidad} from './vistas/vInterculturalidad.js'
-import {EquidadGenero} from './vistas/vEquidadGenero.js'
-import { FormularioFinal } from './vistas/vFormularioFinal.js'
-import { Configuracion } from './vistas/vConfig.js'
+import {EquidadGenero} from './vistas/vequidadgenero.js'
+import { FormularioFinal } from './vistas/vformulariofinal.js'
+import { Configuracion } from './vistas/vconfig.js'
 
 class Controlador {
   /*
@@ -37,7 +37,7 @@ class Controlador {
     const divCrearCompeticion = document.getElementById('divCrearCompeticion')
     const divUnirCompeticion = document.getElementById('divUnirCompeticion')
     const divMenuRanking = document.getElementById('divMenuRanking')
-    const divRanking = document.getElementById('divRanking')
+    const divRankingGlobal = document.getElementById('divRankingGlobal') //SERGIO
     const divRankingCompeticion = document.getElementById('divRankingCompeticion')
     const divPartDemo = document.getElementById('divPartDemo')
     const divJustSocial = document.getElementById('divJustSocial')
@@ -55,8 +55,8 @@ class Controlador {
     this.vistas.set(Vista.vCrearCompeticion, new CrearCompeticion(this, divCrearCompeticion))
     this.vistas.set(Vista.vUnirCompeticion, new UnirCompeticion(this, divUnirCompeticion))
     this.vistas.set(Vista.vMenuRanking, new MenuRanking(this, divMenuRanking))
-    this.vistas.set(Vista.vRanking, new Ranking(this, divRanking))
-    this.vistas.set(Vista.vRankingCompeticion, new RankingCompeticion(this, divRankingCompeticion))
+    this.vistas.set(Vista.vrankingglobal, new RankingGlobal(this, divRankingGlobal)) //SERGIO
+    this.vistas.set(Vista.vrankingcompeticion, new RankingCompeticion(this, divRankingCompeticion))
     this.vistas.set(Vista.vPartDemo, new PartDemo(this, divPartDemo))
     this.vistas.set(Vista.vJustSocial, new JustSocial(this, divJustSocial))
     this.vistas.set(Vista.vDesHumano, new DesHumano(this, divDesHumano))
