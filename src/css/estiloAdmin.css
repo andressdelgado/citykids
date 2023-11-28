@@ -354,6 +354,11 @@ input[type="button"]:hover {
     visibility: visible;
 }
 
+/*Mensaje de error para javascript*/
+.error-mensaje {
+    color: red;
+}
+
 /*/ 
 =======
 #volverAlMenu:hover {
