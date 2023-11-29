@@ -7,7 +7,6 @@ export class Vista {
     Vista.vUnirCompeticion = Symbol('Unirse Competicion')
     Vista.vMenuRanking = Symbol('Menu Ranking')
     Vista.vrankingglobal = Symbol('Ranking Global')
-    Vista.vRanking = Symbol('Ranking')
     Vista.vRankingCompeticion = Symbol('Ranking Competiciones')
     Vista.vPartDemo = Symbol('Participación Democrática')
     Vista.vJustSocial = Symbol('Justicia Social')
