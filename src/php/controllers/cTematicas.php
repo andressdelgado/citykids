@@ -35,33 +35,38 @@
         
                     $personajes[] = $personaje;
                 }
-        
+                try{
                 // creo la temática y personajes
-                $this->objTematicas->mAltaTematicas($nombretematica, $personajes);
+                    $this->objTematicas->mAltaTematicas($nombretematica, $personajes);
+                    header("Location: index.php?c=cTematicas&m=listarTematicas");
+                    exit();
+                } catch (Exception $mensaje) {
+                    $codigoError = $mensaje->getCode();
+                    switch ($codigoError) {
+                        case 1062:
+                            $this->mensaje= "Error al procesar el formulario: Ya existe una pregunta similar.";
+                            break;
+                        case 1048:
+                            $this->mensaje= "Error al procesar el formulario: No puede haber campos vacíos.";
+                            break;
+                        case 1406:
+                            $this->mensaje= "Error al procesar el formulario: Los campos exceden la longitud máxima.";
+                            break;
+                        default:
+                        header("Location: index.php?c=cTematicas&m=listarTematicas");
+                        exit();
+                        if (is_numeric($resultado)) {
+                            $this->mensaje = "Error al crear competición. Código de error: $resultado";
+                        } else {
+                            $this->mensaje = $resultado;
+                        }
+                        break;
+                    }
+                }
             }
         }
 
-
-
-
-                // //////////////////////////////////////////////
-
-                // $resultado = $this->objTematicas->mAltaTematicas($nombretematica, $personajes);
-                // switch($resultado){
-                //     case '1406':
-                //         $this->mensaje = "Algun dato excede la longitud máxima permitida";
-                //         break;
-                //     case '1048':
-                //         $this->mensaje = "El nombre no puede estar vacío.";
-                //         break;
-                //     default:
-                //         if (is_numeric($resultado)) {
-                //             $this->mensaje = "Error al crear competición. Código de error: $resultado";
-                //         } else {
-                //             $this->mensaje = $resultado;
-                //         }
-                //         break;
-                // }
+        
         public function borrarTematicas(){
             $id_tematica = $_GET['id_tematica'];
             $this->objTematicas->mBorrarTematicas($id_tematica);

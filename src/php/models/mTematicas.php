@@ -24,17 +24,16 @@
             return $datos;
         }
         function mAltaTematicas($nombretematica, $personajes){
-            $this->conexion->begin_transaction();
             $nombretematica = ($nombretematica === '') ? "NULL" : "'" . $this->conexion->real_escape_string($nombretematica) . "'";
             
+            $this->conexion->begin_transaction();
+    
             try {
                 $sql_insertar_tematica = "INSERT INTO Tematica(nombre) VALUES ($nombretematica)";
-                $this->conexion->query($sql_insertar_tematica);
-        
-                $idTematica = $this->conexion->insert_id; // Obtener el ID de la temática recién insertada
-        
+                $this->conexion->query($sql_insertar_tematica);        
                 // Crear personajes asociados a la temática
                 foreach ($personajes as $i => $personaje) {
+                    
                     $nombrepersonaje = $this->conexion->real_escape_string($personaje["nombre_personaje_$i"]);
                     $descripcion = $this->conexion->real_escape_string($personaje["descripcion_$i"]);
                     
@@ -44,10 +43,10 @@
                 }               
         
                 $this->conexion->commit();
-        } catch (Exception $e) {
-            $this->conexion->rollback();
-            throw $e;
-        }  
+            } catch (Exception $e) {
+                $this->conexion->rollback();
+                throw $e;
+            }
         }
         function mBorrarTematicas($id_tematica){
             $sql = "DELETE FROM Tematica WHERE id_tematica = '$id_tematica'";

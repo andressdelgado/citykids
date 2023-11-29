@@ -2,6 +2,7 @@
     <form action="index.php?c=cTematicas&m=altaTematicas" method="post">
         <label for="nombre_tematica">Nombre de la temática:</label>
         <input type="text" id="nombre_tematica" name="nombre_tematica">
+        <?php if (!empty($mensajeError)) {echo '<div class="error-message">¡' . $mensajeError . '!</div>';}?>
         <table>
             <tr>
                 <th>Ámbito</th>
