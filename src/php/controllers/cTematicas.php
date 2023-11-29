@@ -16,31 +16,52 @@
             $datos = $this->objTematicas->mListarTematicas();
             return $datos;
         }
-        public function altaTematicas(){
+        public function altaTematicas() {
             $this->view = 'vAltaTematicas';
             $this->nombrePagina = 'Alta Tematicas';
+        
             if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-                if(isset($_POST["nombre"])){
-                    $nombre = $_POST["nombre"];
-                    $resultado = $this->objTematicas->mAltaTematicas($nombre);
-                    switch($resultado){
-                        case '1406':
-                            $this->mensaje = "Algun dato excede la longitud máxima permitida";
-                            break;
-                        case '1048':
-                            $this->mensaje = "El nombre no puede estar vacío.";
-                            break;
-                        default:
-                            if (is_numeric($resultado)) {
-                                $this->mensaje = "Error al crear competición. Código de error: $resultado";
-                            } else {
-                                $this->mensaje = $resultado;
-                            }
-                            break;
-                    }
+                $nombretematica = $_POST["nombre_tematica"];
+                $personajes = [];
+        
+                for ($i = 0; $i <= 4; $i++) {
+                    $nombre_personaje = $_POST["nombre_personaje_$i"];
+                    $descripcion = $_POST["descripcion_$i"];
+                    
+                    $personaje = [
+                        "nombre_personaje_$i" => $nombre_personaje,
+                        "descripcion_$i" => $descripcion,
+                    ];
+        
+                    $personajes[] = $personaje;
                 }
+        
+                // creo la temática y personajes
+                $this->objTematicas->mAltaTematicas($nombretematica, $personajes);
             }
         }
+
+
+
+
+                // //////////////////////////////////////////////
+
+                // $resultado = $this->objTematicas->mAltaTematicas($nombretematica, $personajes);
+                // switch($resultado){
+                //     case '1406':
+                //         $this->mensaje = "Algun dato excede la longitud máxima permitida";
+                //         break;
+                //     case '1048':
+                //         $this->mensaje = "El nombre no puede estar vacío.";
+                //         break;
+                //     default:
+                //         if (is_numeric($resultado)) {
+                //             $this->mensaje = "Error al crear competición. Código de error: $resultado";
+                //         } else {
+                //             $this->mensaje = $resultado;
+                //         }
+                //         break;
+                // }
         public function borrarTematicas(){
             $id_tematica = $_GET['id_tematica'];
             $this->objTematicas->mBorrarTematicas($id_tematica);

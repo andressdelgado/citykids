@@ -23,25 +23,31 @@
                 $datos[] = $fila;
             return $datos;
         }
-        function mAltaTematicas($nombre){
-            try{
-                $nombre = ($nombre === '') ? "NULL" : "'" . $this->conexion->real_escape_string($nombre) . "'";
-                $sql = "INSERT INTO Tematica(nombre) VALUES ($nombre)";
-                if ($this->conexion->query($sql) === TRUE) {
-                    $mensaje = "La temática se ha creado correctamente.";
-                } else {
-                    // Si hay un error en la consulta, lanzar una excepción con el mensaje de error
-                    throw new Exception($this->conexion->error, $this->conexion->errno);
-                }
-                // Retornar el mensaje que indica el resultado de la inserción
-                return $mensaje;
-            } 
-            catch (Exception $error) {
-                //Coge la excepción
-                $numeroError = $error->getCode(); // Obtiene el código de error de la variable $error
-                //Retornamos el numero del error, en este caso al controlador
-                return $numeroError;
-            }
+        function mAltaTematicas($nombretematica, $personajes){
+            $this->conexion->begin_transaction();
+            $nombretematica = ($nombretematica === '') ? "NULL" : "'" . $this->conexion->real_escape_string($nombretematica) . "'";
+            
+            try {
+                $sql_insertar_tematica = "INSERT INTO Tematica(nombre) VALUES ($nombretematica)";
+                $this->conexion->query($sql_insertar_tematica);
+        
+                $idTematica = $this->conexion->insert_id; // Obtener el ID de la temática recién insertada
+        
+                // Crear personajes asociados a la temática
+                foreach ($personajes as $i => $personaje) {
+                    $nombrepersonaje = $this->conexion->real_escape_string($personaje["nombre_personaje_$i"]);
+                    $descripcion = $this->conexion->real_escape_string($personaje["descripcion_$i"]);
+                    
+                    // La siguiente línea incluye "NULL" para el campo imagen. Asegúrate de ajustar esto según tu estructura real de base de datos.
+                    $sql_insertar_personaje = "INSERT INTO Personaje (nombre, descripcion) VALUES ('$nombrepersonaje', '$descripcion')";
+                    $this->conexion->query($sql_insertar_personaje);
+                }               
+        
+                $this->conexion->commit();
+        } catch (Exception $e) {
+            $this->conexion->rollback();
+            throw $e;
+        }  
         }
         function mBorrarTematicas($id_tematica){
             $sql = "DELETE FROM Tematica WHERE id_tematica = '$id_tematica'";
