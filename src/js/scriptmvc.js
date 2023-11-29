@@ -227,8 +227,8 @@ class Controlador {
 	}
 
 
-  obtenerRankingGlobal() {
-    console.log("wololo")  //SERGIO
+  obtenerRankingGlobal() { 
+    console.log("wololo") 
     fetch('./js/php/ranking.php', {
       method: 'GET',
       headers: {
@@ -242,33 +242,12 @@ class Controlador {
         return response.json();
       })
       .then(data => {
-        this.mostrarRankingGlobal(data);
+        this.vistas.get(Vista.vrankingglobal).mostrarRankingGlobal(data);
       })
       .catch(error => console.error('Error:', error));
   }
 
-  mostrarRankingGlobal(data) {
-    const rankingTable = document.getElementById('rankingTable');
-    const tbody = rankingTable.querySelector('tbody');
-    tbody.innerHTML = ''; 
-
-    data.forEach(jugador => {
-      const row = document.createElement('tr');
-      const nombreCell = document.createElement('td');
-      const puntuacionCell = document.createElement('td');
-      const fechaCell = document.createElement('td');
-
-      nombreCell.textContent = jugador.nombre;
-      puntuacionCell.textContent = jugador.puntuacion;
-      fechaCell.textContent = jugador.fecha_hora;
-
-      row.appendChild(nombreCell);
-      row.appendChild(puntuacionCell);
-      row.appendChild(fechaCell);
-
-      tbody.appendChild(row);
-    });
-  }
+  
 
 }
 window.onload = () => {new Controlador()}

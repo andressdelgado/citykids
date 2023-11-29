@@ -105,36 +105,41 @@ export class Ruleta extends Vista {
     this.base.appendChild(divPuntuacion)
   }
 
- girarRuleta() {
-  if (this.preguntasMostradas < 4) {
-    let idAmbitoAleatorio
-    do {
-      idAmbitoAleatorio = Math.floor(Math.random() * 5) + 1;
-    } while (this.ambitosSeleccionados.includes(idAmbitoAleatorio))
-    this.ambitosSeleccionados.push(idAmbitoAleatorio)
-    this.preguntasMostradas++
+  girarRuleta() {
+    if (this.preguntasMostradas < 4) {
+      let idAmbitoAleatorio;
+      do {
+        idAmbitoAleatorio = Math.floor(Math.random() * 5) + 1;
+      } while (this.ambitosSeleccionados.includes(idAmbitoAleatorio));
+      this.ambitosSeleccionados.push(idAmbitoAleatorio);
+      this.preguntasMostradas++;
 
-    const self = this;
-    const url = `https://01.2daw.esvirgua.com/ABP/ABP/src/js/php/preguntas.php?id_ambito=${idAmbitoAleatorio}`; // Ruta relativa
+      const self = this;
 
-    fetch(url)
-      .then(function (response) {
-        if (!response.ok) {
-          throw new Error('Network response was not ok.')
+      fetch('./js/php/preguntas.php?id_ambito='+idAmbitoAleatorio, {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json'
         }
-        return response.json()
       })
-      .then(function (preguntas) {
-        console.log('Respuesta del servidor:', preguntas)
-        self.mostrarPreguntas(idAmbitoAleatorio, preguntas)
-      })
-      .catch(function (error) {
-        console.error('Hubo un problema con la petición Fetch:', error)
-      });
-  } else {
-    this.crearInterfaz2()
+        .then(response => {
+          if (!response.ok) {
+            throw new Error('Network response was not ok.');
+          }
+          return response.json();
+        })
+        .then(preguntas => {
+          console.log('Respuesta del servidor:', preguntas);
+          self.mostrarPreguntas(idAmbitoAleatorio, preguntas);
+        })
+        .catch(error => {
+          console.error('Hubo un problema con la petición Fetch:', error);
+        });
+    } else {
+      this.crearInterfaz2();
+    }
   }
-}
+
 
   
   
