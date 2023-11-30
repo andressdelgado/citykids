@@ -37,16 +37,29 @@
                     $nombrepersonaje = $this->conexion->real_escape_string($personaje["nombre_personaje_$i"]);
                     $descripcion = $this->conexion->real_escape_string($personaje["descripcion_$i"]);
                     
+                    //if (isset($personaje["imagen_$i"]) && file_exists($personaje["imagen_$i"]["tmp_name"])) {
+                        $imagen = $personaje["imagen_$i"];
+                        $ext = pathinfo($imagen["name"], PATHINFO_EXTENSION);
+                        print_r($nombreimagen = uniqid() . "." . $ext);
+                        $carpeta_final = __DIR__ . "/../../img";
+                        $ruta_inicial = $imagen["tmp_name"];
+                        $ruta_final = $carpeta_final . DIRECTORY_SEPARATOR . $nombreimagen;
+                    // } else {
+                    //     $nombreimagen = null;
+                    // }
+                
                     // La siguiente línea incluye "NULL" para el campo imagen. Asegúrate de ajustar esto según tu estructura real de base de datos.
-                    $sql_insertar_personaje = "INSERT INTO Personaje (nombre, descripcion) VALUES ('$nombrepersonaje', '$descripcion')";
+                    $sql_insertar_personaje = "INSERT INTO Personaje (nombre, descripcion, imagen) VALUES ('$nombrepersonaje', '$descripcion', '$nombreimagen')";
                     $this->conexion->query($sql_insertar_personaje);
+                    move_uploaded_file($ruta_inicial, $ruta_final);
                 }               
         
-                $this->conexion->commit();
+                
             } catch (Exception $e) {
                 $this->conexion->rollback();
                 throw $e;
             }
+            $this->conexion->commit();
         }
         function mBorrarTematicas($id_tematica){
             $sql = "DELETE FROM Tematica WHERE id_tematica = '$id_tematica'";

@@ -27,10 +27,12 @@
                 for ($i = 0; $i <= 4; $i++) {
                     $nombre_personaje = $_POST["nombre_personaje_$i"];
                     $descripcion = $_POST["descripcion_$i"];
+                    $imagen = $_FILES["imagen_$i"];
                     
                     $personaje = [
                         "nombre_personaje_$i" => $nombre_personaje,
                         "descripcion_$i" => $descripcion,
+                        "imagen_$i" => $imagen
                     ];
         
                     $personajes[] = $personaje;
@@ -38,7 +40,7 @@
                 try{
                 // creo la temática y personajes
                     $this->objTematicas->mAltaTematicas($nombretematica, $personajes);
-                    header("Location: index.php?c=cTematicas&m=listarTematicas");
+                    //header("Location: index.php?c=cTematicas&m=listarTematicas");
                     exit();
                 } catch (Exception $mensaje) {
                     $codigoError = $mensaje->getCode();
