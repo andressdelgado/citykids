@@ -205,7 +205,7 @@ class Controlador {
                 botonSiguienteTirada.textContent = 'Seguir Jugando';
                 botonSiguienteTirada.addEventListener('click', () => {
                   divRespuesta.style.display = 'none';
-                  this.verVista(Vista.vRuleta)
+                  this.verVista(Vista.vruleta)
                 });
                 divRespuesta.appendChild(textoRespuesta)
                 divRespuesta.appendChild(botonSiguienteTirada)
