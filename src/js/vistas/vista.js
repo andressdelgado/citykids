@@ -14,7 +14,7 @@ export class Vista {
     Vista.vinterculturalidad = Symbol('Interculturalidad e Inclusión')
     Vista.vequidadgenero = Symbol('Equidad de género y Coeducación')
     Vista.vconfig = Symbol('Configuracion para PC')
-    Vista.vformulariofinal = Symbol('Formulario Final')
+    // Vista.vformulariofinal = Symbol('Formulario Final')
   }
 
   constructor(controlador, base) {

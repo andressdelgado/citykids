@@ -13,7 +13,7 @@ import {JustSocial} from './vistas/vjustsocial.js'
 import {DesHumano} from './vistas/vdeshumano.js'
 import {Interculturalidad} from './vistas/vInterculturalidad.js'
 import {EquidadGenero} from './vistas/vequidadgenero.js'
-import { FormularioFinal } from './vistas/vformulariofinal.js'
+// import { FormularioFinal } from './vistas/vformulariofinal.js'
 import { Configuracion } from './vistas/vconfig.js'
 
 class Controlador {
@@ -63,7 +63,7 @@ class Controlador {
     this.vistas.set(Vista.vdeshumano, new DesHumano(this, divDesHumano))
     this.vistas.set(Vista.vinterculturalidad, new Interculturalidad(this, divInterculturalidad))
     this.vistas.set(Vista.vequidadgenero, new EquidadGenero(this, divEquidadGenero))
-    this.vistas.set(Vista.vformulariofinal, new FormularioFinal(this, divVictoria))
+    // this.vistas.set(Vista.vformulariofinal, new FormularioFinal(this, divVictoria))
     this.vistas.set(Vista.vconfig, new Configuracion(this, divConfig))
 
     this.verVista(Vista.vmenuinicial)
@@ -76,67 +76,72 @@ class Controlador {
       audioElement.pause();
     }
   }
-  validarFormulario() {
-    const claveInput = document.getElementById('crearClave')
-    const tituloInput = document.getElementById('crearTitulo')
-    const descripcionInput = document.getElementById('crearDescripcion')
-    const fechaInput = document.getElementById('crearFechaFin')
 
-    //Sacamos los valores introduccidos en el formulario
-    const clave = claveInput.value
-    const titulo = tituloInput.value
-    const descripcion = descripcionInput.value
-    const fechaFin = fechaInput.value
+  // validarFormulario() {
+  //   const claveInput = document.getElementById('crearClave')
+  //   const tituloInput = document.getElementById('crearTitulo')
+  //   const descripcionInput = document.getElementById('crearDescripcion')
+  //   const fechaInput = document.getElementById('crearFechaFin')
 
-    //validamos con expresiones regulares
-    const claveRegex = /^[A-Za-z]{3}[A-Za-z0-9]{2,9}$/
-    const tituloRegex = /^[A-Za-z ]{5,100}$/
-    const descripcionRegex = /^[A-Za-z0-9 ]{0,255}$/ // puede ser nulo
-    const fechaRegex = /^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}$/ // formato fecha
+  //   //Sacamos los valores introduccidos en el formulario
+  //   const clave = claveInput.value
+  //   const titulo = tituloInput.value
+  //   const descripcion = descripcionInput.value
+  //   const fechaFin = fechaInput.value
+
+  //   //validamos con expresiones regulares
+  //   const claveRegex = /^[A-Za-z]{3}[A-Za-z0-9]{2,9}$/
+  //   const tituloRegex = /^[A-Za-z ]{5,100}$/
+  //   const descripcionRegex = /^[A-Za-z0-9 ]{0,255}$/ // puede ser nulo
+  //   const fechaRegex = /^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}$/ // formato fecha
 
     
-    const claveValid = claveRegex.test(clave)
-    const tituloValid = tituloRegex.test(titulo)
-    const descripcionValid = descripcionRegex.test(descripcion)
-    const fechaValid = fechaRegex.test(fechaFin)
+  //   const claveValid = claveRegex.test(clave)
+  //   const tituloValid = tituloRegex.test(titulo)
+  //   const descripcionValid = descripcionRegex.test(descripcion)
+  //   const fechaValid = fechaRegex.test(fechaFin)
 
-    this.aplicarEstilos(claveInput, claveValid, 'Clave no válida. Debe empezar por 3 letras y contener entre 5 y 10 caracteres.')
-    this.aplicarEstilos(tituloInput, tituloValid, 'Título no válido. Debe contener al menos 5 caracteres de letras y como máximo 100.')
-    this.aplicarEstilos(descripcionInput, descripcionValid, 'Descripción no válida. No puede contener caracteres especiales y debe ser máximo 255 caracteres.')
-    this.aplicarEstilos(fechaInput, fechaValid, 'Fecha no válida.')
+  //   this.aplicarEstilos(claveInput, claveValid, 'Clave no válida. Debe empezar por 3 letras y contener entre 5 y 10 caracteres.')
+  //   this.aplicarEstilos(tituloInput, tituloValid, 'Título no válido. Debe contener al menos 5 caracteres de letras y como máximo 100.')
+  //   this.aplicarEstilos(descripcionInput, descripcionValid, 'Descripción no válida. No puede contener caracteres especiales y debe ser máximo 255 caracteres.')
+  //   this.aplicarEstilos(fechaInput, fechaValid, 'Fecha no válida.')
 
-    // Si todos los campos son válidos, continúa con el resto del código
-    if (claveValid && tituloValid && descripcionValid && fechaValid) {
-      this.controlador.validarFormulario();
-    }
-  }
+  //   // Si todos los campos son válidos, continúa con el resto del código
+  //   if (claveValid && tituloValid && descripcionValid && fechaValid) {
+  //     this.controlador.enviarFormularioAjax();
+  //   }
     
-  aplicarEstilos(elemento, esValido, mensajeError) {
-    const errorSpan = elemento.nextElementSibling;
+  // }
 
-    if (!esValido) {
-      elemento.style.transition = 'border-color 0.3s ease, box-shadow 0.3s ease';
-      elemento.style.border = '1px solid red';
-      elemento.style.boxShadow = '2px 2px 40px rgba(255, 0, 0, 0.7)'
 
-      if (!errorSpan || !errorSpan.classList.contains('error-message')) {
-        const nuevoMensajeError = document.createElement('span');
-        nuevoMensajeError.textContent = mensajeError;
-        nuevoMensajeError.classList.add('error-message');
-        elemento.parentNode.insertBefore(nuevoMensajeError, elemento.nextSibling);
-      } else {
-        errorSpan.textContent = mensajeError;
-      }
-    } else {
-      elemento.style.transition = 'border-color 0.3s ease, box-shadow 0.3s ease';
-      elemento.style.border = '1px solid green';
-      elemento.style.boxShadow = '2px 2px 40px rgba(0, 255, 0, 0.7)'
 
-      if (errorSpan && errorSpan.classList.contains('error-message')) {
-        elemento.parentNode.removeChild(errorSpan);
-      }
-    }
-  }
+    
+  // aplicarEstilos(elemento, esValido, mensajeError) {
+  //   const errorSpan = elemento.nextElementSibling;
+
+  //   if (!esValido) {
+  //     elemento.style.transition = 'border-color 0.3s ease, box-shadow 0.3s ease';
+  //     elemento.style.border = '1px solid red';
+  //     elemento.style.boxShadow = '2px 2px 40px rgba(255, 0, 0, 0.7)'
+
+  //     if (!errorSpan || !errorSpan.classList.contains('error-message')) {
+  //       const nuevoMensajeError = document.createElement('span');
+  //       nuevoMensajeError.textContent = mensajeError;
+  //       nuevoMensajeError.classList.add('error-message');
+  //       elemento.parentNode.insertBefore(nuevoMensajeError, elemento.nextSibling);
+  //     } else {
+  //       errorSpan.textContent = mensajeError;
+  //     }
+  //   } else {
+  //     elemento.style.transition = 'border-color 0.3s ease, box-shadow 0.3s ease';
+  //     elemento.style.border = '1px solid green';
+  //     elemento.style.boxShadow = '2px 2px 40px rgba(0, 255, 0, 0.7)'
+
+  //     if (errorSpan && errorSpan.classList.contains('error-message')) {
+  //       elemento.parentNode.removeChild(errorSpan);
+  //     }
+  //   }
+  // }
  
   mostrarPreguntas(ambito, datosPreguntas) {
     const preguntasArea = document.getElementById('preguntasArea'+ambito);
@@ -181,7 +186,7 @@ class Controlador {
                 botonSiguienteTirada.textContent = 'Seguir Jugando';
                 botonSiguienteTirada.addEventListener('click', () => {
                 divRespuesta.style.display = 'none';
-                this.verVista(Vista.vRuleta)
+                this.verVista(Vista.vruleta)
 
                 });
                 divRespuesta.appendChild(textoRespuesta)

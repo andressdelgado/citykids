@@ -623,6 +623,31 @@ input:focus,textarea:focus {
     transition: background-color 0.3s ease;
   }
 
+  .custom-modal {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+}
+
+.modal-content {
+    background: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    text-align: center;
+}
+
+button {
+    padding: 10px;
+    margin-top: 10px;
+    cursor: pointer;
+}
+
   
   /* Estilos de hover para el botón de volver al inicio */
   .btn-volver-inicio:hover {
