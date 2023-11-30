@@ -139,11 +139,7 @@ export class Ruleta extends Vista {
       this.crearInterfaz2();
     }
   }
-
-
   
-  
-
   mostrarPreguntas(idAmbitoAleatorio, preguntas) {
     this.controlador.mostrarPreguntas(idAmbitoAleatorio, preguntas)
   }
@@ -152,19 +148,19 @@ export class Ruleta extends Vista {
         switch (idAmbitoAleatorio) {
           case 1:
             //this.controlador.verVista(Vista.vPartDemo)
-            this.controlador.verVista(Vista.vPartDemo)
+            this.controlador.verVista(Vista.vpartdemo)
             break
           case 2:
-            this.controlador.verVista(Vista.vJustSocial)
+            this.controlador.verVista(Vista.vjustsocial)
             break
           case 3:
-            this.controlador.verVista(Vista.vDesHumano)
+            this.controlador.verVista(Vista.vdeshumano)
             break
           case 4:
-            this.controlador.verVista(Vista.vInterculturalidad)
+            this.controlador.verVista(Vista.vinterculturalidad)
             break
           case 5:
-            this.controlador.verVista(Vista.vEquidadGenero)
+            this.controlador.verVista(Vista.vequidadgenero)
             break
           default:
             console.log('Número no válido')

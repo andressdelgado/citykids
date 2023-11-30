@@ -36,18 +36,18 @@ export class MenuInicial extends Vista {
   }
 
   pulsarConfig(){
-    this.controlador.verVista(Vista.vConfig)
+    this.controlador.verVista(Vista.vconfig)
   }
 
   pulsarIniciarPartida () {
-    this.controlador.verVista(Vista.vRuleta)
+    this.controlador.verVista(Vista.vruleta)
   }
 
   pulsarMenuCompeticion () {
-    this.controlador.verVista(Vista.vMenuCompeticion)
+    this.controlador.verVista(Vista.vmenucompeticion)
   }
 
   pulsarVerRanking () {
-    this.controlador.verVista(Vista.vMenuRanking)
+    this.controlador.verVista(Vista.vmenuranking)
   }
 }

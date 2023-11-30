@@ -11,6 +11,6 @@ export class RankingCompeticion extends Vista {
   }
 
   pulsarbtnVerRankings () {
-    this.controlador.verVista(Vista.vMenuInicial)
+    this.controlador.verVista(Vista.vmenuinicial)
   }
 }

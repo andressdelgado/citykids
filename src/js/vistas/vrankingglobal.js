@@ -34,6 +34,6 @@ export class RankingGlobal extends Vista {
   }
 
   pulsarvolverAlJuego () {
-    this.controlador.verVista(Vista.vMenuInicial)
+    this.controlador.verVista(Vista.vmenuinicial)
   }
 }

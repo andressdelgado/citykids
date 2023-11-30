@@ -11,9 +11,8 @@
         <!--VISTA PRINCIPAL-->
         <div id="divMenuInicial">
             <div class="contenedor">
-                <h1 class="main-title">CityKids</h1>
                 <button id="botonconfig"></button>
-                <img class="imgInicio" src="img/ruleta.png" alt="CityKids Imagen">
+                <img class="imgInicio" src="img/LOGO.png" alt="CityKids Imagen">
                 <div class="enlaces">
                     <button class="botonEnlace">INICIAR PARTIDA</button>
                     <button class="botonEnlace">MENU COMPETICIÓN</button>
@@ -46,8 +45,8 @@
         <div  id="divMenuCompeticion">
             <div class="contenedorNegro">
                 <h1 class="main-title-white">MENÚ COMPETICIÓN</h1>
-                <button class="botonMenu">CREAR COMPETICION</button>
-                <button class="botonMenu">UNIRSE COMPETICION</button>
+                <button class="botonMenu"><span>CREAR COMPETICION</span><img src="img/crear.png"></img></button>
+                <button class="botonMenu"><span>UNIRSE COMPETICION</span><img src="img/unirse.png"></img></button>
             </div>
             <!--SE GENERARÁ EL BOTON PARA VOLVER AL MENÚ A TRAVÉS DE JAVASCRIPT-->
         </div>
@@ -58,15 +57,15 @@
                 <h1 class="main-title-white">CREAR COMPETICIÓN</h1>
                 <form action="#" method="POST" id="crearcompeticion">
                     <label for="crearClave">Introducir clave:</label>
-                    <input type="text" id="crearClave" name="clave">
+                    <input type="text" id="crearClave" name="clave" placeholder="Introduce Clave...">
                     <span id="errorClave" class="error-message"></span>
 
                     <label for="crearTitulo">Introducir título:</label>
-                    <input type="text" id="crearTitulo" name="titulo">
+                    <input type="text" id="crearTitulo" name="titulo" placeholder="Titulo...">
                     <span id="errorTitulo" class="error-message"></span>
 
                     <label for="crearDescripcion">Descripción:</label>
-                    <textarea id="crearDescripcion" name="descripcion" rows="4"></textarea>
+                    <textarea id="crearDescripcion" name="descripcion" rows="4" placeholder="Descripcion..."></textarea>
                     <span id="errorDescripcion" class="error-message"></span>
 
                     <label for="crearFechaFin">Selecciona hora y día de fin:</label>
@@ -96,8 +95,9 @@
         <div id="divMenuRanking">
             <div class="contenedorNegro">
                 <h1 class="main-title-white">¿QUÉ TIPO DE RANKING QUIERES VISUALIZAR?</h1>
-                <button class="botonMenu">RANKING GLOBAL</button>
-                <button class="botonMenu">RANKING COMPETICIÓN</button>
+                <button class="botonMenu"><span>RANKING GLOBAL</span><img src="img/global.png"></img></button>
+                <button class="botonMenu"><span>RANKING COMPETICIÓN</span><img src="img/group.png"></img></button>
+                <button class="botonMenu"><span>TEST MIGUEL</span></button>
             </div>
             <button class="volverAlJuego" class="styled-link">VOLVER AL JUEGO</button>  
         </div>
@@ -184,11 +184,11 @@
         </div>
 
         <!--VISTA DE VICTORIA-->
-            <div id="divFormulario">
+            <div id="divVictoria">
                 <div id="contenedor">
                     <div class="divPregunta">
                         <p>
-                            ¡Enhorabuena! Has ganado con una puntuación de 8 puntos.
+                            ¡Enhorabuena! Has ganado con una puntuación de...
                         </p>
                         <div id="rotate-container">
                             <div id="rotate-box">
@@ -196,6 +196,8 @@
                             </div>
                         </div>
                         <form action="#" method="post">
+                            <label for="nombre">Introducir tu puntuacion:</label>
+                            <input type="text" id="puntos" name="puntos" required>
                             <label for="nombre">Introducir tu nombre:</label>
                             <input type="text" id="nombre" name="nombre" required>
                             <button type="submit" class="botonMenu">CONTINUAR</button>

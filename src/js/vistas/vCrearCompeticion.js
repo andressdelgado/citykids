@@ -13,7 +13,7 @@ export class CrearCompeticion extends Vista {
   }
 
   pulsarEnlace2 () {
-    this.controlador.verVista(Vista.vMenuInicial)
+    this.controlador.verVista(Vista.vmenuinicial)
   }
 
   validarFormulario (event) {

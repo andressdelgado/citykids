@@ -9,6 +9,6 @@ export class Configuracion extends Vista {
     this.volverMenu.onclick = this.pulsarVolverMenu.bind(this)
   }
   pulsarVolverMenu () {
-    this.controlador.verVista(Vista.vMenuInicial)
+    this.controlador.verVista(Vista.vmenuinicial)
   }
 }

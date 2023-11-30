@@ -23,15 +23,15 @@ export class MenuCompeticion extends Vista {
 
     // Asociar evento al botón para volver al menú principal (vMenuInicial)
     this.btnVolverJuego.onclick = () => {
-      this.controlador.verVista(Vista.vMenuInicial)
+      this.controlador.verVista(Vista.vmenuinicial)
     }
   }
 
   pulsarCrearCompeticion () {
-    this.controlador.verVista(Vista.vCrearCompeticion)
+    this.controlador.verVista(Vista.vcrearcompeticion)
   }
 
   pulsarUnirCompeticion () {
-    this.controlador.verVista(Vista.vUnirCompeticion)
+    this.controlador.verVista(Vista.vinircompeticion)
   }
 }

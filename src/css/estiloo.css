@@ -14,9 +14,7 @@ html, body {
 }
 
 body {
-    animation: fadeIn 1s ease-in-out;
     background-image: url('../img/bgInicio.png');
-    background-color: rgba(255, 255, 255, 0.5);
     background-size: cover;
     align-items: center;
     justify-content: center;
@@ -81,46 +79,25 @@ body {
     font-family: 'PartyConfetti', Courier, monospace;
     font-size: 3.25em;
     margin: 0;
-    margin-bottom: 20px;
-    -webkit-text-stroke: 2px rgb(47, 44, 125);
+    -webkit-text-stroke: 2px rgb(90, 90, 90);
     text-align: center;
-    text-shadow: 2px 2px 10px rgb(69, 243, 255);
+    text-shadow: 2px 2px 10px rgb(41, 41, 41);
     color: #ffffff;
 }
 
+
 /* Imagen de la ruleta */
-#divMenuInicial, #divMenuRanking, #divMenuCompeticion, #divCrearCompeticion, #divUnirCompeticion, #divRankingCompeticion{
-    width: 100%;
-    height: 100%;
-    background-image: url('img/bgInicio.png');
-    backdrop-filter: blur(5px);
-    margin-top: 0px;
-    padding-top: 4%;
-}
 .imgInicio {
-    margin-top: 3%;
-    max-width: 30%;
+    max-width: 37%;
     height: auto; 
-    filter: drop-shadow(2px 2px 20px rgba(255, 213, 0, 0.7));
-    
-}
-.imgInicio:hover {
-    transition: 0.5s ease-out;
-    filter: drop-shadow(2px 2px 60px rgba(255, 213, 0, 0.7));
-    
-    
 }
 
 #ruleta{
-    animation: fadeIn 1s ease-in-out;
-    margin-top: 15%;
     width: 40%;
     height: auto;
     position: absolute;
     left: 30%;
     top: -30%;
-    filter: drop-shadow(2px 2px 40px rgba(255, 213, 0, 0.7));
-    
 }
 
 button {
@@ -133,58 +110,33 @@ button {
     font-size: 1em;
 }
 
-/* button:hover {
+button:hover {
     background-color: #ffdb4d; 
     text-decoration: none;
-} */
+}
 
 /*BOTONES PANTALLA INICIAL*/
 .botonEnlace {
     display: inline-block;
     margin: 0 10px;
-    margin-top: 4%;
     padding: 10px;
     color: #fff; 
-    font-family: 'PartyConfetti';
-    font-size: 2em;
     background-color: orange; 
-    border-radius: 16px;
-    text-shadow: 2px 2px 5px rgb(216, 90, 0);
-    cursor: pointer;
 }
 
 .botonEnlace:hover {
-    background-color: rgb(255, 186, 59); 
-    box-shadow: 2px 2px 10px rgba(255, 213, 0, 0.7);
-    transition: 0.5s ease-in-out;
-}
-
-.mensajeInf{
-    background-color: rgba(147, 147, 147, 0.588);
-    color: #2d2d2d;
-    font-weight: bold;
-    position: fixed;
-    bottom: 100px;
-    left: 30%;
-    padding: 10px;
-    border-radius: 16px;
+    background-color: orangered; 
 }
 
 /*BOTON INFERIOR*/
 .volverAlJuego {
     position: fixed;
-    bottom:100px;
+    bottom: 50px;
     left: 50%;
     transform: translateX(-50%);
-    color: #fff;
-    display: inline-block;
-    padding: 10px;
-    font-family: 'PartyConfetti';
-    font-size: 2em;
-    background-color: orange; 
-    border-radius: 23px;
-    text-shadow: 2px 2px 5px rgb(216, 90, 0);
-    cursor: pointer;
+    background-color: #cf7712; 
+    color: #fff; 
+    padding: 10px 20px; 
 }
 
 .negrita{
@@ -194,13 +146,13 @@ button {
 /*MENUS RANK Y COMPETI*/
 
 .contenedorNegro {
-    background-color: rgba(48, 55, 138, 0.7); 
+    background-color: rgba(0, 0, 0, 0.7); 
     width: 33%;
     text-align: center;
     border-radius: 10px;
     padding: 20px;
-    margin:auto;
-
+    margin: auto;
+    margin-top: 5%;
 }
 
 /*BOTONES SELECCION DE OPCIONES*/
@@ -208,17 +160,16 @@ button {
     display: block;
     width: 80%;
     margin: auto; 
-    margin-bottom: 20px;
+    margin-bottom: 25px;
     padding: 15px;
     text-align: center;
     color: white;
-    background-color: rgb(47, 44, 125);
+    background-color: orange;
 }
 
 .botonMenu:hover {
-    background-color: rgb(66, 63, 138);
+    background-color: orangered; 
     transition:0.5;
-    cursor: pointer;
 }
 
 /*FORMULARIO*/
@@ -282,11 +233,11 @@ input:focus,textarea:focus {
 .divPregunta {
     text-align: center;
     width: 40%;
-    height: auto;
+    height: 60%;
     margin:auto;
     margin-top: 2%;
     padding: 30px;
-    background-color: rgba(58, 57, 57, 0.695);
+    background-color: rgb(58, 57, 57);
     border-radius: 40px;
 }
 
@@ -308,27 +259,18 @@ input:focus,textarea:focus {
     font-size: 1.125em; /* 18px */
     text-align: center;
     text-decoration: none;
-    color: rgb(255, 255, 255);
-    background-color: rgb(255, 189, 58);
+    color: rgb(0, 0, 0);
+    background-color: #ffffff;
     border: none;
     border-radius: 5px;
     cursor: pointer;
     font-weight: bold;
-    text-shadow: 2px 2px 5px rgb(255, 89, 0);
-    filter: drop-shadow(4px 3px 0px rgba(255, 60, 0, 1));
 }
-
-   
-
 
 .respuestaBtn:hover {
-    background-color: rgb(255, 200, 90);
+    background-color: #312f2f;
     color: #f9f9f9;
     transition: 0.5s;
-}
-
-.enlaces{
-    display: block;
 }
 
 /*IMAGEN DE VICTORIA*/
@@ -359,10 +301,8 @@ input:focus,textarea:focus {
 
   /**configuracion**/
  #divConfig{
+    background-image: url('img/bgCrud.jpg');
     color: white;
-    z-index: 10;
-    background-image: none;
-    position: absolute;
  }
 
  #divConfig img{
@@ -381,16 +321,16 @@ input:focus,textarea:focus {
     height: 7.5%;
     width: 3.5%;
     background-size: 100%;
-    background-repeat: no-repeat;
     padding: 0%;
+    background-repeat: no-repeat;
+    background-color: darkgray;
     border: 0;
+    box-shadow: 7.5px 0 10px #48529944, -7.5px 0 10px #48529944, 0 -7.5px 10px #48529944, 0 7.5px 10px #48529944;
 }
 
 #botonconfig:hover{
-    background-color: none;
-    box-shadow: 2px 2px 20px rgba(117, 117, 117, 0.5);
-    transition:0.5s;
-    cursor: pointer;
+    box-shadow: 12.5px 0 10px #48529944, -12.5px 0 10px #48529944, 0 -12.5px 10px #48529944, 0 12.5px 10px #48529944;
+    transition: box-shadow 0.5s ease-in-out;
 }
 
 @media only screen and (max-width: 1300px) {
@@ -405,49 +345,61 @@ input:focus,textarea:focus {
         top: -20%;
     }
 }
-#bGlobal{
-    display: block;
-}
 
-.contenedorNegro>.botonMenu>img{
-    width: 80%;
-    display: none;
-}
-  #divPartDemo>.divPregunta{
-    filter: drop-shadow(2px 4px 5px rgba(0, 170, 255, 0.7));
-}
 
-#divEquidadGenero>.divPregunta{
-    filter: drop-shadow(2px 4px 5px rgba(255, 0, 183, 0.7));
-}
-#divEquidadGenero>.main-title-white{
-    -webkit-text-stroke: 2px rgb(125, 44, 116);
-    text-shadow: 2px 2px 10px rgb(255, 133, 249);
-}
+@media only screen and (max-width: 1300px) and (orientation: portrait) {
+    body{
+        background-color: #6ea6ff;
+        background-image: none;
+    }
+    .main-title{
+        font-size: 5em;
+    }
+    .botonEnlace, .volverAlJuego, .botonMenu{
+        display: block;
+        width: 50%;
+        height: 100px;
+        margin: 0 auto;
+        margin-bottom: 20px;
+        font-size: 2em;
+    }
+    .contenedorNegro{
+        width: 80%;
+    }
+    label{
+        font-size: 2em;
+    }
+    #ruleta{
+        top: 0;
+        width: 70%;
+        left: 15%;
+    }
+    #puntero {
+        display: none;
+    }
+    #divPartDemo{
+        background-color: #3367d6;
+        background-image: none;
+    }
+    #divJustSocial{
+        background-color: red;
+        background-image: none;
+    }
+    #divDesHumano{
+        background-color: green;
+        background-image: none;
+    }
+    #divInterculturalidad{
+        background-color: yellow;
+        background-image: none;
+    }
+    #divEquidadGenero{
+        background-color: pink;
+        background-image: none;
+    }
+  }
 
-#divInterculturalidad>.divPregunta{
-    filter: drop-shadow(2px 5px 5px rgba(255, 255, 0, 0.7));
-}
-#divInterculturalidad>.main-title-white{
-    -webkit-text-stroke: 2px rgb(195, 195, 36);
-    text-shadow: 2px 2px 10px rgb(255, 245, 133);
-}
 
-#divDesHumano>.divPregunta{
-    filter: drop-shadow(2px 4px 5px rgba(0, 255, 38, 0.7));
-}
-#divDesHumano>.main-title-white{
-    -webkit-text-stroke: 2px rgb(44, 125, 45);
-    text-shadow: 2px 2px 10px rgb(133, 255, 135);
-}
-
-#divJustSocial>.divPregunta{
-    filter: drop-shadow(2px 4px 5px rgba(255, 13, 0, 0.7));
-}
-#divJustSocial>.main-title-white{
-    -webkit-text-stroke: 2px rgb(219, 42, 42);
-    text-shadow: 2px 2px 10px rgb(255, 133, 133);
-}
 .error-message {
     color: red;
     font-weight: bold;
@@ -460,7 +412,7 @@ input:focus,textarea:focus {
 #puntero {
     position: absolute;
     top: 12.5%;
-    left: 39%;
+    left: 36%;
     width: 60%;
     height: auto;
 }
@@ -542,7 +494,7 @@ input:focus,textarea:focus {
     display: block;
     width: 200px;
     height: 40px;
-    margin: auto;
+    margin-bottom: 0px;
 }
 .btnSiguienteTiradas:hover {
     background-color: #f79b30;
@@ -597,117 +549,3 @@ input:focus,textarea:focus {
     background-color: #3367d6;
   }
   
-    @media only screen and (max-width: 480px) and (orientation: portrait) {
-        .main-title-white{
-            font-size: 2.25em;
-        }
-        .divPregunta{
-            width: 80%;
-        }
-
-        .respuestaBtn {
-            width: 100%;
-        }
-        .elemento-con-animacion {
-            width: 70%;
-        }
-        label{
-            font-size: 2em;
-            display: none;
-        }
-    }
-    @media only screen and (max-width: 1300px) and (orientation: portrait) {
-        body{
-            background-image: url('../img/fondoMovil.png');
-        }
-        #divMenuInicial{
-            backdrop-filter: blur(10px);
-            background-image: url('../img/fondoMovil.png');
-            background-size: cover;
-        }
-        #ruleta{
-            width: 100%;
-            margin-top: 20%;
-            height: auto;
-            position: absolute;
-            left: 30%;
-            top: -30%;
-            
-        }
-        
-        .contenedorNegro>.botonMenu>span{
-            display:none;
-        }
-        .contenedorNegro>.botonMenu>img{
-            display:block;
-            margin: auto;
-        }
-    
-        #divMenuCompeticion>.contenedorNegro>.botonMenu>img{
-            display:block;
-        }
-        #divMenuCompeticion>.contenedorNegro>.botonMenu>span{
-            display:none;
-        }
-    
-        .contenedorNegro>.botonMenu{
-            display: inline-block;
-            width: 70px;
-            height: 70px;
-            padding: 0px;
-            margin-left: 7px;
-        }
-    
-        .mensajeInf{
-            display: none;
-        }
-        .enlaces{
-            margin-top: 30px;
-        }
-        .main-title{
-            font-size: 5em;
-        }
-        .botonMenu, .botonEnlace, .volverAlJuego{
-            display: block;
-            width: 50%;
-            height: 100px;
-            margin: 20px auto;
-            font-size: 2em;
-        }
-       
-        
-        .contenedorNegro{
-            padding-top: 10px;
-            width: 80%;
-        }
-        label{
-            font-size: 2em;
-            display: none;
-        }
-        #ruleta{
-            top: 0;
-            width: 70%;
-            left: 15%;
-        }
-        #puntero {
-            display: none;
-        }
-        .divPregunta{
-            width: 60%;
-        }
-        #divPartDemo{
-            background-image: url('../img/bgParticipacion.png');
-        }
-        #divJustSocial{
-            background-image: url('../img/bgJusticia2.png');
-        }
-        #divDesHumano{
-            background-image: url('../img/bgDesarrollo2.png');
-        }
-        #divInterculturalidad{
-            background-image: url('../img/bgInterculturalidad2.png');
-        }
-        #divEquidadGenero{
-            background-image: url('../img/bgEquidad2.png');
-        }
-      }

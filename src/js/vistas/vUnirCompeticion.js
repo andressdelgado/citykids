@@ -11,6 +11,6 @@ export class UnirCompeticion extends Vista {
   }
 
   pulsarunirCompeticion () {
-    this.controlador.verVista(Vista.vMenuInicial)
+    this.controlador.verVista(Vista.vmenuinicial)
   }
 }
