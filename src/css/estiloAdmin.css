@@ -341,3 +341,17 @@ input[type="button"]:hover {
 #volverAlMenu:hover {
     background-color: #555;
 }*/
+
+.imagenes{
+    width: 30%;
+    height: auto;
+}
+
+.tamanio{
+    width: 100%;
+    height: auto;
+}
+
+.ambitos{
+    width: 20%;
+}

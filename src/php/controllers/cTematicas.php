@@ -16,6 +16,13 @@
             $datos = $this->objTematicas->mListarTematicas();
             return $datos;
         }
+        public function listarPersonajes(){
+            $this->view = 'vListarPersonajes';
+            $this->nombrePagina = 'Listar Personajes';
+            $id_tematica = $_GET["id_tematica"];
+            $datos = $this->objTematicas->mListarPersonajes($id_tematica);
+            return $datos;
+        }
         public function altaTematicas() {
             $this->view = 'vAltaTematicas';
             $this->nombrePagina = 'Alta Tematicas';
@@ -25,11 +32,13 @@
                 $personajes = [];
         
                 for ($i = 0; $i <= 4; $i++) {
+                    $ambito = $_POST["ambito_$i"];
                     $nombre_personaje = $_POST["nombre_personaje_$i"];
                     $descripcion = $_POST["descripcion_$i"];
                     $imagen = $_FILES["imagen_$i"];
                     
                     $personaje = [
+                        "ambito_$i" => $ambito,
                         "nombre_personaje_$i" => $nombre_personaje,
                         "descripcion_$i" => $descripcion,
                         "imagen_$i" => $imagen
@@ -40,14 +49,11 @@
                 try{
                 // creo la temática y personajes
                     $this->objTematicas->mAltaTematicas($nombretematica, $personajes);
-                    //header("Location: index.php?c=cTematicas&m=listarTematicas");
+                    header("Location: index.php?c=cTematicas&m=listarTematicas");
                     exit();
                 } catch (Exception $mensaje) {
                     $codigoError = $mensaje->getCode();
                     switch ($codigoError) {
-                        case 1062:
-                            $this->mensaje= "Error al procesar el formulario: Ya existe una pregunta similar.";
-                            break;
                         case 1048:
                             $this->mensaje= "Error al procesar el formulario: No puede haber campos vacíos.";
                             break;
@@ -58,7 +64,7 @@
                         header("Location: index.php?c=cTematicas&m=listarTematicas");
                         exit();
                         if (is_numeric($resultado)) {
-                            $this->mensaje = "Error al crear competición. Código de error: $resultado";
+                            $this->mensaje = "Error al crear temática. Código de error: $resultado";
                         } else {
                             $this->mensaje = $resultado;
                         }
