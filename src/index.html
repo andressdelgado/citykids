@@ -8,6 +8,20 @@
         <title>CityKids</title>
     </head>
     <body>
+        <audio autoplay loop id="audioElementId">
+            <source src="sound/sonidoJuego.mp3" type="audio/mpeg" >
+            Tu navegador no soporta audio HTML5.
+          </audio>
+          <!--VISTA CONFIGURACION-->
+          
+        <div id="divConfig">
+            <div id="configuracion">
+                <h1 class="main-title-white">CONFIGURACION</h1>
+                <button id="stopAudioBtn"><img id="audioIcon" src="img/off.png"></button>
+            
+            </div>
+            <button class="volverAlJuego" class="styled-link">GUARDAR</button>
+        </div>
         <!--VISTA PRINCIPAL-->
         <div id="divMenuInicial">
             <div class="contenedor">
@@ -20,17 +34,7 @@
                 </div>
             </div>
         </div>
-        <!--VISTA CONFIGURACION-->
-        <div id="divConfig">
-            <div class="contenedorNegro">
-                <h1 class="main-title-white">CONTROLES</h1>
-                <img src="img/teclado.png">
-                <p><span class="negrita">Click Izquierdo:</span> Accionar los botones para realizar acciones y responder las preguntas.</p>
-                <p><span class="negrita">Enter:</span> Girar la ruleta</p>
-            </div>
-            <button class="volverAlJuego" class="styled-link">VOLVER AL MENÚ</button>
-        </div>
-        
+
 
         <!--VISTA MODO COMPETICION-->
         <div id="divRuleta">
@@ -53,7 +57,7 @@
 
         <!--VISTA FORMULARIO PARA CREAR LA COMPETICION-->
         <div id="divCrearCompeticion">
-            <div class="contenedorNegro">
+            <div id="formCompeticion">
                 <h1 class="main-title-white">CREAR COMPETICIÓN</h1>
                 <form action="#" method="POST" id="crearcompeticion">
                     <label for="crearClave">Introducir clave:</label>
@@ -84,7 +88,7 @@
                 <h1 class="main-title-white">UNIRSE A UNA COMPETICIÓN</h1>
                 <form action="#" method="post">
                     <label for="clave">Introducir clave:</label>
-                    <input type="text" id="clave" name="clave" required>
+                    <input type="text" id="clave" name="clave" placeholder="Introduce la clave..." required>
                     <button type="submit" class="botonMenu">Unirse</button>
                 </form>
             </div>
@@ -97,30 +101,29 @@
                 <h1 class="main-title-white">¿QUÉ TIPO DE RANKING QUIERES VISUALIZAR?</h1>
                 <button class="botonMenu"><span>RANKING GLOBAL</span><img src="img/global.png"></img></button>
                 <button class="botonMenu"><span>RANKING COMPETICIÓN</span><img src="img/group.png"></img></button>
-                <button class="botonMenu"><span>TEST MIGUEL</span></button>
             </div>
             <button class="volverAlJuego" class="styled-link">VOLVER AL JUEGO</button>  
         </div>
 
-        <!--VISTA RANKING GENERAL-->
-        <div id="divRankingGlobal">
-            <div class="contenedorNegro">
-              <h1 class="main-title-white">RANKING GLOBAL</h1>
-              <table id="rankingTable">
-                <thead>
-                  <tr>
-                    <th>Jugador</th>
-                    <th>Puntuación</th>
-                    <th>Fecha</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <!-- Los datos del ranking se mostrarán aquí dinámicamente -->
-                </tbody>
-              </table>
-            </div>
-            <button class="volverAlJuego" class="styled-link">VOLVER AL JUEGO</button>
-          </div>
+                <!--VISTA RANKING GENERAL-->
+                <div id="divRankingGlobal">
+                    <div class="contenedorNegro">
+                      <h1 class="main-title-white">RANKING GLOBAL</h1>
+                      <table id="rankingTable">
+                        <thead>
+                          <tr>
+                            <th>Jugador</th>
+                            <th>Puntuación</th>
+                            <th>Fecha</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <!-- Los datos del ranking se mostrarán aquí dinámicamente -->
+                        </tbody>
+                      </table>
+                    </div>
+                    <button class="volverAlJuego" class="styled-link">VOLVER AL JUEGO</button>
+                </div>
 
         <!--VISTA FORMULARIO PARA VER RANKING COMPETICION-->
         <div id="divRankingCompeticion">
@@ -128,13 +131,13 @@
                 <h1 class="main-title-white">INTRODUCE EL CÓDIGO DEL RANKING A VISUALIZAR</h1>
                 <form action="#" method="post">
                     <label for="clave">Introducir clave:</label>
-                    <input type="text" id="clave" name="clave" required>
+                    <input type="text" id="clave" name="clave" placeholder="Introduce la clave..." required>
                     <button type="submit" class="botonMenu">VISUALIZAR</button>
                 </form>
             </div>
             <button class="volverAlJuego" class="styled-link">VOLVER AL MENÚ</button>
         </div>
-
+    </div>
         <!--VISTA LANZAMIENTO PREGUNTAS SOBRE PARTICIPACION DEMOTRÁTICA-->
         <div id="divPartDemo">
             <p class="main-title-white">Participacion Democrática</p>
@@ -184,27 +187,27 @@
         </div>
 
         <!--VISTA DE VICTORIA-->
-            <div id="divVictoria">
-                <div id="contenedor">
-                    <div class="divPregunta">
-                        <p>
-                            ¡Enhorabuena! Has ganado con una puntuación de...
-                        </p>
-                        <div id="rotate-container">
-                            <div id="rotate-box">
-                            <img id="rotate-image" src="img/win.png" alt="Imagen a rotar">
-                            </div>
+        <div id="divVictoria">
+            <div id="contenedor">
+                <div class="divPregunta">
+                    <p>
+                        ¡Enhorabuena! Has ganado con una puntuación de...
+                    </p>
+                    <div id="rotate-container">
+                        <div id="rotate-box">
+                        <img id="rotate-image" src="img/win.png" alt="Imagen a rotar">
                         </div>
-                        <form action="#" method="post">
-                            <label for="nombre">Introducir tu puntuacion:</label>
-                            <input type="text" id="puntos" name="puntos" required>
-                            <label for="nombre">Introducir tu nombre:</label>
-                            <input type="text" id="nombre" name="nombre" required>
-                            <button type="submit" class="botonMenu">CONTINUAR</button>
-                        </form>
                     </div>
+                    <form action="#" method="post">
+                        <label for="nombre">Introducir tu puntuacion:</label>
+                        <input type="text" id="puntos" name="puntos" required>
+                        <label for="nombre">Introducir tu nombre:</label>
+                        <input type="text" id="nombre" name="nombre" required>
+                        <button type="submit" class="botonMenu">CONTINUAR</button>
+                    </form>
                 </div>
             </div>
+        </div>
 
         <script type="module" src="js/scriptmvc.js"></script>
     </body>

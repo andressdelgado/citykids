@@ -25,7 +25,7 @@ export class MenuInicial extends Vista {
     this.pDialogo = document.createElement('p')
     this.base.appendChild(this.pDialogo)
     this.pDialogo.textContent = 'Al pulsar este boton, se iniciará la partida'
-    this.pDialogo.className = 'volverAlJuego'
+    this.pDialogo.className = 'mensajeInf'
   }
 
   eliminarMensaje () {

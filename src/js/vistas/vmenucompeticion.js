@@ -32,6 +32,6 @@ export class MenuCompeticion extends Vista {
   }
 
   pulsarUnirCompeticion () {
-    this.controlador.verVista(Vista.vinircompeticion)
+    this.controlador.verVista(Vista.vunircompeticion)
   }
 }

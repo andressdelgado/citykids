@@ -68,7 +68,14 @@ class Controlador {
 
     this.verVista(Vista.vmenuinicial)
   }
-
+  stopAudio() {
+    const audioElement = document.getElementById('audioElementId');
+    if (audioElement.paused) {
+      audioElement.play();
+    } else {
+      audioElement.pause();
+    }
+  }
   validarFormulario() {
     const claveInput = document.getElementById('crearClave')
     const tituloInput = document.getElementById('crearTitulo')
