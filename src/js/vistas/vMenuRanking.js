@@ -7,9 +7,11 @@ export class MenuRanking extends Vista {
 
     this.rankingGlobal = this.base.querySelectorAll('button')[0]
     this.rankingCompeticion = this.base.querySelectorAll('button')[1]
+    this.testMiguel = this.base.querySelectorAll('button')[2]
 
     this.rankingGlobal.onclick = this.pulsarRankingGlobal.bind(this)
     this.rankingCompeticion.onclick = this.pulsarRankingCompeticion.bind(this)
+    this.testMiguel.onclick = this.pulsarTestMiguel.bind(this)
 
     this.crearInterfaz()
   }
@@ -31,4 +33,9 @@ export class MenuRanking extends Vista {
   pulsarRankingCompeticion() {
     this.controlador.verVista(Vista.vrankingcompeticion)
   }
+
+  pulsarTestMiguel(){
+    this.controlador.verVista(Vista.vformulariofinal)
+  }
+
 }

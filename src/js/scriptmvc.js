@@ -44,7 +44,8 @@ class Controlador {
     const divDesHumano = document.getElementById('divDesHumano')
     const divInterculturalidad = document.getElementById('divInterculturalidad')
     const divEquidadGenero = document.getElementById('divEquidadGenero')
-    const divFormulario = document.getElementById('divFormulario')
+    //const divFormulario = document.getElementById('divFormulario')
+    const divVictoria = document.getElementById('divVictoria')
     const divConfig = document.getElementById('divConfig')
 
 
@@ -62,7 +63,7 @@ class Controlador {
     this.vistas.set(Vista.vDesHumano, new DesHumano(this, divDesHumano))
     this.vistas.set(Vista.vInterculturalidad, new Interculturalidad(this, divInterculturalidad))
     this.vistas.set(Vista.vEquidadGenero, new EquidadGenero(this, divEquidadGenero))
-    this.vistas.set(Vista.vFormularioFinal, new FormularioFinal(this, divFormulario))
+    this.vistas.set(Vista.vFormularioFinal, new FormularioFinal(this, divVictoria))
     this.vistas.set(Vista.vConfig, new Configuracion(this, divConfig))
 
     this.verVista(Vista.vMenuInicial)
@@ -148,9 +149,8 @@ class Controlador {
 
       // Mostrar la pregunta y las opciones de respuesta
       preguntaTexto.textContent = preguntaAleatoria.pregunta;
-      console.log('EN LA VISTA CONTROLADOR :' +preguntaAleatoria)
-      console.log('EN LA VISTA CONTROLADOR PREGUNTA:' +preguntaAleatoria.pregunta)
       const respuestasAleatorias = preguntaAleatoria.respuestas.sort(()=> Math.random() - 0.5)
+
       respuestasAleatorias.forEach((opcion) => {
         const respuestaBtn = document.createElement('button');
         respuestaBtn.textContent = opcion.texto_respuesta;
@@ -158,9 +158,10 @@ class Controlador {
         console.log('RESPUESTA :' +preguntaAleatoria.texto_respuesta)
         respuestaBtn.addEventListener('click', () => {
 
+
             respuestaBtn.style.pointerEvents = 'none'
 
-            if (opcion.num_respuesta === '1') {
+            if (opcion.num_respuesta === 1) {
                 this.obtenerPuntuacion()
                 divRespuesta.style.display = 'block';
                 textoRespuesta.textContent = '¡CORRECTO!';
@@ -180,6 +181,7 @@ class Controlador {
                 divRespuesta.appendChild(botonSiguienteTirada)
             } else {
                 console.log("INCORRECTA");
+                console.log(opcion.num_respuesta)
                 divRespuesta.style.display = 'block';
                 textoRespuesta.textContent = 'INCORRECTO';
                 textoRespuesta.classList.add('texto-elemento')
@@ -208,7 +210,7 @@ class Controlador {
   }
 
   obtenerPuntuacion() {
-    this.preguntasCorrectas = this.preguntasCorrectas + 20;
+    this.preguntasCorrectas = this.preguntasCorrectas + 10;
     return this.preguntasCorrectas;
   }
 

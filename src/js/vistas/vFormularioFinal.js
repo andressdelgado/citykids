@@ -13,7 +13,6 @@ export class FormularioFinal extends Vista {
     this.btnVolverJuego.textContent = 'VOLVER AL MENÚ'
     this.btnVolverJuego.className = 'volverAlJuego'
 
-    // Asociar evento al botón para volver al menú principal (vMenuInicial)
     this.btnVolverJuego.onclick = () => {
       this.controlador.verVista(Vista.vMenuInicial)
     }

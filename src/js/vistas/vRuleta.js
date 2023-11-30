@@ -139,11 +139,7 @@ export class Ruleta extends Vista {
       this.crearInterfaz2();
     }
   }
-
-
   
-  
-
   mostrarPreguntas(idAmbitoAleatorio, preguntas) {
     this.controlador.mostrarPreguntas(idAmbitoAleatorio, preguntas)
   }
