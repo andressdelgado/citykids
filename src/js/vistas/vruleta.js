@@ -1,8 +1,17 @@
 import { Vista } from './vista.js'
 import { GeneradorNumeros } from '../clases/generadornumeros.js'
 
+/**
+ * Clase Ruleta que extiende de Vista para gestionar la ruleta del juego.
+ * @extends Vista
+ */
 export class Ruleta extends Vista {
 
+  /**
+   * Constructor de la clase Ruleta.
+   * @param {Controlador} controlador - Instancia del controlador del juego.
+   * @param {HTMLElement} base - Elemento HTML base para la interfaz de la ruleta.
+   */
   constructor (controlador, base) {
     super(controlador, base)
     
@@ -15,9 +24,21 @@ export class Ruleta extends Vista {
     this.crearBoton()
   }
 
+  /**
+   * Número de preguntas mostradas para controlar el límite.
+   * @type {number}
+   */
   preguntasMostradas = 0 //Para controlar el numero de pregunta que sale 
+
+  /**
+   * Array para controlar que los ámbitos no se repiten.
+   * @type {number[]}
+   */
   ambitosSeleccionados = [] //Para controlar que los ambitos no salen repetidos
 
+  /**
+   * Método para crear dinámicamente el botón de la ruleta y añadirlo al DOM.
+   */
   crearBoton() {
     // Se crea el botón dinámicamente y se agrega al DOM
     this.button = document.createElement('button')
@@ -77,6 +98,9 @@ export class Ruleta extends Vista {
     });
   }
   
+  /**
+   * Método para crear la interfaz después de girar la ruleta.
+   */
   crearInterfaz2() {
     this.button.style.display='none'
     const controlador = this.controlador
@@ -105,6 +129,9 @@ export class Ruleta extends Vista {
     this.base.appendChild(divPuntuacion)
   }
 
+  /**
+   * Método para gestionar la acción de girar la ruleta.
+   */
   girarRuleta() {
     if (this.preguntasMostradas < 4) {
       let idAmbitoAleatorio;
@@ -140,10 +167,19 @@ export class Ruleta extends Vista {
     }
   }
   
+  /**
+   * Método para mostrar preguntas según el ámbito aleatorio.
+   * @param {number} idAmbitoAleatorio - ID del ámbito seleccionado.
+   * @param {object[]} preguntas - Array de preguntas asociadas al ámbito.
+   */
   mostrarPreguntas(idAmbitoAleatorio, preguntas) {
     this.controlador.mostrarPreguntas(idAmbitoAleatorio, preguntas)
   }
 
+  /**
+   * Método para cambiar la vista del juego según el ámbito aleatorio.
+   * @param {number} idAmbitoAleatorio - ID del ámbito seleccionado.
+   */
   cambiarVista (idAmbitoAleatorio) {
         switch (idAmbitoAleatorio) {
           case 1:

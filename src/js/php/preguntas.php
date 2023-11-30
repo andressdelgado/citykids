@@ -3,10 +3,7 @@ ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 
-$servidor = '2daw.esvirgua.com';
-$usuario =  'user2daw_01';
-$contrasenia = 'JcuHIKzWAUld';
-$bbdd = 'user2daw_BD1-01';
+require_once 'configdb.php';
 
 $conn = new mysqli($servidor, $usuario, $contrasenia, $bbdd);
 
@@ -21,7 +18,7 @@ if (isset($_GET['id_ambito'])) {
 
     $id_ambito = $_GET['id_ambito'];
 
-    // Use prepared statements to handle user input securely
+    // Practico el usar preparadas
     $sql = "SELECT p.id_pregunta, p.pregunta, r.num_respuesta, r.texto_respuesta
             FROM Pregunta p
             INNER JOIN Respuesta r ON p.id_pregunta = r.id_pregunta

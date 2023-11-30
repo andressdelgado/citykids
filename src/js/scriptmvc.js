@@ -1,9 +1,9 @@
 import {Modelo} from './modelos/modelo.js'
 import {Vista} from './vistas/vista.js'
 import {MenuInicial} from './vistas/vmenuinicial.js'
-import {Ruleta} from './vistas/vruleta.js'
+import {Ruleta} from './vistas/vruleta.js' //SERGIO
 import {MenuCompeticion} from './vistas/vmenucompeticion.js'
-import {CrearCompeticion} from './vistas/vcrearcompeticion.js'
+import {CrearCompeticion} from './vistas/vcrearcompeticion.js' //SERGIO
 import {UnirCompeticion} from './vistas/vunircompeticion.js'
 import {MenuRanking} from './vistas/vmenuranking.js'  //SERGIO
 import {RankingGlobal} from './vistas/vrankingglobal.js' //SERGIO
@@ -16,6 +16,9 @@ import {EquidadGenero} from './vistas/vequidadgenero.js'
 // import { FormularioFinal } from './vistas/vformulariofinal.js'
 import { Configuracion } from './vistas/vconfig.js'
 
+/**
+ * Clase Controlador para gestionar la lógica y negociaciones del juego.
+ */
 class Controlador {
   /*
 	 * Inicializa los atributos del Controlador.
@@ -32,13 +35,13 @@ class Controlador {
 
     //conseguimos la referencia de la interface
     const divMenuInicial = document.getElementById('divMenuInicial')
-    const divRuleta = document.getElementById('divRuleta')
+    const divRuleta = document.getElementById('divRuleta') //SERGIO
     const divMenuCompeticion = document.getElementById('divMenuCompeticion')
-    const divCrearCompeticion = document.getElementById('divCrearCompeticion')
+    const divCrearCompeticion = document.getElementById('divCrearCompeticion') //SERGIO
     const divUnirCompeticion = document.getElementById('divUnirCompeticion')
-    const divMenuRanking = document.getElementById('divMenuRanking')
+    const divMenuRanking = document.getElementById('divMenuRanking')  //SERGIO
     const divRankingGlobal = document.getElementById('divRankingGlobal') //SERGIO
-    const divRankingCompeticion = document.getElementById('divRankingCompeticion')
+    const divRankingCompeticion = document.getElementById('divRankingCompeticion')  //SERGIO
     const divPartDemo = document.getElementById('divPartDemo')
     const divJustSocial = document.getElementById('divJustSocial')
     const divDesHumano = document.getElementById('divDesHumano')
@@ -51,13 +54,13 @@ class Controlador {
 
     //Creamos las vistas 
     this.vistas.set(Vista.vmenuinicial, new MenuInicial(this, divMenuInicial))
-    this.vistas.set(Vista.vruleta, new Ruleta(this, divRuleta));
+    this.vistas.set(Vista.vruleta, new Ruleta(this, divRuleta)); //SERGIO
     this.vistas.set(Vista.vmenucompeticion, new MenuCompeticion(this, divMenuCompeticion))
-    this.vistas.set(Vista.vcrearcompeticion, new CrearCompeticion(this, divCrearCompeticion))
+    this.vistas.set(Vista.vcrearcompeticion, new CrearCompeticion(this, divCrearCompeticion)) //SERGIO
     this.vistas.set(Vista.vunircompeticion, new UnirCompeticion(this, divUnirCompeticion))
-    this.vistas.set(Vista.vmenuranking, new MenuRanking(this, divMenuRanking))
+    this.vistas.set(Vista.vmenuranking, new MenuRanking(this, divMenuRanking)) //SERGIO
     this.vistas.set(Vista.vrankingglobal, new RankingGlobal(this, divRankingGlobal)) //SERGIO
-    this.vistas.set(Vista.vrankingcompeticion, new RankingCompeticion(this, divRankingCompeticion))
+    this.vistas.set(Vista.vrankingcompeticion, new RankingCompeticion(this, divRankingCompeticion)) //SERGIO
     this.vistas.set(Vista.vpartdemo, new PartDemo(this, divPartDemo))
     this.vistas.set(Vista.vjustsocial, new JustSocial(this, divJustSocial))
     this.vistas.set(Vista.vdeshumano, new DesHumano(this, divDesHumano))
@@ -68,6 +71,10 @@ class Controlador {
 
     this.verVista(Vista.vmenuinicial)
   }
+
+  /**
+   * Detiene o reproduce el elemento de audio según su estado actual.
+   */
   stopAudio() {
     const audioElement = document.getElementById('audioElementId');
     if (audioElement.paused) {
@@ -143,6 +150,11 @@ class Controlador {
   //   }
   // }
  
+  /**
+   * Muestra las preguntas y respuestas en la interfaz del juego.
+   * @param {number} ambito - Número que representa el ámbito de las preguntas.
+   * @param {Array} datosPreguntas - Array de objetos que contiene las preguntas y respuestas.
+   */
   mostrarPreguntas(ambito, datosPreguntas) {
     const preguntasArea = document.getElementById('preguntasArea'+ambito);
     const preguntaTexto = document.getElementById('preguntaTexto'+ambito);
@@ -221,11 +233,19 @@ class Controlador {
     }
   }
 
+  /**
+   * Obtiene la puntuación acumulada por preguntas correctas.
+   * @returns {number} - Puntuación acumulada.
+   */
   obtenerPuntuacion() {
     this.preguntasCorrectas = this.preguntasCorrectas + 10;
     return this.preguntasCorrectas;
   }
 
+  /**
+   * Cambia la vista actual del juego.
+   * @param {string} vista - Identificador de la vista a mostrar.
+   */
   verVista (vista) {
     this.ocultarVistas()
     this.vistas.get(vista).mostrar(true)
@@ -235,14 +255,20 @@ class Controlador {
     }
   }
 
+  /**
+   * Oculta todas las vistas del juego.
+   */
   ocultarVistas(){
 		for(const vista of this.vistas.values())
 			vista.mostrar(false)
 	}
 
 
+  /**
+   * Obtiene el ranking global mediante una solicitud AJAX.
+   */
   obtenerRankingGlobal() { 
-    console.log("wololo") 
+    console.log("wololo depurador echo de menos hobbit") 
     fetch('./js/php/ranking.php', {
       method: 'GET',
       headers: {
@@ -264,4 +290,8 @@ class Controlador {
   
 
 }
+
+/**
+ * Función que se ejecuta al cargar la página para inicializar el juego.
+ */
 window.onload = () => {new Controlador()}

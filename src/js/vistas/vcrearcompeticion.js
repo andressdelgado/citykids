@@ -1,6 +1,16 @@
 import { Vista } from './vista.js';
 
+/**
+ * Clase CrearCompeticion que extiende de Vista para gestionar la creación de competiciones.
+ * @extends Vista
+ */
 export class CrearCompeticion extends Vista {
+
+  /**
+   * Constructor de la clase CrearCompeticion.
+   * @param {Controlador} controlador - Instancia del controlador del juego.
+   * @param {HTMLElement} base - Elemento HTML base para la interfaz de creación de competiciones.
+   */
   constructor(controlador, base) {
     super(controlador, base);
 
@@ -9,17 +19,22 @@ export class CrearCompeticion extends Vista {
 
     this.enlace2.onclick = this.pulsarEnlace2.bind(this);
     this.enviar.addEventListener('click', (event) => {
-
       const formValid = this.validarFormulario(event);
-  
   });
 
   }
 
+  /**
+   * Método para manejar el evento de clic en el enlace de retorno.
+   */
   pulsarEnlace2() {
     this.controlador.verVista(Vista.vmenuinicial);
   }
 
+  /**
+   * Método para validar el formulario de creación de competiciones.
+   * @param {Event} event - Evento asociado al clic del botón de envío.
+   */
   validarFormulario(event) {
     event.preventDefault();
 
@@ -54,6 +69,13 @@ export class CrearCompeticion extends Vista {
     }
   }
 
+  /**
+   * Método para enviar el formulario de competición mediante una solicitud AJAX.
+   * @param {string} clave - Clave de la competición.
+   * @param {string} titulo - Título de la competición.
+   * @param {string} descripcion - Descripción de la competición.
+   * @param {string} fechaFin - Fecha de finalización de la competición.
+   */
   enviarFormularioAjax(clave, titulo, descripcion, fechaFin) {
     const formData = new FormData();
       formData.append('clave', clave);
@@ -77,6 +99,12 @@ export class CrearCompeticion extends Vista {
     
   }
 
+  /**
+   * Método para aplicar estilos y mensajes de error o éxito en el formulario.
+   * @param {HTMLElement} elemento - Elemento del formulario a modificar.
+   * @param {boolean} esValido - Indica si el valor del elemento es válido.
+   * @param {string} mensajeError - Mensaje de error a mostrar en caso de no ser válido.
+   */
   aplicarEstilos(elemento, esValido, mensajeError) {
     const errorSpan = elemento.nextElementSibling;
 
@@ -104,8 +132,10 @@ export class CrearCompeticion extends Vista {
     }
   }
 
+  /**
+   * Método para mostrar un mensaje de alerta tras la creación exitosa de la competición. Terminan siendo elementos html y css en lugar de un popup de chrome.
+   */
   mensajeAlerta() {
-    // Create a custom modal
     const modalContainer = document.createElement('div');
     modalContainer.classList.add('custom-modal');
 
@@ -119,7 +149,6 @@ export class CrearCompeticion extends Vista {
     okButton.textContent = 'OK';
 
     okButton.addEventListener('click', () => {
-        // Reload the page (perform an F5 refresh)
         location.reload(true);
     });
 
@@ -127,7 +156,6 @@ export class CrearCompeticion extends Vista {
     modalContent.appendChild(okButton);
     modalContainer.appendChild(modalContent);
 
-    // Append the modal to the body
     document.body.appendChild(modalContainer);
 }
 
