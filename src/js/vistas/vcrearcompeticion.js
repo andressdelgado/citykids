@@ -157,7 +157,7 @@ export class CrearCompeticion extends Vista {
     modalContainer.appendChild(modalContent);
 
     document.body.appendChild(modalContainer);
-}
+  }
 
 
 }
