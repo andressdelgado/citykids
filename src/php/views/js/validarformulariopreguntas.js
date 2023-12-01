@@ -20,6 +20,8 @@ class FormularioValidator {
             'texto_respuesta_incorrecta1',
             'texto_respuesta_incorrecta2'
         ];
+
+        console.log("cargado con extio")
     }
 
     /**
