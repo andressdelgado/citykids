@@ -89,7 +89,7 @@ body {
 }
 
 /* Imagen de la ruleta */
-#divMenuInicial, #divMenuRanking, #divMenuCompeticion, #divCrearCompeticion, #divUnirCompeticion, #divRankingCompeticion, #divRankingGlobal{
+#divMenuInicial, #divMenuRanking, #divMenuCompeticion, #divCrearCompeticion, #divUnirCompeticion, #divRankingCompeticion{
     width: 100%;
     height: 100%;
     background-image: url('img/bgInicio.png');
@@ -254,18 +254,6 @@ input:focus,textarea:focus {
 
 /*TABLA RANKING*/
 
-.ranking{
-    background-color: #ffb055;
-    background-image: none;
-    border-radius: 16px;
-    width: 85%;
-    margin: auto;
-    filter: drop-shadow(4px 3px 0px rgba(255, 60, 0, 1));
-    padding: 10px;
-    font-size: 1.5em;
-    text-align: center;
-}
-
 #rankingTable {
     width: 100%;
     border-collapse: collapse;
@@ -273,12 +261,13 @@ input:focus,textarea:focus {
 }
 
 #rankingTable th, #rankingTable td {
+    border: 1px solid #fff;
     padding: 10px;
     color: #fff;
 }
 
 #rankingTable th {
-    background-color: #ffa641;
+    background-color: #333;
 }
 
 #rankingTable tr:nth-child(even) {
@@ -287,16 +276,6 @@ input:focus,textarea:focus {
 
 #rankingTable tr:hover {
     background-color: rgba(255, 255, 255, 0.3);
-}
-
-#rankingTable tr:nth-of-type(3){
-    background-color: rgb(240, 163, 30)
-}
-#rankingTable tr:nth-of-type(2){
-    background-color: rgb(162, 162, 162)
-}
-#rankingTable tr:nth-of-type(1){
-    background-color: rgb(183, 143, 75)
 }
 
 /*PREGUNTAS Y RESPUESTAS*/
@@ -513,25 +492,6 @@ input:focus,textarea:focus {
     height: auto;
 }
 
-.custom-modal {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.5);
-}
-
-.modal-content {
-    background: #fff;
-    padding: 20px;
-    border-radius: 8px;
-    text-align: center;
-}
-
 .respuesta-correcta {
     background-color: green;
     color: white;
@@ -663,95 +623,101 @@ input:focus,textarea:focus {
     transition: background-color 0.3s ease;
   }
 
-  #divRankingGlobal>.ranking>.main-title-white{
-    font-family: 'PartyConfetti', Courier, monospace;
-    font-size: 2.25em;
-    margin: 0;
-    margin-bottom: 20px;
-    -webkit-text-stroke: 2px orangered;
+  .custom-modal {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+}
+
+.modal-content {
+    background: #fff;
+    padding: 20px;
+    border-radius: 8px;
     text-align: center;
-    text-shadow: 2px 2px 10px rgb(255, 190, 69);
-    color: #ffffff;
-  }
+}
+
+button {
+    padding: 10px;
+    margin-top: 10px;
+    cursor: pointer;
+}
+
+  
   /* Estilos de hover para el botón de volver al inicio */
   .btn-volver-inicio:hover {
     background-color: #3367d6;
   }
   
-  @media only screen and (max-width: 480px) {
-    /* Tus estilos aquí */
-    .main-title-white {
-        font-size: 2.25em;
-    }
-    .divPregunta {
-        width: 80%;
-    }
-    .respuestaBtn {
-        width: 100%;
-    }
-    .elemento-con-animacion {
-        width: 70%;
-    }
-    label {
-        font-size: 2em;
-        display: none;
-    }
-    input::placeholder {
-        font-size: 25px;
-    }
-    #configuracion {
-        width: 80%;
-        height: 85%;
-    }
-    #botonconfig {
-        position: absolute;
-        left: 82%;
-        top: 4%;
-    }
-    #divCrearCompeticion > .volverAlJuego,
-    #divRankingGlobal > .volverAlJuego {
-        position: fixed;
-        bottom: 7px;
-        font-size: x-large;
-        height: 50px;
-        overflow: hidden;
-        padding: 0px;
-    }
-    #divCrearCompeticion > #formCompeticion > #crearcompeticion > .botonMenu,
-    #divRankingCompeticion > .contenedorNegro > form > .botonMenu {
-        width: 80%;
-        height: 40px;
-        overflow: hidden;
-        padding: 0px;
-    }
-    .divPregunta {
-        height: 70vh;
-        overflow: auto;
-    }
-    .divPregunta p {
-        font-size: 1.5em;
-        margin: 0px;
-    }
-    .respuestaBtn {
-        padding: 5px;
-        font-size: 12px;
-        margin: 0px;
-        margin-top: 20px;
-    }
-    .elemento-con-animacion {
-        width: 75%;
-        height: 40%;
-    }
-    .ranking {
-        overflow: auto;
-        font-size: 1em;
-        height: 84%;
-    }
-    div{
-        overflow: auto;
-    }
-}
+    @media only screen and (max-width: 480px) and (orientation: portrait) {
+        .main-title-white{
+            font-size: 2.25em;
+        }
+        .divPregunta{
+            width: 80%;
+        }
 
+        .respuestaBtn {
+            width: 100%;
+        }
+        .elemento-con-animacion {
+            width: 70%;
+        }
+        label{
+            font-size: 2em;
+            display: none;
+        }
+        input::placeholder{
+            font-size: 25px;
+        }
+
+        #configuracion{
+            width: 80%;
+            height: 85%;
+        }
+
+        #botonconfig{
+            position: absolute;
+            left: auto;
+            top: 82%;
+        }
+
+        #divCrearCompeticion>.volverAlJuego{
+            position: fixed;
+            bottom: 50px;
+            font-size: x-large;
+            height: 50px;
+            overflow: hidden;
+            padding: 0px;
+        }
+        #divCrearCompeticion>#formCompeticion>#crearcompeticion>.botonMenu, 
+        #divRankingCompeticion>.contenedorNegro>form>.botonMenu
+        {
+            width: 80%;
+            height: 40px;
+            overflow: hidden;
+            padding: 0px;
+        }
+        .divPregunta{
+            height: 70vh;
+
+        }
+        .divPregunta>p{
+            font-size: 1em;
+        }
+        .respuestaBtn{
+            padding: 5px;
+            font-size: 12px;
+        }
+        .elemento-con-animacion{
+            width: 60%;
+        }
+    }
     @media only screen and (max-width: 1300px) and (orientation: portrait) {
         body{
             background-image: url('../img/fondoMovil.gif');
@@ -836,11 +802,7 @@ input:focus,textarea:focus {
             height: 90%;
         }
 
-        #divRankigGlobal>.volverAlJuego{
-            overflow: hidden;
-            font-size: 20px;
-            height: 30px;
-        }
+
         .contenedorNegro{
             padding-top: 10px;
             width: 80%;
