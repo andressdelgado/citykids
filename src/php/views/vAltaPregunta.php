@@ -43,6 +43,8 @@
         <a href="../../src/php/index.php?c=cPreguntasRespuestas&m=mostrarMenuPreguntasRespuestas" id="volverAlMenu">Volver al menu Q&A</a>
 
     <script src="views/js/botones.js"></script>
+    <script src="views/js/validarformulariopreguntas.js"></script>
+
 
 
 </div>

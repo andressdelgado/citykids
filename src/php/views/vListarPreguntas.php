@@ -28,4 +28,4 @@
 
 </div>
 
-
+<script src="views/js/confirmacion.js"></script>
