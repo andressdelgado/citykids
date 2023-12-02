@@ -1,0 +1,103 @@
+/* Utilizar la fuente PartyConfetti para el encabezado */
+@font-face {
+    font-family: 'PartyConfetti';
+    src: url('../fonts/PartyConfetti.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+/* Estilos generales */
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    font-family: 'Arial', sans-serif; /* Cambio en la declaración de la fuente */
+}
+
+body {
+    background-image: none;
+    background-color: rgb(218, 218, 218);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    display: flex; /* Cambio de align-items y justify-content a flexbox */
+    align-items: center;
+    justify-content: center;
+}
+
+/* Estilos para el encabezado */
+h1 {
+    text-align: center;
+    font-family: 'PartyConfetti', sans-serif; /* Aplicar la fuente personalizada */
+    font-size: 36px; /* Tamaño del encabezado */
+    margin-bottom: 20px; /* Espaciado inferior */
+}
+
+/* Estilos para la tabla */
+table {
+    margin: auto;
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    margin-bottom: 40px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); /* Sombra para la tabla */
+}
+
+thead {
+    background-color: #333;
+    color: white;
+}
+
+th, td {
+    background-color: #f2f2f277;
+    padding: 12px;
+    text-align: left;
+}
+
+/* Estilos alternos para filas */
+tbody tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+tbody tr:hover {
+    transition: 0.8s;
+    background-color: #c1c0c0; /* Cambia el color al pasar el cursor sobre la fila */
+}
+/* Estilos para el enlace volverAlMenu */
+#volverAlMenu {
+   /* display: block; /* Cambio a bloque para ocupar el ancho disponible */
+    margin: 20px auto; /* Espaciado */
+    text-decoration: none;
+    padding: 10px 20px;
+    background-color: #333;
+    color: white;
+    border-radius: 5px;
+    text-align: center; /* Centrar texto */
+    transition: background-color 0.3s ease; /* Transición suave */
+}
+
+.borrar-btn:hover {
+    background-color: rgb(197, 151, 105);
+    transition: 0.5s;
+}
+.volverAlJuego {
+    display: block; /* Cambio a bloque para ocupar el ancho disponible */
+    margin: 20px auto; /* Espaciado */
+    text-decoration: none;
+    padding: 10px 20px;
+    background-color: #4e4e4e; 
+    color: #fff; 
+    border: none;
+    border-radius: 3px;
+    font-size: 16px;
+    text-align: center; /* Centrar texto */
+}
+.volverAlJuego:hover{
+    background-color: #363535; 
+    transition: 0.7s;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5); /* Añade sombra */
+}
+/*/ 
+=======
+#volverAlMenu:hover {
+    background-color: #555;
+}*/

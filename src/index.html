@@ -1,0 +1,122 @@
+<!-- PROYECTO CITYKIDS -->
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="css/estilo.css">
+        <title>CityKids</title>
+    </head>
+    <body>
+        <div id="divVista1">
+            <div id="contenedor">
+                <h1 class="main-title">CityKids</h1>
+                <img class="imgInicio" src="img/ruleta.png" alt="CityKids Imagen">
+                <div class="enlaces">
+                    <button class="botonEnlace">INICIAR PARTIDA</button>
+                    <button class="botonEnlace">MENU COMPETICIÓN</button>
+                    <button class="botonEnlace">VER RANKINGS</button>
+                </div>
+            </div>
+        </div>
+        <div id="divVista2">
+            <div id="contenedor">
+                <img class="imgInicio" src="img/ruleta.png" alt="CityKids Imagen">
+            </div>
+        </div>
+        <div  id="divVista3">
+            <div id="contenedorNegro">
+                <h1 class="main-title-white">MENÚ COMPETICIÓN</h1>
+                <button class="botonMenu">CREAR COMPETICION</button>
+                <button class="botonMenu">UNIRSE COMPETICION</button>
+            </div>
+            <!--SE GENERARÁ EL BOTON PARA VOLVER AL MENÚ A TRAVÉS DE JAVASCRIPT-->
+        </div>
+        <div id="divVista4">
+            <div id="contenedorNegro">
+                <h1 class="main-title-white">CREAR COMPETICIÓN</h1>
+                <form action="php/index.php?c=cCompeticiones&m=crearCompeticiones" method="POST" id="crearcompeticion">
+                    <label for="clave">Introducir clave:</label>
+                    <input type="text" id="crearclave" name="clave">
+        
+                    <label for="titulo">Introducir título:</label>
+                    <input type="text" id="creartitulo" name="titulo">
+        
+                    <label for="descripcion">Descripción:</label>
+                    <textarea id="creardescripcion" name="descripcion" rows="4"></textarea>
+        
+                    <label for="fechaFin">Selecciona hora y día de fin:</label>
+                    <input type="datetime-local" id="crearfechaFin" name="fechaFin">
+        
+                    <button type="submit" class="botonMenu">Enviar</button>
+                </form>
+            </div>
+            <button class="volverAlJuego" class="styled-link">VOLVER AL MENÚ</button>
+        </div>
+        <div id="divVista5">
+            <div id="contenedorNegro">
+                <h1 class="main-title-white">UNIRSE A UNA COMPETICIÓN</h1>
+                <form action="#" method="post">
+                    <label for="clave">Introducir clave:</label>
+                    <input type="text" id="clave" name="clave" required>
+                    <button type="submit" class="botonMenu">Unirse</button>
+                </form>
+            </div>
+            <button class="volverAlJuego" class="styled-link">VOLVER AL MENÚ</button>
+        </div>
+        <div id="divVista6">
+            <div id="contenedorNegro">
+                <h1 class="main-title-white">¿QUÉ TIPO DE RANKING QUIERES VISUALIZAR?</h1>
+                <button class="botonMenu">RANKING GLOBAL</button>
+                <button class="botonMenu">RANKING COMPETICIÓN</button>
+            </div>
+            <button class="volverAlJuego" class="styled-link">VOLVER AL JUEGO</button>  
+        </div>
+        <div id="divVista7">
+            <h2>AQUI VA EL RANKING GENERAL</h2>
+            <button class="volverAlJuego" class="styled-link">VOLVER AL JUEGO</button>  
+        </div>
+        <div id="divVista8">
+            <div id="contenedorNegro">
+                <h1 class="main-title-white">INTRODUCE EL CÓDIGO DEL RANKING A VISUALIZAR</h1>
+                <form action="#" method="post">
+                    <label for="clave">Introducir clave:</label>
+                    <input type="text" id="clave" name="clave" required>
+                    <button type="submit" class="botonMenu">VISUALIZAR</button>
+                </form>
+            </div>
+            <button class="volverAlJuego" class="styled-link">VOLVER AL MENÚ</button>
+        </div>
+        <div id="divVista9">
+            <div id="contenedor">
+                <h1 class="main-title-white">PARTICIPACIÓN DEMOCRÁTICA</h1>
+            </div>
+            <button class="volverAlJuego" class="styled-link">VOLVER AL MENÚ</button>
+        </div>
+        <div id="divVista10">
+            <div id="contenedor">
+                <h1 class="main-title-white">JUSTICIA SOCIAL</h1>
+            </div>
+            <button class="volverAlJuego" class="styled-link">VOLVER AL MENÚ</button>
+        </div>
+        <div id="divVista11">
+            <div id="contenedor">
+                <h1 class="main-title-white">DESARROLLO HUMANO Y SOSTENIBLE</h1>
+            </div>
+            <button class="volverAlJuego" class="styled-link">VOLVER AL MENÚ</button>
+        </div>
+        <div id="divVista12">
+            <div id="contenedor">
+                <h1 class="main-title-white">INTERCULTURALIDAD E INCLUSIÓN</h1>
+            </div>
+            <button class="volverAlJuego" class="styled-link">VOLVER AL MENÚ</button>
+        </div>
+        <div id="divVista13">
+            <div id="contenedor">
+                <h1 class="main-title-white">EQUIDAD DE GÉNERO Y COEDUCACIÓN</h1>
+            </div>
+            <button class="volverAlJuego" class="styled-link">VOLVER AL MENÚ</button>
+        </div>
+        <script type="module" src="js/scriptmvc.js"></script>
+    </body>
+</html>
