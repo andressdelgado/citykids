@@ -1,4 +1,3 @@
-
 <div id="contenedorTabla">
     <table>
         <thead>
@@ -25,4 +24,3 @@
     </table>
 </div>
 <a href="views/vJuego.html" id="volverAlMenu">Volver al juego</a>
-
