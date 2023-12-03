@@ -26,19 +26,26 @@
         public function altaTematicas() {
             $this->view = 'vAltaTematicas';
             $this->nombrePagina = 'Alta Tematicas';
-        
+            $datos = $this->objTematicas->mObtenerAmbitos();
+            return $datos;
+        }
+
+        public function altaTematicas2() {
+            $this->view = 'vAltaTematicas';
+            $this->nombrePagina = 'Alta Tematicas';
             if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 $nombretematica = $_POST["nombre_tematica"];
                 $personajes = [];
+                
         
                 for ($i = 0; $i <= 4; $i++) {
-                    $ambito = $_POST["ambito_$i"];
+                    $id_ambito = $_POST["ambito_$i"];
                     $nombre_personaje = $_POST["nombre_personaje_$i"];
                     $descripcion = $_POST["descripcion_$i"];
                     $imagen = $_FILES["imagen_$i"];
                     
                     $personaje = [
-                        "ambito_$i" => $ambito,
+                        "ambito_$i" => $id_ambito,
                         "nombre_personaje_$i" => $nombre_personaje,
                         "descripcion_$i" => $descripcion,
                         "imagen_$i" => $imagen
@@ -71,22 +78,23 @@
                         break;
                     }
                 }
+                
             }
         }
+
+        /*public function modificarTematicas(){
+            $this->view = 'vModificarTematicas';
+            $this->nombrePagina = ' Modificar Tematicas';
+            $id_tematica = $_GET['id_tematica'];
+            $datos = $this->objTematicas->mModificarTematicas($id_tematica);
+            return $datos;
+        }*/
 
         
         public function borrarTematicas(){
             $id_tematica = $_GET['id_tematica'];
             $this->objTematicas->mBorrarTematicas($id_tematica);
-        }
-        public function obtenerIdTematica(){
-            
-        
-            $id_tematica = $_GET['id_tematica'];
-            // Obtener los datos de la competición a modificar
-            $datos = $this->objCompeticiones->mObtenerTematica($id_tematica);
-        
-            // Pasar los datos a la vista
-            return $datos;
+            header("Location: index.php?c=cTematicas&m=listarTematicas");
+            exit();
         }
     }
