@@ -59,23 +59,32 @@
                     header("Location: index.php?c=cTematicas&m=listarTematicas");
                     exit();
                 } catch (Exception $mensaje) {
-                    $codigoError = $mensaje->getCode();
-                    switch ($codigoError) {
-                        case 1048:
-                            $this->mensaje= "Error al procesar el formulario: No puede haber campos vacíos.";
-                            break;
-                        case 1406:
-                            $this->mensaje= "Error al procesar el formulario: Los campos exceden la longitud máxima.";
-                            break;
-                        default:
-                        header("Location: index.php?c=cTematicas&m=listarTematicas");
-                        exit();
-                        if (is_numeric($resultado)) {
-                            $this->mensaje = "Error al crear temática. Código de error: $resultado";
-                        } else {
-                            $this->mensaje = $resultado;
+                    //pregunto si el codigo del mensaje es numerico para acceder al switch case, si no lo es, muestro el mensaje de texto
+                    if (is_numeric($mensaje->getCode())) {
+                        $codigoError = $mensaje->getCode();
+                    
+                        switch ($codigoError) {
+                            case 1048:
+                                $this->mensaje= "Error al procesar el formulario: No puede haber campos vacíos.";
+                                header("Location: index.php?c=cTematicas&m=altaTematicas&mensaje=$this->mensaje");
+                                break;
+                            case 1406:
+                                $this->mensaje= "Error al procesar el formulario: Los campos exceden la longitud máxima.";
+                                header("Location: index.php?c=cTematicas&m=altaTematicas&mensaje=$this->mensaje");
+                                break;
+                            case 00001:
+                                $this->mensaje = $mensaje->getMessage();
+                                header("Location: index.php?c=cTematicas&m=altaTematicas&mensaje=$this->mensaje");
+                                break;
+                            case 00002:
+                                $this->mensaje = $mensaje->getMessage();
+                                header("Location: index.php?c=cTematicas&m=altaTematicas&mensaje=$this->mensaje");
+                                break;
+                            default:
+                                header("Location: index.php?c=cTematicas&m=listarTematicas");
+                                break;
+                            
                         }
-                        break;
                     }
                 }
                 

@@ -114,50 +114,72 @@
             }
         }
         
-        function mAltaTematicas($nombretematica, $personajes){
+        function mAltaTematicas($nombretematica, $personajes) {
             $nombretematica = empty($nombretematica) ? "NULL" : "'" . $this->conexion->real_escape_string($nombretematica) . "'";
-            
-            $this->conexion->begin_transaction();
         
             try {
-                $sql_insertar_tematica = "INSERT INTO Tematica(nombre) VALUES ($nombretematica)";
-                $this->conexion->query($sql_insertar_tematica);        
-                $id_tematica = $this->conexion->insert_id;
-        
-                // Crear personajes asociados a la temática
+                $this->conexion->begin_transaction();
                 foreach ($personajes as $i => $personaje) {
                     $id_ambito = (int)$personaje["ambito_$i"];
-                    $nombrepersonaje = $this->conexion->real_escape_string($personaje["nombre_personaje_$i"]);
-                    $descripcion = $this->conexion->real_escape_string($personaje["descripcion_$i"]);
-                    if (isset($personaje["imagen_$i"])) {
-
-                        $imagen = $personaje["imagen_$i"];
-                        $ext = pathinfo($imagen["name"], PATHINFO_EXTENSION);
-                        $nombreimagen = uniqid() . "." . $ext;
-                        $carpeta_final = __DIR__ . "/../../img";
-                        $ruta_inicial = $imagen["tmp_name"];
-                        $ruta_final = $carpeta_final . DIRECTORY_SEPARATOR . $nombreimagen;
-                        
-                        move_uploaded_file($ruta_inicial, $ruta_final);
-                    } else {
-                        $nombreimagen = null;
+                    if(empty($personaje["nombre_personaje_$i"])){
+                        $nombrepersonaje = $personaje["nombre_personaje_$i"]; 
+                        $nombrepersonaje= "NULL";
+                        $errorNombrePersonaje = ("Error: El nombre de algun personaje está vacio.");
+                        throw new Exception($errorNombrePersonaje , 0001);
+                    }else{
+                        $nombrepersonaje = $this->conexion->real_escape_string($personaje["nombre_personaje_$i"]);
                     }
-                    
+                    $descripcion = $this->conexion->real_escape_string($personaje["descripcion_$i"]);
+        
+                        if (isset($personaje["imagen_$i"])) {
+                            $imagen = $personaje["imagen_$i"];
+                            $ext = pathinfo($imagen["name"], PATHINFO_EXTENSION);
+                            
+                            // Lista de extensiones permitidas
+                            $extensiones_permitidas = array("png", "jpg", "jpeg");
+                        
+                            // Verificar si la extensión está en la lista permitida
+                            if (in_array(strtolower($ext), $extensiones_permitidas)) {
+                                // La extensión es válida, puedes proceder con el procesamiento de la imagen
+                                $nombreimagen = uniqid() . "." . $ext;
+                                $carpeta_final = __DIR__ . "/../../img";
+                                $ruta_inicial = $imagen["tmp_name"];
+                                $ruta_final = $carpeta_final . DIRECTORY_SEPARATOR . $nombreimagen;
+                                move_uploaded_file($ruta_inicial, $ruta_final);
+                            } else {
+                                //devuelvo un mensaje personalizado que muestra el texto del error que la extension no está permitida
+                                $errorExtension = ("Error: La extensión del archivo no está permitida.");
+                                throw new Exception($errorExtension , 0001);
+                            }
+                        }
+                
+                        
+        
                     $sql_insertar_personaje = "INSERT INTO Personaje (nombre, descripcion, imagen) VALUES ('$nombrepersonaje', '$descripcion', '$nombreimagen')";
                     $this->conexion->query($sql_insertar_personaje);
                     $id_personaje = $this->conexion->insert_id;
+                    }
+                //////////////////////////////
+
+                $sql_insertar_tematica = "INSERT INTO Tematica(nombre) VALUES ($nombretematica)";
+                $this->conexion->query($sql_insertar_tematica);
+                $id_tematica = $this->conexion->insert_id;
+        
+                // Crear personajes asociados a la temática
+                
         
                     $sql_insertar_todo = "INSERT INTO Tematica_Ambito_Personaje(id_tematica, id_ambito, id_personaje) VALUES ('$id_tematica', '$id_ambito', '$id_personaje')";
                     $this->conexion->query($sql_insertar_todo);
-                }
         
                 $this->conexion->commit();
-                
+        
             } catch (Exception $e) {
                 $this->conexion->rollback();
                 throw $e;
             }
         }
+        
+        
         
 
         function mBorrarTematicas($id_tematica){
