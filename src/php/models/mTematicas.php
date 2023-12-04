@@ -9,7 +9,6 @@
                 die("Error de conexión: " . $this->conexion->connect_error);
             }
         
-            // Establecer la codificación a UTF-8
             if (!$this->conexion->set_charset("utf8")) {
                 printf("Error al establecer la conexión a UTF-8: %s\n", $this->conexion->error);
                 exit();
@@ -103,7 +102,6 @@
                 $nombre_personaje = $personaje['nombre_personaje'];
                 $descripcion = $personaje['descripcion'];
             
-                // Utiliza $imagen en la consulta solo si está definida
                 if ($imagen !== null) {
                     $sql_modificar_personaje = "UPDATE Personaje SET nombre = '$nombre_personaje', descripcion='$descripcion', imagen = '$nombreimagen' WHERE id_personaje = '$id_personaje'";
                 } else {
@@ -119,6 +117,9 @@
         
             try {
                 $this->conexion->begin_transaction();
+                $sql_insertar_tematica = "INSERT INTO Tematica(nombre) VALUES ($nombretematica)";
+                $this->conexion->query($sql_insertar_tematica);
+                $id_tematica = $this->conexion->insert_id;
                 foreach ($personajes as $i => $personaje) {
                     $id_ambito = (int)$personaje["ambito_$i"];
                     if(empty($personaje["nombre_personaje_$i"])){
@@ -138,9 +139,8 @@
                             // Lista de extensiones permitidas
                             $extensiones_permitidas = array("png", "jpg", "jpeg");
                         
-                            // Verificar si la extensión está en la lista permitida
+                            // Valida si la extensión está en la lista permitida
                             if (in_array(strtolower($ext), $extensiones_permitidas)) {
-                                // La extensión es válida, puedes proceder con el procesamiento de la imagen
                                 $nombreimagen = uniqid() . "." . $ext;
                                 $carpeta_final = __DIR__ . "/../../img";
                                 $ruta_inicial = $imagen["tmp_name"];
@@ -149,7 +149,7 @@
                             } else {
                                 //devuelvo un mensaje personalizado que muestra el texto del error que la extension no está permitida
                                 $errorExtension = ("Error: La extensión del archivo no está permitida.");
-                                throw new Exception($errorExtension , 0001);
+                                throw new Exception($errorExtension , 0002);
                             }
                         }
                 
@@ -158,18 +158,10 @@
                     $sql_insertar_personaje = "INSERT INTO Personaje (nombre, descripcion, imagen) VALUES ('$nombrepersonaje', '$descripcion', '$nombreimagen')";
                     $this->conexion->query($sql_insertar_personaje);
                     $id_personaje = $this->conexion->insert_id;
-                    }
-                //////////////////////////////
 
-                $sql_insertar_tematica = "INSERT INTO Tematica(nombre) VALUES ($nombretematica)";
-                $this->conexion->query($sql_insertar_tematica);
-                $id_tematica = $this->conexion->insert_id;
-        
-                // Crear personajes asociados a la temática
-                
-        
                     $sql_insertar_todo = "INSERT INTO Tematica_Ambito_Personaje(id_tematica, id_ambito, id_personaje) VALUES ('$id_tematica', '$id_ambito', '$id_personaje')";
                     $this->conexion->query($sql_insertar_todo);
+                    }           
         
                 $this->conexion->commit();
         
@@ -211,10 +203,6 @@
                 if (file_exists($ruta_inicial)) {
                     // Mover el archivo a la carpeta de imágenes borradas
                     rename($ruta_inicial, $ruta_final);
-                } else {
-                    // Manejar el caso donde el archivo no existe
-                    // Puedes emitir un mensaje de error o realizar otras acciones según tus necesidades
-                    echo "El archivo $ruta_inicial no existe.";
                 }
                 $id_personaje = $fila ['id_personaje'];
                 $id_personaje = (int)$id_personaje;

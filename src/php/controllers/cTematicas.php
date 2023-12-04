@@ -65,7 +65,7 @@
                     
                         switch ($codigoError) {
                             case 1048:
-                                $this->mensaje= "Error al procesar el formulario: No puede haber campos vacíos.";
+                                $this->mensaje= "Error al procesar el formulario: No puede estar la temática vacía.";
                                 header("Location: index.php?c=cTematicas&m=altaTematicas&mensaje=$this->mensaje");
                                 break;
                             case 1406:
@@ -100,7 +100,7 @@
         }
 
         public function modificarTematicas2(){
-            // Verificar si el formulario ha sido enviado
+            //deberia de preguntar que si algun campo de los obligatorios, se deja como vacio, que salga un error, y que no se modifiquen los datps
             if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 // Obtener los datos del formulario
                 $id_tematica = $_POST['id_tematica'];
@@ -111,7 +111,6 @@
         
                 // Recorrer los datos de los personajes
                 for ($i = 0; $i < 5; $i++) {
-                    // Verificar si la clave existe antes de intentar acceder a ella
                     $id_personaje = isset($_POST["id_personaje_$i"]) ? $_POST["id_personaje_$i"] : null;
                     $nombre_personaje = isset($_POST["nombre_personaje_$i"]) ? $_POST["nombre_personaje_$i"] : null;
                     $descripcion = isset($_POST["descripcion_$i"]) ? $_POST["descripcion_$i"] : null;
@@ -124,8 +123,6 @@
                         'descripcion' => $descripcion,
                         'imagen' => $imagen,
                     ];
-        
-                    // Agregar el personaje al array
                     $personajes[] = $personaje;
                 }
         
