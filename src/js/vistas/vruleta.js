@@ -48,6 +48,8 @@ export class Ruleta extends Vista {
   
     // Agregar evento de clic al botón
     this.button.addEventListener('click', () => {
+      // Deshabilitar el botón para evitar múltiples clics
+      this.button.disabled = true;
       // Seleccionar la imagen de la ruleta y el sonido
       let sonidoRuleta = document.getElementById('audioRuleta')
       let ruletaImg = document.getElementById('ruleta')
@@ -98,72 +100,46 @@ export class Ruleta extends Vista {
     });
   }
   
-  /**
-   * Método para crear la interfaz después de girar la ruleta.
-   */
-  crearInterfaz2() {
-    this.button.style.display='none'
-    const controlador = this.controlador
-    const puntuacion = controlador.obtenerPuntuacion()
-    
-    // Crear el contenedor div
-    const divPuntuacion = document.createElement('div')
-    divPuntuacion.className = 'elemento-con-animacion'
-    divPuntuacion.style.backgroundColor = '#b8ffd3'
-    // Crear el párrafo con el mensaje de puntuación
-    const pMensaje = document.createElement('p')
-    pMensaje.textContent = `¡Has obtenido ${puntuacion} puntos!`
-    
-    // Crear el botón para volver al inicio
-    const btnVolverInicio = document.createElement('button')
-    btnVolverInicio.textContent = 'Volver al inicio'
-    btnVolverInicio.className = 'btnSiguienteTiradas'
-    
-    // Agregar evento al botón para volver al inicio
-    btnVolverInicio.addEventListener('click', () => {
-      location.reload();
-    });
-    
-    divPuntuacion.appendChild(pMensaje)
-    divPuntuacion.appendChild(btnVolverInicio)
-    this.base.appendChild(divPuntuacion)
+  habilitarBoton() {
+    this.button.disabled = false;
   }
 
   /**
    * Método para gestionar la acción de girar la ruleta.
    */
   girarRuleta() {
-    if (this.preguntasMostradas < 4) {
+    if (this.preguntasMostradas < 5) { // Cambiamos la condición para mostrar 5 preguntas en total
+      // Lógica para obtener preguntas de cada ámbito
       let idAmbitoAleatorio;
       do {
         idAmbitoAleatorio = Math.floor(Math.random() * 5) + 1;
       } while (this.ambitosSeleccionados.includes(idAmbitoAleatorio));
+  
       this.ambitosSeleccionados.push(idAmbitoAleatorio);
       this.preguntasMostradas++;
-
-      const self = this;
-
-      fetch('./js/php/preguntas.php?id_ambito='+idAmbitoAleatorio, {
+  
+      fetch('./js/php/preguntas.php?id_ambito=' + idAmbitoAleatorio, {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json'
         }
       })
-        .then(response => {
-          if (!response.ok) {
-            throw new Error('Network response was not ok.');
-          }
-          return response.json();
-        })
-        .then(preguntas => {
-          console.log('Respuesta del servidor:', preguntas);
-          self.mostrarPreguntas(idAmbitoAleatorio, preguntas);
-        })
-        .catch(error => {
-          console.error('Hubo un problema con la petición Fetch:', error);
-        });
-    } else {
-      this.crearInterfaz2();
+      .then(response => {
+        if (!response.ok) {
+          throw new Error('ERROR EN LA CONEXION.');
+        }
+        return response.json();
+      })
+      .then(preguntas => {
+        // Mostrar la pregunta obtenida
+        this.mostrarPreguntas(idAmbitoAleatorio, preguntas);
+        if (this.preguntasMostradas === 5) {
+          this.cambiarVista(6)
+        }
+      })
+      .catch(error => {
+        console.error('Error:', error);
+      });
     }
   }
   
@@ -172,6 +148,7 @@ export class Ruleta extends Vista {
    * @param {number} idAmbitoAleatorio - ID del ámbito seleccionado.
    * @param {object[]} preguntas - Array de preguntas asociadas al ámbito.
    */
+
   mostrarPreguntas(idAmbitoAleatorio, preguntas) {
     this.controlador.mostrarPreguntas(idAmbitoAleatorio, preguntas)
   }
@@ -185,18 +162,27 @@ export class Ruleta extends Vista {
           case 1:
             //this.controlador.verVista(Vista.vPartDemo)
             this.controlador.verVista(Vista.vpartdemo)
+            this.habilitarBoton();
             break
           case 2:
             this.controlador.verVista(Vista.vjustsocial)
+            this.habilitarBoton();
             break
           case 3:
             this.controlador.verVista(Vista.vdeshumano)
+            this.habilitarBoton();
             break
           case 4:
             this.controlador.verVista(Vista.vinterculturalidad)
+            this.habilitarBoton();
             break
           case 5:
             this.controlador.verVista(Vista.vequidadgenero)
+            this.habilitarBoton();
+            break
+          case 6:
+            this.controlador.verVista(Vista.divVictoria)
+            this.habilitarBoton();
             break
           default:
             console.log('Número no válido')

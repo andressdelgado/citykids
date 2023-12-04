@@ -259,11 +259,13 @@ input:focus,textarea:focus {
     background-image: none;
     border-radius: 16px;
     width: 85%;
+    height: 75%;
     margin: auto;
     filter: drop-shadow(4px 3px 0px rgba(255, 60, 0, 1));
     padding: 10px;
     font-size: 1.5em;
     text-align: center;
+    overflow: auto;
 }
 
 #rankingTable {
@@ -583,8 +585,8 @@ input:focus,textarea:focus {
 .elemento-con-animacion {
     animation: fadeIn 1s ease-in-out;
     position: absolute;
-    width: 30%;
-    height: 30%;
+    width: 35%;
+    height: 60%;
     left: 0;
     right: 0;
     top: 0;
@@ -601,8 +603,19 @@ input:focus,textarea:focus {
     border-radius: 6px;
     color: white;
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    box-shadow: 10px 10px 20px 0 rgba(255, 0, 0, 0.5), -10px -10px 20px 0 rgba(0, 255, 0, 0.5), 10px -10px 20px 0 rgba(0, 0, 255, 0.5), -10px 10px 20px 0 rgba(255, 255, 0, 0.5);
 }
-
+.elemento-con-animacion input{
+    font-size: 23px;
+    font-weight: bold;
+    color: #0a2869;
+}
+.elemento-con-animacion .btnEnviarFormulario{
+    font-size: 20px;
+    background-color: #1e366c;
+    color: white;
+    padding: 10px;
+}
 .btnSiguienteTiradas {
     font-family: 'Arial', Courier, monospace;
     font-weight: bold;

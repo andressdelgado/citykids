@@ -4,7 +4,7 @@ import {MenuInicial} from './vistas/vmenuinicial.js'
 import {Ruleta} from './vistas/vruleta.js' //SERGIO
 import {MenuCompeticion} from './vistas/vmenucompeticion.js'
 import {CrearCompeticion} from './vistas/vcrearcompeticion.js' //SERGIO
-import {UnirCompeticion} from './vistas/vunircompeticion.js'
+//import {UnirCompeticion} from './vistas/vunircompeticion.js'
 import {MenuRanking} from './vistas/vmenuranking.js'  //SERGIO
 import {RankingGlobal} from './vistas/vrankingglobal.js' //SERGIO
 import {RankingCompeticion} from './vistas/vrankingcompeticion.js'  //SERGIO
@@ -13,7 +13,7 @@ import {JustSocial} from './vistas/vjustsocial.js'
 import {DesHumano} from './vistas/vdeshumano.js'
 import {Interculturalidad} from './vistas/vInterculturalidad.js'
 import {EquidadGenero} from './vistas/vequidadgenero.js'
-// import { FormularioFinal } from './vistas/vformulariofinal.js'
+import { Victoria } from './vistas/victoria.js'
 import { Configuracion } from './vistas/vconfig.js'
 
 /**
@@ -38,7 +38,7 @@ class Controlador {
     const divRuleta = document.getElementById('divRuleta') //SERGIO
     const divMenuCompeticion = document.getElementById('divMenuCompeticion')
     const divCrearCompeticion = document.getElementById('divCrearCompeticion') //SERGIO
-    const divUnirCompeticion = document.getElementById('divUnirCompeticion')
+    //const divUnirCompeticion = document.getElementById('divUnirCompeticion')
     const divMenuRanking = document.getElementById('divMenuRanking')  //SERGIO
     const divRankingGlobal = document.getElementById('divRankingGlobal') //SERGIO
     const divRankingCompeticion = document.getElementById('divRankingCompeticion')  //SERGIO
@@ -47,7 +47,6 @@ class Controlador {
     const divDesHumano = document.getElementById('divDesHumano')
     const divInterculturalidad = document.getElementById('divInterculturalidad')
     const divEquidadGenero = document.getElementById('divEquidadGenero')
-    //const divFormulario = document.getElementById('divFormulario')
     const divVictoria = document.getElementById('divVictoria')
     const divConfig = document.getElementById('divConfig')
 
@@ -57,7 +56,7 @@ class Controlador {
     this.vistas.set(Vista.vruleta, new Ruleta(this, divRuleta)); //SERGIO
     this.vistas.set(Vista.vmenucompeticion, new MenuCompeticion(this, divMenuCompeticion))
     this.vistas.set(Vista.vcrearcompeticion, new CrearCompeticion(this, divCrearCompeticion)) //SERGIO
-    this.vistas.set(Vista.vunircompeticion, new UnirCompeticion(this, divUnirCompeticion))
+    //this.vistas.set(Vista.vunircompeticion, new UnirCompeticion(this, divUnirCompeticion))
     this.vistas.set(Vista.vmenuranking, new MenuRanking(this, divMenuRanking)) //SERGIO
     this.vistas.set(Vista.vrankingglobal, new RankingGlobal(this, divRankingGlobal)) //SERGIO
     this.vistas.set(Vista.vrankingcompeticion, new RankingCompeticion(this, divRankingCompeticion)) //SERGIO
@@ -66,7 +65,7 @@ class Controlador {
     this.vistas.set(Vista.vdeshumano, new DesHumano(this, divDesHumano))
     this.vistas.set(Vista.vinterculturalidad, new Interculturalidad(this, divInterculturalidad))
     this.vistas.set(Vista.vequidadgenero, new EquidadGenero(this, divEquidadGenero))
-    // this.vistas.set(Vista.vformulariofinal, new FormularioFinal(this, divVictoria))
+    this.vistas.set(Vista.divVictoria, new Victoria(this, divVictoria))
     this.vistas.set(Vista.vconfig, new Configuracion(this, divConfig))
 
     this.verVista(Vista.vmenuinicial)
@@ -83,78 +82,12 @@ class Controlador {
       audioElement.pause();
     }
   }
-
-  // validarFormulario() {
-  //   const claveInput = document.getElementById('crearClave')
-  //   const tituloInput = document.getElementById('crearTitulo')
-  //   const descripcionInput = document.getElementById('crearDescripcion')
-  //   const fechaInput = document.getElementById('crearFechaFin')
-
-  //   //Sacamos los valores introduccidos en el formulario
-  //   const clave = claveInput.value
-  //   const titulo = tituloInput.value
-  //   const descripcion = descripcionInput.value
-  //   const fechaFin = fechaInput.value
-
-  //   //validamos con expresiones regulares
-  //   const claveRegex = /^[A-Za-z]{3}[A-Za-z0-9]{2,9}$/
-  //   const tituloRegex = /^[A-Za-z ]{5,100}$/
-  //   const descripcionRegex = /^[A-Za-z0-9 ]{0,255}$/ // puede ser nulo
-  //   const fechaRegex = /^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}$/ // formato fecha
-
-    
-  //   const claveValid = claveRegex.test(clave)
-  //   const tituloValid = tituloRegex.test(titulo)
-  //   const descripcionValid = descripcionRegex.test(descripcion)
-  //   const fechaValid = fechaRegex.test(fechaFin)
-
-  //   this.aplicarEstilos(claveInput, claveValid, 'Clave no válida. Debe empezar por 3 letras y contener entre 5 y 10 caracteres.')
-  //   this.aplicarEstilos(tituloInput, tituloValid, 'Título no válido. Debe contener al menos 5 caracteres de letras y como máximo 100.')
-  //   this.aplicarEstilos(descripcionInput, descripcionValid, 'Descripción no válida. No puede contener caracteres especiales y debe ser máximo 255 caracteres.')
-  //   this.aplicarEstilos(fechaInput, fechaValid, 'Fecha no válida.')
-
-  //   // Si todos los campos son válidos, continúa con el resto del código
-  //   if (claveValid && tituloValid && descripcionValid && fechaValid) {
-  //     this.controlador.enviarFormularioAjax();
-  //   }
-    
-  // }
-
-
-
-    
-  // aplicarEstilos(elemento, esValido, mensajeError) {
-  //   const errorSpan = elemento.nextElementSibling;
-
-  //   if (!esValido) {
-  //     elemento.style.transition = 'border-color 0.3s ease, box-shadow 0.3s ease';
-  //     elemento.style.border = '1px solid red';
-  //     elemento.style.boxShadow = '2px 2px 40px rgba(255, 0, 0, 0.7)'
-
-  //     if (!errorSpan || !errorSpan.classList.contains('error-message')) {
-  //       const nuevoMensajeError = document.createElement('span');
-  //       nuevoMensajeError.textContent = mensajeError;
-  //       nuevoMensajeError.classList.add('error-message');
-  //       elemento.parentNode.insertBefore(nuevoMensajeError, elemento.nextSibling);
-  //     } else {
-  //       errorSpan.textContent = mensajeError;
-  //     }
-  //   } else {
-  //     elemento.style.transition = 'border-color 0.3s ease, box-shadow 0.3s ease';
-  //     elemento.style.border = '1px solid green';
-  //     elemento.style.boxShadow = '2px 2px 40px rgba(0, 255, 0, 0.7)'
-
-  //     if (errorSpan && errorSpan.classList.contains('error-message')) {
-  //       elemento.parentNode.removeChild(errorSpan);
-  //     }
-  //   }
-  // }
- 
   /**
    * Muestra las preguntas y respuestas en la interfaz del juego.
    * @param {number} ambito - Número que representa el ámbito de las preguntas.
    * @param {Array} datosPreguntas - Array de objetos que contiene las preguntas y respuestas.
    */
+
   mostrarPreguntas(ambito, datosPreguntas) {
     const preguntasArea = document.getElementById('preguntasArea'+ambito);
     const preguntaTexto = document.getElementById('preguntaTexto'+ambito);
@@ -169,7 +102,6 @@ class Controlador {
       const indiceAleatorio = Math.floor(Math.random() * datosPreguntas.length);
       const preguntaAleatoria = datosPreguntas[indiceAleatorio]; //ESTO LO HAGO PORQUE SI NO LE DIGO QUE PREGUNTA QUIERO MOSTRAR,
       // ME MUESTRA TODAS LAS PREGUNTAS QUE TIENE ASIGNADO ESE AAMBITO
-      console.log('PREGUNTA DEL AMBITO '+ambito+' : ' + preguntaAleatoria.pregunta);
 
       // Mostrar la pregunta y las opciones de respuesta
       preguntaTexto.textContent = preguntaAleatoria.pregunta;
@@ -179,7 +111,6 @@ class Controlador {
         const respuestaBtn = document.createElement('button');
         respuestaBtn.textContent = opcion.texto_respuesta;
         respuestaBtn.classList.add('respuestaBtn');
-        console.log('RESPUESTA :' +preguntaAleatoria.texto_respuesta)
         respuestaBtn.addEventListener('click', () => {
 
 
@@ -204,8 +135,6 @@ class Controlador {
                 divRespuesta.appendChild(textoRespuesta)
                 divRespuesta.appendChild(botonSiguienteTirada)
             } else {
-                console.log("INCORRECTA");
-                console.log(opcion.num_respuesta)
                 divRespuesta.style.display = 'block';
                 textoRespuesta.textContent = 'INCORRECTO';
                 textoRespuesta.classList.add('texto-elemento')
@@ -228,7 +157,6 @@ class Controlador {
     });
     
     } else {
-      console.log(datosPreguntas)
       preguntaTexto.textContent = 'No hay preguntas disponibles en este momento.';
     }
   }
@@ -238,7 +166,7 @@ class Controlador {
    * @returns {number} - Puntuación acumulada.
    */
   obtenerPuntuacion() {
-    this.preguntasCorrectas = this.preguntasCorrectas + 10;
+    this.preguntasCorrectas = this.preguntasCorrectas + 20;
     return this.preguntasCorrectas;
   }
 
@@ -267,8 +195,7 @@ class Controlador {
   /**
    * Obtiene el ranking global mediante una solicitud AJAX.
    */
-  obtenerRankingGlobal() { 
-    console.log("wololo depurador echo de menos hobbit") 
+  obtenerRankingGlobal() {
     fetch('./js/php/ranking.php', {
       method: 'GET',
       headers: {
