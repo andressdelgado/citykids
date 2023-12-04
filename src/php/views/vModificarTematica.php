@@ -1,11 +1,11 @@
-<div class="contenedor">
-    <form action="index.php?c=cTematicas&m=modificarTematicas2" method="post">
+<div class="formularios">
+    <form action="index.php?c=cTematicas&m=modificarTematicas2" method="post" enctype="multipart/form-data">
 
         <input type="hidden" name="id_tematica" value="<?php echo $datos[0]["id_tematica"]; ?>">
 
-        <label for="nombre_tematica">Texto de la Pregunta:</label>
+        <label for="nombre_tematica">Título de la Temática:</label>
         <textarea id="nombre_tematica" name="nombre_tematica"><?php echo $datos[0]['nombre_tematica']; ?></textarea><br>
-        
+
         <table>
             <tr>
                 <th>Ámbito</th>
@@ -16,17 +16,18 @@
             <?php for ($i = 0; $i < 5; $i++) { ?>
                 <tr>
                     <td>
-                        <input type="hidden" id="ambito_<?php echo $i; ?>" name="ambito_<?php echo $i; ?>" value="<?php echo intval($datos["personajes"][$i]["id_ambito"]); ?>">
-                        <?php echo $datos["personajes"][$i]["nombre_ambito"]; ?>
+                        <input type="hidden" name="id_ambito_<?php echo $i; ?>" value="<?php echo intval($datos['personajes'][$i]['id_ambito']); ?>">
+                        <?php echo $datos['personajes'][$i]['nombre_ambito']; ?>
                     </td>
                     <td>
-                        <input type="text" id="nombre_personaje_<?php echo $i; ?>" name="nombre_personaje_<?php echo $i; ?>" value="<?php echo $datos['personajes'][$i]['nombre_personaje']; ?>">
+                        <input type="hidden" name="id_personaje_<?php echo $i; ?>" value="<?php echo intval($datos['personajes'][$i]['id_personaje']); ?>">
+                        <input type="text" name="nombre_personaje_<?php echo $i; ?>" value="<?php echo $datos['personajes'][$i]['nombre_personaje']; ?>">
                     </td>
                     <td>
-                        <textarea id="descripcion_<?php echo $i; ?>" name="descripcion_<?php echo $i; ?>"><?php echo $datos['personajes'][$i]['descripcion'];?></textarea>
+                        <textarea name="descripcion_<?php echo $i; ?>"><?php echo $datos['personajes'][$i]['descripcion']; ?></textarea>
                     </td>
-                    <td>
-                        <input type="file" id="imagen_<?php echo $i; ?>" name="imagen_<?php echo $i; ?>">
+                    <td class="imagenes">
+                        <input type="file"  name="imagen_<?php echo $i; ?>"><img class="tamanio" src="../img/<?php echo $datos['personajes'][$i]['imagen']; ?>">
                     </td>
                 </tr>
             <?php } ?>
@@ -42,5 +43,4 @@
         ?>
 
     </form>
-    
 </div>

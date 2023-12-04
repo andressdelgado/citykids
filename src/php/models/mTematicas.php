@@ -87,27 +87,30 @@
         function mModificarTematicayPersonajes($id_tematica, $nombre_tematica, $personajes){
             $sql_modificar_tematica = "UPDATE Tematica SET nombre = '$nombre_tematica' WHERE id_tematica = '$id_tematica'";
             $this->conexion->query($sql_modificar_tematica);
-        
             foreach ($personajes as $i => $personaje) {
-                if (isset($personaje["imagen_$i"]) && file_exists($personaje["imagen_$i"]["tmp_name"])) {
-                    $imagen = $personaje["imagen_$i"];
+                $imagen = null;
+                if (isset($_FILES["imagen_$i"]) && file_exists($_FILES["imagen_$i"]["tmp_name"])) {
+                    $imagen = $_FILES["imagen_$i"];
                     $ext = pathinfo($imagen["name"], PATHINFO_EXTENSION);
                     $nombreimagen = uniqid() . "." . $ext;
                     $carpeta_final = __DIR__ . "/../../img";
                     $ruta_inicial = $imagen["tmp_name"];
                     $ruta_final = $carpeta_final . DIRECTORY_SEPARATOR . $nombreimagen;
                     move_uploaded_file($ruta_inicial, $ruta_final);
-                } else {
-                    $nombreimagen = null;
                 }
+            
                 $id_personaje = $personaje['id_personaje'];
                 $nombre_personaje = $personaje['nombre_personaje'];
                 $descripcion = $personaje['descripcion'];
-        
-                $sql_modificar_personaje = "UPDATE Personaje SET nombre = '$nombre_personaje', descripcion='$descripcion', imagen = '$nombreimagen' WHERE id_personaje = '$id_personaje'";
-                
+            
+                // Utiliza $imagen en la consulta solo si está definida
+                if ($imagen !== null) {
+                    $sql_modificar_personaje = "UPDATE Personaje SET nombre = '$nombre_personaje', descripcion='$descripcion', imagen = '$nombreimagen' WHERE id_personaje = '$id_personaje'";
+                } else {
+                    $sql_modificar_personaje = "UPDATE Personaje SET nombre = '$nombre_personaje', descripcion='$descripcion' WHERE id_personaje = '$id_personaje'";
+                }
+            
                 $this->conexion->query($sql_modificar_personaje);
-                
             }
         }
         
@@ -126,8 +129,8 @@
                     $id_ambito = (int)$personaje["ambito_$i"];
                     $nombrepersonaje = $this->conexion->real_escape_string($personaje["nombre_personaje_$i"]);
                     $descripcion = $this->conexion->real_escape_string($personaje["descripcion_$i"]);
-                    
-                    if (isset($personaje["imagen_$i"]) && file_exists($personaje["imagen_$i"]["tmp_name"])) {
+                    if (isset($personaje["imagen_$i"])) {
+
                         $imagen = $personaje["imagen_$i"];
                         $ext = pathinfo($imagen["name"], PATHINFO_EXTENSION);
                         $nombreimagen = uniqid() . "." . $ext;

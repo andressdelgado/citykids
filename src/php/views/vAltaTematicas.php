@@ -1,4 +1,4 @@
-<div class="tematicas">
+<div class="formularios">
     <form action="index.php?c=cTematicas&m=altaTematicas2" enctype="multipart/form-data" method="post">
         <label for="nombre_tematica">Nombre de la temática:</label>
         <input type="text" id="nombre_tematica" name="nombre_tematica">
@@ -27,7 +27,5 @@
             </tr>
         </table>
     </form>
-
         <a href="../../src/php/" id="volverAlMenu">Volver al menu</a>
-
 </div>

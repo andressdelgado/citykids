@@ -91,42 +91,41 @@
         }
 
         public function modificarTematicas2(){
-            //////////////////////////////////////////////////////////////////////////
-            //ARREGLAR//
-            /////////////////////////////////////////////////////////////////////////
-                // Verificar si el formulario ha sido enviado
-                if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-                    // Obtener los datos del formulario
-                    $id_tematica = $_POST['id_tematica'];
-                    $nombre_tematica = $_POST['nombre_tematica'];
-            
-                    // Crear un array para almacenar los datos de los personajes
-                    $personajes = [];
-            
-                    // Recorrer los datos de los personajes
-                    for ($i = 0; $i < 5; $i++) {
-                        // Verificar si la clave existe antes de intentar acceder a ella
-                        $id_personaje = isset($datos["personajes"][0]["id_personaje"]) ? $personaje["id_personaje"] : null;
-                        $nombre_personaje = isset($_POST["nombre_personaje_$i"]) ? $_POST["nombre_personaje_$i"] : null;
-                        $descripcion = isset($_POST["descripcion_$i"]) ? $_POST["descripcion_$i"] : null;
-                        $imagen = isset($_FILES["imagen_$i"]) ? $_FILES["imagen_$i"] : null;
-            
-                        // Crear un array con los datos del personaje
-                        $personaje = [
-                            'id_personaje' => $id_personaje,
-                            'nombre_personaje' => $nombre_personaje,
-                            'descripcion' => $descripcion,
-                            'imagen' => $imagen,
-                        ];
-            
-                        // Agregar el personaje al array
-                        $personajes[] = $personaje;
-                        var_dump($personaje);
-                    }
-            
-                    $this->objTematicas->mModificarTematicayPersonajes($id_tematica, $nombre_tematica, $personajes);
+            // Verificar si el formulario ha sido enviado
+            if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+                // Obtener los datos del formulario
+                $id_tematica = $_POST['id_tematica'];
+                $nombre_tematica = $_POST['nombre_tematica'];
+        
+                // Crear un array para almacenar los datos de los personajes
+                $personajes = [];
+        
+                // Recorrer los datos de los personajes
+                for ($i = 0; $i < 5; $i++) {
+                    // Verificar si la clave existe antes de intentar acceder a ella
+                    $id_personaje = isset($_POST["id_personaje_$i"]) ? $_POST["id_personaje_$i"] : null;
+                    $nombre_personaje = isset($_POST["nombre_personaje_$i"]) ? $_POST["nombre_personaje_$i"] : null;
+                    $descripcion = isset($_POST["descripcion_$i"]) ? $_POST["descripcion_$i"] : null;
+                    $imagen = isset($_FILES["imagen_$i"]) ? $_FILES["imagen_$i"] : null;
+        
+                    // Crear un array con los datos del personaje
+                    $personaje = [
+                        'id_personaje' => $id_personaje,
+                        'nombre_personaje' => $nombre_personaje,
+                        'descripcion' => $descripcion,
+                        'imagen' => $imagen,
+                    ];
+        
+                    // Agregar el personaje al array
+                    $personajes[] = $personaje;
                 }
+        
+                $this->objTematicas->mModificarTematicayPersonajes($id_tematica, $nombre_tematica, $personajes);
+                header("Location: index.php?c=cTematicas&m=listarTematicas");
+                
             }
+        }
+        
         
         
 
