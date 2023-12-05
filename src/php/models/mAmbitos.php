@@ -28,9 +28,26 @@
         }
         
         public function mModifAmbitos($id_ambito, $nombre){
-            $sql = "UPDATE Ambito SET nombre = '$nombre' WHERE id_ambito = '$id_ambito';";
-            $this->conexion->query($sql);
+            try {
+                $nombre = trim($nombre); //Elimina los espacios en blanco 
+                $nombre = ($nombre === '') ? null : "'" . $this->conexion->real_escape_string($nombre) . "'"; //Evitar caracteres raros, para las inyecciones de sql
+        
+                $sql = "UPDATE Ambito SET nombre = " . ($nombre === null ? "NULL" : $nombre) . " WHERE id_ambito = '$id_ambito'";
+        
+                if ($this->conexion->query($sql) === TRUE) {
+                    $mensaje = "El ámbito se ha modificado correctamente.";
+                } else {
+                    throw new Exception($this->conexion->error, $this->conexion->errno);
+                }
+                
+                return $mensaje;
+            } catch (Exception $error) {
+                $numeroError = $error->getCode();
+                return $numeroError;
+            }
         }
+        
+        
         
         public function mObtenerAmbito($id_ambito){
             $sql = "SELECT * FROM Ambito WHERE id_ambito='$id_ambito'";
