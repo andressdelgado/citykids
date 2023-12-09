@@ -28,8 +28,7 @@ export class Ruleta extends Vista {
    * Número de preguntas mostradas para controlar el límite.
    * @type {number}
    */
-  preguntasMostradas = 0 //Para controlar el numero de pregunta que sale 
-
+  preguntasMostradas = 0 //Para controlar el numero de pregunta que sale
   /**
    * Array para controlar que los ámbitos no se repiten.
    * @type {number[]}
@@ -46,68 +45,21 @@ export class Ruleta extends Vista {
     this.button.textContent = 'GIRA LA RULETA'
     this.button.className = 'volverAlJuego'
   
-    // Agregar evento de clic al botón
     this.button.addEventListener('click', () => {
-      // Deshabilitar el botón para evitar múltiples clics
-      this.button.disabled = true;
-      // Seleccionar la imagen de la ruleta y el sonido
-      let sonidoRuleta = document.getElementById('audioRuleta')
-      let ruletaImg = document.getElementById('ruleta')
-  
-      // Definir la duración total de la animación en milisegundos (8 segundos = 8000 milisegundos)
-      const duracionTotal = 1000
-      const velocidadInicial = 15 // Velocidad inicial en grados por intervalo
-      const aceleracion = 5 // Aceleración para simular el efecto de arranque lento
-  
-      let tiempoTranscurrido = 0
-      let rotacion = 0
-      let velocidad = velocidadInicial
-  
-      let interval = setInterval(() => {
-        ruletaImg.style.transform = `rotate(${rotacion}deg)`
-  
-        // Reproducir el sonido solo cuando está girando
-        if (velocidad > 0) {
-          sonidoRuleta.currentTime = 0
-          sonidoRuleta.play()
-        }
-  
-        if (tiempoTranscurrido < duracionTotal) {
-          rotacion += velocidad
-          tiempoTranscurrido += 50 // Incrementar el tiempo transcurrido por el intervalo
-          // Reducir la velocidad con la aceleración y un factor de desaceleración gradual
-          velocidad -= aceleracion * (1 - tiempoTranscurrido / duracionTotal)
-        } else {
-          // Detener la animación cuando se alcanza la duración total
-          clearInterval(interval)
-  
-          // Realizar fade-out del sonido al finalizar la animación
-          let fadeInterval = setInterval(() => {
-            if (sonidoRuleta.volume > 0.05) {
-              sonidoRuleta.volume -= 0.05
-            } else {
-              clearInterval(fadeInterval)
-              sonidoRuleta.pause()
-              sonidoRuleta.currentTime = 0
-              sonidoRuleta.volume = 1
-            }
-          }, 100)
-  
-          this.girarRuleta()
-          this.cambiarVista(this.ambitosSeleccionados[this.ambitosSeleccionados.length - 1])
-        }
-      }, 50)
-    });
+        this.button.disabled = true; //Para evitar varios clic
+        this.girarRuleta()
+        this.cambiarVista(this.ambitosSeleccionados[this.ambitosSeleccionados.length - 1])
+    })
   }
   
   habilitarBoton() {
     this.button.disabled = false;
   }
-
-  /**
-   * Método para gestionar la acción de girar la ruleta.
-   */
+  getPreguntasMostradas() {
+    return this.preguntasMostradas;
+}
   girarRuleta() {
+    
     if (this.preguntasMostradas < 5) { // Cambiamos la condición para mostrar 5 preguntas en total
       // Lógica para obtener preguntas de cada ámbito
       let idAmbitoAleatorio;
@@ -133,9 +85,6 @@ export class Ruleta extends Vista {
       .then(preguntas => {
         // Mostrar la pregunta obtenida
         this.mostrarPreguntas(idAmbitoAleatorio, preguntas);
-        if (this.preguntasMostradas === 5) {
-          this.cambiarVista(6)
-        }
       })
       .catch(error => {
         console.error('Error:', error);
@@ -178,10 +127,6 @@ export class Ruleta extends Vista {
             break
           case 5:
             this.controlador.verVista(Vista.vequidadgenero)
-            this.habilitarBoton();
-            break
-          case 6:
-            this.controlador.verVista(Vista.divVictoria)
             this.habilitarBoton();
             break
           default:

@@ -24,7 +24,7 @@ class Controlador {
 	 * Inicializa los atributos del Controlador.
 	 * Coge las referencias del interfaz.
 	 */
-  vistas = new Map()
+  vistas = new Map();
   indicePregunta =0;
   respuestaBtn
   preguntasCorrectas = 0
@@ -32,6 +32,7 @@ class Controlador {
   constructor () {
     this.modelo = new Modelo()
     this.preguntasCorrectas =0;
+    this.puntuacion = 0;
 
     //conseguimos la referencia de la interface
     const divMenuInicial = document.getElementById('divMenuInicial')
@@ -65,7 +66,7 @@ class Controlador {
     this.vistas.set(Vista.vdeshumano, new DesHumano(this, divDesHumano))
     this.vistas.set(Vista.vinterculturalidad, new Interculturalidad(this, divInterculturalidad))
     this.vistas.set(Vista.vequidadgenero, new EquidadGenero(this, divEquidadGenero))
-    this.vistas.set(Vista.divVictoria, new Victoria(this, divVictoria))
+    this.vistas.set(Vista.victoria, new Victoria(this, divVictoria));
     this.vistas.set(Vista.vconfig, new Configuracion(this, divConfig))
 
     this.verVista(Vista.vmenuinicial)
@@ -74,112 +75,128 @@ class Controlador {
   /**
    * Detiene o reproduce el elemento de audio según su estado actual.
    */
-  stopAudio() {
-    const audioElement = document.getElementById('audioElementId');
-    if (audioElement.paused) {
-      audioElement.play();
-    } else {
-      audioElement.pause();
-    }
+stopAudio() {
+  const audioElement = document.getElementById('audioElementId');
+  if (audioElement.paused) {
+    audioElement.play();
+  } else {
+    audioElement.pause();
   }
-  /**
-   * Muestra las preguntas y respuestas en la interfaz del juego.
-   * @param {number} ambito - Número que representa el ámbito de las preguntas.
-   * @param {Array} datosPreguntas - Array de objetos que contiene las preguntas y respuestas.
-   */
+ }
 
-  mostrarPreguntas(ambito, datosPreguntas) {
-    const preguntasArea = document.getElementById('preguntasArea'+ambito);
-    const preguntaTexto = document.getElementById('preguntaTexto'+ambito);
-    const respuestasArea = document.getElementById('respuestas'+ambito);
-    const divRespuesta = document.createElement('div');
-    const botonSiguienteTirada = document.createElement('button');
-    const textoRespuesta = document.createElement('p');
-    botonSiguienteTirada.classList.add('btnSiguienteTiradas')
+obtenerPuntuacion() {
+  return this.puntuacion;
+}
 
-    if (datosPreguntas.length > 0) {
-      //Te lanza una pregunta aleatoria del ambito
-      const indiceAleatorio = Math.floor(Math.random() * datosPreguntas.length);
-      const preguntaAleatoria = datosPreguntas[indiceAleatorio]; //ESTO LO HAGO PORQUE SI NO LE DIGO QUE PREGUNTA QUIERO MOSTRAR,
-      // ME MUESTRA TODAS LAS PREGUNTAS QUE TIENE ASIGNADO ESE AAMBITO
-
-      // Mostrar la pregunta y las opciones de respuesta
-      preguntaTexto.textContent = preguntaAleatoria.pregunta;
-      const respuestasAleatorias = preguntaAleatoria.respuestas.sort(()=> Math.random() - 0.5)
-
-      respuestasAleatorias.forEach((opcion) => {
-        const respuestaBtn = document.createElement('button');
-        respuestaBtn.textContent = opcion.texto_respuesta;
-        respuestaBtn.classList.add('respuestaBtn');
-        respuestaBtn.addEventListener('click', () => {
+incrementarPuntuacion() {
+  const puntosASumar = 20;
+  this.puntuacion += puntosASumar;
+}
 
 
-            respuestaBtn.style.pointerEvents = 'none'
 
-            if (opcion.num_respuesta === 1) {
-                this.obtenerPuntuacion()
-                divRespuesta.style.display = 'block';
-                textoRespuesta.textContent = '¡CORRECTO!';
-                textoRespuesta.classList.add('texto-elemento')
-                divRespuesta.style.backgroundColor = 'rgb(153, 255, 131)'
-                divRespuesta.style.boxShadow = '2px 2px 40px rgba(0, 255, 0, 0.7)'
-                divRespuesta.style.border = '2px solid rgba(0, 255, 0, 0.7)'
-                divRespuesta.classList.add('elemento-con-animacion')
-                document.body.appendChild(divRespuesta);
-                botonSiguienteTirada.textContent = 'Seguir Jugando';
-                botonSiguienteTirada.addEventListener('click', () => {
-                divRespuesta.style.display = 'none';
-                this.verVista(Vista.vruleta)
+mostrarPuntuacion() {
+  console.log('Tu puntuación actual es: ' + this.obtenerPuntuacion());
+}
 
-                });
-                divRespuesta.appendChild(textoRespuesta)
-                divRespuesta.appendChild(botonSiguienteTirada)
-            } else {
-                divRespuesta.style.display = 'block';
-                textoRespuesta.textContent = 'INCORRECTO';
-                textoRespuesta.classList.add('texto-elemento')
-                divRespuesta.style.backgroundColor = 'rgb(255, 68, 68)'
-                divRespuesta.style.boxShadow = '2px 2px 40px rgba(255, 0, 0, 0.7)'
-                divRespuesta.style.border = '2px solid rgba(255, 0, 0, 0.7)'
-                divRespuesta.classList.add('elemento-con-animacion')
-                document.body.appendChild(divRespuesta);
-                botonSiguienteTirada.textContent = 'Seguir Jugando';
-                botonSiguienteTirada.addEventListener('click', () => {
-                  divRespuesta.style.display = 'none';
-                  this.verVista(Vista.vruleta)
-                });
-                divRespuesta.appendChild(textoRespuesta)
-                divRespuesta.appendChild(botonSiguienteTirada)
-            }
-        });
-        respuestasArea.appendChild(respuestaBtn);
-        
+mostrarPreguntas(ambito, datosPreguntas) {
+  const instanciaRuleta = this.vistas.get(Vista.vruleta);
+  const preguntasMostradas = instanciaRuleta.getPreguntasMostradas();
+
+  const preguntaTexto = document.getElementById('preguntaTexto' + ambito);
+  const respuestasArea = document.getElementById('respuestas' + ambito);
+  
+  console.log('PREGUNTAS MOSTRADAS: ' + preguntasMostradas);
+
+  if (datosPreguntas.length > 0) {
+    const indiceAleatorio = Math.floor(Math.random() * datosPreguntas.length);
+    const preguntaAleatoria = datosPreguntas[indiceAleatorio];
+
+    preguntaTexto.textContent = preguntaAleatoria.pregunta;
+    const respuestasAleatorias = preguntaAleatoria.respuestas.sort(() => Math.random() - 0.5);
+
+    respuestasAleatorias.forEach((opcion) => {
+      const respuestaBtn = document.createElement('button');
+      respuestaBtn.textContent = opcion.texto_respuesta;
+      respuestaBtn.classList.add('respuestaBtn');
+      respuestaBtn.addEventListener('click', () => {
+        respuestaBtn.style.pointerEvents = 'none';
+
+        const divRespuesta = document.createElement('div');
+        const textoRespuesta = document.createElement('p');
+        const botonSiguienteTirada = document.createElement('button');
+        botonSiguienteTirada.classList.add('btnSiguienteTiradas');
+
+        if (opcion.num_respuesta === 1) {
+          this.incrementarPuntuacion(10);
+          divRespuesta.style.display = 'block';
+          textoRespuesta.textContent = '¡CORRECTO!';
+          // Estilos y configuración de respuesta correcta...
+        } else {
+          divRespuesta.style.display = 'block';
+          textoRespuesta.textContent = 'INCORRECTO';
+          // Estilos y configuración de respuesta incorrecta...
+        }
+
+        divRespuesta.appendChild(textoRespuesta);
+
+        if (preguntasMostradas === 5) {
+          // Si es la última pregunta, ocultar el botón de seguir jugando
+          botonSiguienteTirada.style.display = 'none';
+
+          // Hacer desaparecer divRespuesta después de 2 segundos
+          setTimeout(() => {
+            divRespuesta.style.display = 'none';
+          }, 2000);
+        } else {
+          botonSiguienteTirada.textContent = 'Seguir Jugando';
+          botonSiguienteTirada.addEventListener('click', () => {
+            divRespuesta.style.display = 'none';
+            this.verVista(Vista.vruleta);
+          });
+          divRespuesta.appendChild(botonSiguienteTirada);
+        }
+
+        respuestasArea.appendChild(divRespuesta);
+      });
+
+      respuestasArea.appendChild(respuestaBtn);
     });
-    
-    } else {
-      preguntaTexto.textContent = 'No hay preguntas disponibles en este momento.';
+
+    if (preguntasMostradas === 5) {
+      respuestasAleatorias.forEach((pregunta) => {
+        const respuestaBtn = Array.from(respuestasArea.getElementsByClassName('respuestaBtn')).find(btn => btn.textContent === pregunta.texto_respuesta);
+
+        respuestaBtn.addEventListener('click', () => {
+          const esCorrecta = pregunta.num_respuesta === 1;
+          if (esCorrecta) {
+            this.incrementarPuntuacion();
+          }
+          const puntuacionActual = this.obtenerPuntuacion()
+          console.log('Puntuación actual:', puntuacionActual);
+          this.verVista(Vista.victoria, puntuacionActual);
+          this.mostrarPuntuacion();
+        });
+      });
     }
+  } else {
+    preguntaTexto.textContent = 'No hay preguntas disponibles en este momento.';
   }
+}
 
-  /**
-   * Obtiene la puntuación acumulada por preguntas correctas.
-   * @returns {number} - Puntuación acumulada.
-   */
-  obtenerPuntuacion() {
-    this.preguntasCorrectas = this.preguntasCorrectas + 20;
-    return this.preguntasCorrectas;
-  }
-
-  /**
-   * Cambia la vista actual del juego.
-   * @param {string} vista - Identificador de la vista a mostrar.
-   */
   verVista (vista) {
     this.ocultarVistas()
     this.vistas.get(vista).mostrar(true)
 
     if (vista === Vista.vrankingglobal) {
       this.obtenerRankingGlobal();
+    }
+    if (vista === Vista.victoria) {
+      const puntuacionActual = this.obtenerPuntuacion();
+      this.vistas.get(vista).crearInterfaz2(puntuacionActual); // Pasar la puntuación a la vista Victoria
+      this.vistas.get(vista).mostrar(true); // Mostrar la vista Victoria
+    } else {
+      this.vistas.get(vista).mostrar(true);
     }
   }
 

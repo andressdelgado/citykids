@@ -4,18 +4,18 @@ export class Victoria extends Vista {
 
   constructor (controlador, base) {
     super(controlador, base)
+    this.controlador = controlador; // Almacenar el controlador como propiedad de la clase
     this.crearInterfaz2()
   }
 
-  crearInterfaz2() {
-    const puntuacion = this.controlador.obtenerPuntuacion();
-    // Crear el contenedor div
+  crearInterfaz2(puntuacion) {
     const divPuntuacion = document.createElement('div')
     divPuntuacion.className = 'elemento-con-animacion'
     divPuntuacion.style.backgroundColor = '#b8ffd3'
   
     // Crear el párrafo con el mensaje de puntuación
     const pMensaje = document.createElement('p')
+    console.log('HAS OBTENIDO ESTO: '+ puntuacion)
     pMensaje.textContent = `¡Has obtenido ${puntuacion} puntos!`
   
     // Crear el campo de entrada tipo texto
@@ -34,8 +34,8 @@ export class Victoria extends Vista {
       const puntuacion = this.controlador.obtenerPuntuacion(); // Obtener la puntuación
       // Llamada a la función para enviar datos por AJAX
       this.enviarFormularioAjax(nombre, puntuacion);
-      
     });
+    
   
     // Crear el botón para volver al inicio
     const btnVolverInicio = document.createElement('button')

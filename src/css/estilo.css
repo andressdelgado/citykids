@@ -110,9 +110,7 @@ body {
     
     
 }
-
 #ruleta{
-    animation: fadeIn 1s ease-in-out;
     margin-top: 15%;
     width: 40%;
     height: auto;
@@ -120,7 +118,6 @@ body {
     left: 30%;
     top: -30%;
     filter: drop-shadow(2px 2px 40px rgba(255, 213, 0, 0.7));
-    
 }
 
 button {
@@ -690,7 +687,7 @@ input:focus,textarea:focus {
   .btn-volver-inicio:hover {
     background-color: #3367d6;
   }
-  
+
   @media only screen and (max-width: 480px) {
     /* Tus estilos aquí */
     .main-title-white {
