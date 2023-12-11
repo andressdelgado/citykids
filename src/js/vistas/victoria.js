@@ -124,8 +124,8 @@ export class Victoria extends Vista {
     if (nombreValido) {
       // Llamada a la función para enviar datos por AJAX
       this.enviarFormularioAjax(nombre, puntuacion).then(() => {
-        // Validación exitosa, redirigir a la vista indicada
-        this.controlador.verVista(Vista.vrankingglobal);
+        // Validación exitosa, recargar la página
+        location.reload();
       });
     }
   }
