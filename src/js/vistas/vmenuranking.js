@@ -49,7 +49,35 @@ export class MenuRanking extends Vista {
    * Método para manejar el evento de clic en el botón "Ranking Competición".
    */
   pulsarRankingCompeticion() {
-    this.controlador.verVista(Vista.vrankingcompeticion)
+    this.mensajeAlerta()
+  }
+
+  mensajeAlerta() {
+    const modalContainer = document.createElement('div');
+    modalContainer.classList.add('custom-modal');
+
+    const modalContent = document.createElement('div');
+    modalContent.classList.add('modal-content');
+
+    const message = document.createElement('p');
+    message.textContent = 'Esta opción está en desarrollo';
+
+    const okButton = document.createElement('button');
+    okButton.textContent = 'OK';
+
+    okButton.addEventListener('click', () => {
+      // Close the modal
+      modalContainer.remove();
+
+      // Proceed to the desired view
+      this.controlador.verVista(Vista.vmenuinicial);
+    });
+
+    modalContent.appendChild(message);
+    modalContent.appendChild(okButton);
+    modalContainer.appendChild(modalContent);
+
+    document.body.appendChild(modalContainer);
   }
 
   /**
