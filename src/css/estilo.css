@@ -1070,7 +1070,8 @@ input:focus,textarea:focus {
 
 
         .elemento-con-animacion{
-            width: 60%;
+            width: 90%;
+            height: 70%;
         }
 
         #personajesButton {
