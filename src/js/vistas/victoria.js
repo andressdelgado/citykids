@@ -15,7 +15,6 @@ export class Victoria extends Vista {
   
     // Crear el párrafo con el mensaje de puntuación
     const pMensaje = document.createElement('p')
-    console.log('HAS OBTENIDO ESTO: '+ puntuacion)
     pMensaje.textContent = `¡Has obtenido ${puntuacion} puntos!`
   
     // Crear el campo de entrada tipo texto

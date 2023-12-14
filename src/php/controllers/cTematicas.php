@@ -132,12 +132,6 @@
             }
         }
         
-        
-        
-
-
-
-        
         public function borrarTematicas(){
             $id_tematica = $_GET['id_tematica'];
             $this->objTematicas->mBorrarTematicas($id_tematica);

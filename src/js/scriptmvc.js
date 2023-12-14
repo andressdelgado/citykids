@@ -15,6 +15,7 @@ import {Interculturalidad} from './vistas/vInterculturalidad.js'
 import {EquidadGenero} from './vistas/vequidadgenero.js'
 import { Victoria } from './vistas/victoria.js'
 import { Configuracion } from './vistas/vconfig.js'
+import { Personajes } from './vistas/vpersonajes.js'
 
 /**
  * Clase Controlador para gestionar la lógica y negociaciones del juego.
@@ -50,6 +51,7 @@ class Controlador {
     const divEquidadGenero = document.getElementById('divEquidadGenero')
     const divVictoria = document.getElementById('divVictoria')
     const divConfig = document.getElementById('divConfig')
+    const divPersonajes = document.getElementById('divPersonajes')
 
 
     //Creamos las vistas 
@@ -68,6 +70,7 @@ class Controlador {
     this.vistas.set(Vista.vequidadgenero, new EquidadGenero(this, divEquidadGenero))
     this.vistas.set(Vista.victoria, new Victoria(this, divVictoria));
     this.vistas.set(Vista.vconfig, new Configuracion(this, divConfig))
+    this.vistas.set(Vista.vpersonajes, new Personajes(this, divPersonajes))
 
     this.verVista(Vista.vmenuinicial)
   }
@@ -98,14 +101,13 @@ incrementarPuntuacion() {
 mostrarPuntuacion() {
   console.log('Tu puntuación actual es: ' + this.obtenerPuntuacion());
 }
-
 mostrarPreguntas(ambito, datosPreguntas) {
   const instanciaRuleta = this.vistas.get(Vista.vruleta);
   const preguntasMostradas = instanciaRuleta.getPreguntasMostradas();
 
   const preguntaTexto = document.getElementById('preguntaTexto' + ambito);
   const respuestasArea = document.getElementById('respuestas' + ambito);
-  
+  const divPReguntas = document.getElementsByClassName('divPregunta');
   console.log('PREGUNTAS MOSTRADAS: ' + preguntasMostradas);
 
   if (datosPreguntas.length > 0) {
@@ -120,7 +122,11 @@ mostrarPreguntas(ambito, datosPreguntas) {
       respuestaBtn.textContent = opcion.texto_respuesta;
       respuestaBtn.classList.add('respuestaBtn');
       respuestaBtn.addEventListener('click', () => {
-        respuestaBtn.style.pointerEvents = 'none';
+        // Deshabilitar todos los botones de respuesta después del clic
+        const botonesRespuesta = respuestasArea.querySelectorAll('.respuestaBtn');
+        botonesRespuesta.forEach((btn) => {
+          btn.disabled = true;
+        });
 
         const divRespuesta = document.createElement('div');
         const textoRespuesta = document.createElement('p');
@@ -128,26 +134,18 @@ mostrarPreguntas(ambito, datosPreguntas) {
         botonSiguienteTirada.classList.add('btnSiguienteTiradas');
 
         if (opcion.num_respuesta === 1) {
-          this.incrementarPuntuacion(10);
+          this.incrementarPuntuacion();
           divRespuesta.style.display = 'block';
           textoRespuesta.textContent = '¡CORRECTO!';
-          // Estilos y configuración de respuesta correcta...
         } else {
           divRespuesta.style.display = 'block';
           textoRespuesta.textContent = 'INCORRECTO';
-          // Estilos y configuración de respuesta incorrecta...
         }
 
         divRespuesta.appendChild(textoRespuesta);
 
         if (preguntasMostradas === 5) {
-          // Si es la última pregunta, ocultar el botón de seguir jugando
           botonSiguienteTirada.style.display = 'none';
-
-          // Hacer desaparecer divRespuesta después de 2 segundos
-          setTimeout(() => {
-            divRespuesta.style.display = 'none';
-          }, 2000);
         } else {
           botonSiguienteTirada.textContent = 'Seguir Jugando';
           botonSiguienteTirada.addEventListener('click', () => {
@@ -165,15 +163,16 @@ mostrarPreguntas(ambito, datosPreguntas) {
 
     if (preguntasMostradas === 5) {
       respuestasAleatorias.forEach((pregunta) => {
-        const respuestaBtn = Array.from(respuestasArea.getElementsByClassName('respuestaBtn')).find(btn => btn.textContent === pregunta.texto_respuesta);
+        const respuestaBtn = Array.from(respuestasArea.getElementsByClassName('respuestaBtn')).find(
+          (btn) => btn.textContent === pregunta.texto_respuesta
+        );
 
         respuestaBtn.addEventListener('click', () => {
           const esCorrecta = pregunta.num_respuesta === 1;
           if (esCorrecta) {
             this.incrementarPuntuacion();
           }
-          const puntuacionActual = this.obtenerPuntuacion()
-          console.log('Puntuación actual:', puntuacionActual);
+          const puntuacionActual = this.obtenerPuntuacion();
           this.verVista(Vista.victoria, puntuacionActual);
           this.mostrarPuntuacion();
         });
@@ -184,21 +183,22 @@ mostrarPreguntas(ambito, datosPreguntas) {
   }
 }
 
-  verVista (vista) {
-    this.ocultarVistas()
-    this.vistas.get(vista).mostrar(true)
 
-    if (vista === Vista.vrankingglobal) {
-      this.obtenerRankingGlobal();
-    }
-    if (vista === Vista.victoria) {
-      const puntuacionActual = this.obtenerPuntuacion();
-      this.vistas.get(vista).crearInterfaz2(puntuacionActual); // Pasar la puntuación a la vista Victoria
-      this.vistas.get(vista).mostrar(true); // Mostrar la vista Victoria
-    } else {
-      this.vistas.get(vista).mostrar(true);
-    }
+verVista (vista) {
+  this.ocultarVistas()
+  this.vistas.get(vista).mostrar(true)
+
+  if (vista === Vista.vrankingglobal) {
+    this.obtenerRankingGlobal();
   }
+  if (vista === Vista.victoria) {
+    const puntuacionActual = this.obtenerPuntuacion();
+    this.vistas.get(vista).crearInterfaz2(puntuacionActual); // Pasar la puntuación a la vista Victoria
+    this.vistas.get(vista).mostrar(true); // Mostrar la vista Victoria
+  } else {
+    this.vistas.get(vista).mostrar(true);
+  }
+}
 
   /**
    * Oculta todas las vistas del juego.

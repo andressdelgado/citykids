@@ -10,6 +10,7 @@ export class MenuInicial extends Vista {
     this.iniciarPartida = this.base.querySelectorAll('button')[1]
     this.menuCompeticion = this.base.querySelectorAll('button')[2]
     this.verRanking = this.base.querySelectorAll('button')[3]
+    this.verPersonajes = this.base.querySelectorAll('button')[4]
 
     // Asociar eventos
     this.iniciarPartida.onclick = this.pulsarIniciarPartida.bind(this)
@@ -18,6 +19,7 @@ export class MenuInicial extends Vista {
     this.config.onclick = this.pulsarConfig.bind(this)
     this.menuCompeticion.onclick = this.pulsarMenuCompeticion.bind(this)
     this.verRanking.onclick = this.pulsarVerRanking.bind(this)
+    this.verPersonajes.onclick = this.pulsarVerPersonajes.bind(this)
   }
 
   mensajeCursor (event) {
@@ -49,5 +51,9 @@ export class MenuInicial extends Vista {
 
   pulsarVerRanking () {
     this.controlador.verVista(Vista.vmenuranking)
+  }
+
+  pulsarVerPersonajes(){
+    this.controlador.verVista(Vista.vpersonajes)
   }
 }

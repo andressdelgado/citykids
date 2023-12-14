@@ -89,7 +89,7 @@ body {
 }
 
 /* Imagen de la ruleta */
-#divMenuInicial, #divMenuRanking, #divMenuCompeticion, #divCrearCompeticion, #divUnirCompeticion, #divRankingCompeticion, #divRankingGlobal{
+#divMenuInicial, #divMenuRanking, #divMenuCompeticion, #divCrearCompeticion, #divUnirCompeticion, #divRankingCompeticion, #divRankingGlobal, #divPersonajes{
     width: 100%;
     height: 100%;
     background-image: url('img/bgInicio.png');
@@ -688,6 +688,93 @@ input:focus,textarea:focus {
     background-color: #3367d6;
   }
 
+/*PERSONAJESS*/
+
+  
+  #divPersonajes img{
+    width: 40%;
+    text-align: center;
+  }
+  #divPersonajes {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    margin: auto;
+  }
+  
+  .flip-card {
+    background-color: transparent;
+    width: 16%;
+    height: 50%;
+    perspective: 1000px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 30px;
+    float: left;
+  }
+  
+  .flip-card-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    transition: transform 0.6s;
+    transform-style: preserve-3d;
+  }
+  
+
+.flip-card-front, .flip-card-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  padding: 5px;
+  border-radius: 2em;
+  backface-visibility: hidden;
+}
+
+.flip-card-front {
+  background-color: #0d1529;
+  border: 4px solid #4d43da;
+}
+
+.profile-image {
+  background-color: transparent;
+  border: none;
+  margin-top: 15px;
+  border-radius: 5em;
+  width: 100%;
+}
+
+
+.name {
+  margin-top: 15px;
+  font-size: 27px;
+  color: #b3e1f6;
+  font-weight: bold;
+}
+
+.flip-card-back {
+  background-color: #bdedff;
+  border: 4px solid #4843da;
+  transform: rotateY(180deg);
+  padding: 11px;
+}
+
+.description {
+  margin-top: 10px;
+  font-size: 27px;
+  letter-spacing: 1px;
+  color: rgb(14, 15, 64)
+}
+
+.flip-card:hover .flip-card-inner {
+  transform: rotateY(180deg);
+}
+
+
+
+
+
   @media only screen and (max-width: 480px) {
     /* Tus estilos aquí */
     .main-title-white {
@@ -766,6 +853,39 @@ input:focus,textarea:focus {
         body{
             background-image: url('../img/fondoMovil.gif');
         }
+        #divPersonajes img{
+            width: 40%;
+            text-align: center;
+          }
+          #divPersonajes {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            margin: auto;
+            background-color: #0a28696a;
+          }
+          
+          .flip-card {
+            background-color: transparent;
+            width: 70%;
+            height: 50%;
+            perspective: 1000px;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: auto;
+            margin-top: auto;
+            float: none;
+            margin-top: 50px;
+          }
+          #contr{
+            background-color: #1b198d87;
+            height: 75%;
+            overflow: auto;
+            width: 80%;
+            margin: 40px auto auto auto;
+            border-radius: 16px;
+
+          }
         #divMenuInicial{
             backdrop-filter: blur(10px);
             background-image: url('../img/fondoMovil.png');
