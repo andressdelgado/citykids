@@ -4,7 +4,7 @@ import {MenuInicial} from './vistas/vmenuinicial.js'
 import {Ruleta} from './vistas/vruleta.js' //SERGIO
 import {MenuCompeticion} from './vistas/vmenucompeticion.js'
 import {CrearCompeticion} from './vistas/vcrearcompeticion.js' //SERGIO
-//import {UnirCompeticion} from './vistas/vunircompeticion.js'
+// import {UnirCompeticion} from './vistas/vunircompeticion.js'
 import {MenuRanking} from './vistas/vmenuranking.js'  //SERGIO
 import {RankingGlobal} from './vistas/vrankingglobal.js' //SERGIO
 import {RankingCompeticion} from './vistas/vrankingcompeticion.js'  //SERGIO
@@ -40,7 +40,7 @@ class Controlador {
     const divRuleta = document.getElementById('divRuleta') //SERGIO
     const divMenuCompeticion = document.getElementById('divMenuCompeticion')
     const divCrearCompeticion = document.getElementById('divCrearCompeticion') //SERGIO
-    //const divUnirCompeticion = document.getElementById('divUnirCompeticion')
+    // const divUnirCompeticion = document.getElementById('divUnirCompeticion')
     const divMenuRanking = document.getElementById('divMenuRanking')  //SERGIO
     const divRankingGlobal = document.getElementById('divRankingGlobal') //SERGIO
     const divRankingCompeticion = document.getElementById('divRankingCompeticion')  //SERGIO
@@ -59,7 +59,7 @@ class Controlador {
     this.vistas.set(Vista.vruleta, new Ruleta(this, divRuleta)); //SERGIO
     this.vistas.set(Vista.vmenucompeticion, new MenuCompeticion(this, divMenuCompeticion))
     this.vistas.set(Vista.vcrearcompeticion, new CrearCompeticion(this, divCrearCompeticion)) //SERGIO
-    //this.vistas.set(Vista.vunircompeticion, new UnirCompeticion(this, divUnirCompeticion))
+    // this.vistas.set(Vista.vunircompeticion, new UnirCompeticion(this, divUnirCompeticion))
     this.vistas.set(Vista.vmenuranking, new MenuRanking(this, divMenuRanking)) //SERGIO
     this.vistas.set(Vista.vrankingglobal, new RankingGlobal(this, divRankingGlobal)) //SERGIO
     this.vistas.set(Vista.vrankingcompeticion, new RankingCompeticion(this, divRankingCompeticion)) //SERGIO
@@ -137,9 +137,13 @@ mostrarPreguntas(ambito, datosPreguntas) {
           this.incrementarPuntuacion();
           divRespuesta.style.display = 'block';
           textoRespuesta.textContent = '¡CORRECTO!';
+          textoRespuesta.style.animation = 'popIn 0.5s ease-out';
+          textoRespuesta.style.textShadow = '0 0 30px #00ff00'; 
         } else {
           divRespuesta.style.display = 'block';
           textoRespuesta.textContent = 'INCORRECTO';
+          textoRespuesta.style.animation = 'popIn 0.5s ease-out';
+          textoRespuesta.style.textShadow = '0 0 20px red';
         }
 
         divRespuesta.appendChild(textoRespuesta);
@@ -231,7 +235,6 @@ verVista (vista) {
       .catch(error => console.error('Error:', error));
   }
 
-  
 
 }
 

@@ -4,7 +4,7 @@ export class Vista {
     Vista.vruleta = Symbol('Ruleta')
     Vista.vmenucompeticion = Symbol('Menu Competicion')
     Vista.vcrearcompeticion = Symbol('Crear Competicion')
-    Vista.vinircompeticion = Symbol('Unirse Competicion')
+    Vista.vunircompeticion = Symbol('Unirse Competicion')
     Vista.vmenuranking = Symbol('Menu Ranking')
     Vista.vrankingglobal = Symbol('Ranking Global')
     Vista.vrankingcompeticion = Symbol('Ranking Competiciones')
