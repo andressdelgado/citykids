@@ -97,6 +97,9 @@ body {
     margin-top: 0px;
     padding-top: 4%;
 }
+
+
+
 .imgInicio {
     margin-top: 3%;
     max-width: 30%;
@@ -697,8 +700,6 @@ input:focus,textarea:focus {
   }
 
   #divPersonajes {
-    height: auto;
-    display: flex;
     justify-content: center;
     align-items: center;
     padding: 20px;
