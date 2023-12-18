@@ -25,4 +25,3 @@
             </tbody>
         </table>
     </div>
-    <a href="views/vJuego.html" id="volverAlMenu">Volver al juego</a>
